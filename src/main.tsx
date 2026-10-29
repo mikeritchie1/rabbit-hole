@@ -5,10 +5,12 @@ import { topics } from './data';
 import { back, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
 import type { Topic } from './schema';
 import { Space } from './Space';
+import { TOPIC_CATEGORIES, CATEGORY_DESCRIPTIONS, isCategoryFilter, topicsInCategory, type CategoryFilter } from './categories';
 import './styles.css';
 
 function readPlaces(key:string):Place[]{try{const raw=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(raw)?raw.filter(p=>p&&topics.some(t=>t.id===p.topicId&&Number.isInteger(p.level)&&p.level>=1&&p.level<=t.levels.length)).slice(-200):[];}catch{return [];}}
 function save(key:string,value:unknown){try{localStorage.setItem(key,JSON.stringify(value));}catch{}}
+function readCategory():CategoryFilter{try{const value=JSON.parse(localStorage.getItem('rh-category')||'"All"');return isCategoryFilter(value)?value:'All';}catch{return 'All';}}
 const same=(a:Place,b:Place)=>a.topicId===b.topicId&&a.level===b.level;
 function SafeImage({src,alt}:{src:string;alt:string}){const [failed,setFailed]=useState(false);useEffect(()=>setFailed(false),[src]);return failed?<div className="image-fallback" role="img" aria-label={alt}><Orbit size={48}/></div>:<img src={src} alt={alt} draggable={false} onError={()=>setFailed(true)}/>;}
 
@@ -34,6 +36,7 @@ type Overlay='library'|'sources'|null;
 type Flight={id:number;direction:'forward'|'backward';from:Place|null;departureStyle?:React.CSSProperties}|null;
 function App(){
   const [started,setStarted]=useState(false);
+  const [category,setCategory]=useState<CategoryFilter>(readCategory);
   const [journal,setJournal]=useState<Place[]>(()=>readPlaces('rh-history'));
   const [journey,setJourney]=useState<Journey>(()=>({current:parseHash(location.hash,topics)||{topicId:randomTopic(topics,readPlaces('rh-history').slice(-8).map(p=>p.topicId)).id,level:1},trail:[]}));
   const [overlay,setOverlay]=useState<Overlay>(null),[page,setPage]=useState(0),[notice,setNotice]=useState('');
@@ -48,9 +51,9 @@ function App(){
     startedRef.current=false;setFlight(null);setStarted(false);setOverlay(null);
     history.replaceState(null,'',location.pathname+location.search);
   };
-  const travel=(next:Journey,direction:'forward'|'backward'='forward')=>{
+  const travel=(next:Journey,direction:'forward'|'backward'='forward',restart=false)=>{
     const previous=journeyRef.current;
-    if(startedRef.current&&same(previous.current,next.current))return;
+    if(!restart&&startedRef.current&&same(previous.current,next.current))return;
     if(flightTimer.current)clearTimeout(flightTimer.current);
     // Continue the departing scene from its visible position if a flight is interrupted.
     const visual=present.current?getComputedStyle(present.current):null;
@@ -63,14 +66,17 @@ function App(){
   const go=(p:Place)=>travel(visit(journeyRef.current,p));
   const deeper=()=>{const place=journeyRef.current.current;const target=topics.find(t=>t.id===place.topicId)!;if(startedRef.current&&place.level<target.levels.length)go({...place,level:place.level+1});};
   const up=()=>{if(startedRef.current)travel(back(journeyRef.current),'backward');};
-  const newHole=()=>{
-    if(!startedRef.current){
-      const next=randomTopic(topics,journal.slice(-8).map(p=>p.topicId));
-      travel({current:{topicId:next.id,level:1},trail:[]});
-    }else{
-      const next=randomTopic(topics,journal.slice(-8).map(p=>p.topicId),current.topicId);
-      go({topicId:next.id,level:1});
-    }
+  const startRandom=(filter:CategoryFilter,resetTrail=false)=>{
+    const pool=topicsInCategory(topics,filter);
+    if(!pool.length){setNotice('No rabbit holes in this category yet.');return;}
+    const next=randomTopic(pool,journal.slice(-8).map(p=>p.topicId),startedRef.current?journeyRef.current.current.topicId:undefined);
+    const place={topicId:next.id,level:1};
+    travel(resetTrail||!startedRef.current?{current:place,trail:[]}:visit(journeyRef.current,place),'forward',true);
+  };
+  const newHole=()=>startRandom(category);
+  const chooseCategory=(filter:CategoryFilter)=>{
+    if(!topicsInCategory(topics,filter).length)return;
+    setCategory(filter);setPage(0);startRandom(filter,true);
   };
   const chooseTopic=(topicId:string)=>{
     if(startedRef.current)go({topicId,level:1});
@@ -84,6 +90,7 @@ function App(){
     setJournal(items=>items.length&&same(items[items.length-1],current)?items:[...items,current].slice(-200));
   },[started,current.topicId,current.level]);
   useEffect(()=>save('rh-history',journal),[journal]);
+  useEffect(()=>save('rh-category',category),[category]);
   useEffect(()=>{const handler=()=>{const p=parseHash(location.hash,topics);if(p)setJourney(j=>same(j.current,p)?j:visit(j,p));};window.addEventListener('hashchange',handler);return()=>window.removeEventListener('hashchange',handler);},[]);
   useEffect(()=>{if(overlay)dialog.current?.showModal();else dialog.current?.close();},[overlay]);
   useEffect(()=>setPage(0),[compact]);
@@ -102,12 +109,13 @@ function App(){
     if(object.type==='image')return [{title:object.title,by:`${object.caption} · ${object.image.credit}`,url:object.image.sourceUrl}];
     return [{title:object.title,by:object.publisher,url:object.url}];
   }).map(source=>[source.url,source])).values());
-  const totalPages=overlay==='library'?Math.ceil(topics.length/6):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
+  const libraryTopics=topicsInCategory(topics,category);
+  const totalPages=overlay==='library'?Math.ceil(libraryTopics.length/6):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
   return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''}`}>
     <Space flight={flight?.id||0}/>
     <header className="topbar">
       {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span></div></>}
-      <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
+      <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole} title={`New rabbit hole: ${category}`}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
     </header>
     {!started?<main className="welcome-screen">
       <div className="welcome-logo" aria-label="Rabbit Hole"><span className="brand-orbit"/><span>RABBIT HOLE</span></div>
@@ -134,7 +142,8 @@ function App(){
       {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={!journey.trail.length&&current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div>}
     </footer>
     <dialog ref={dialog} className={`overlay ${overlay==='library'?'explore-overlay':''}`} aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
-      <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">Enter <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
+      {overlay==='library'&&<div className="category-filters" role="group" aria-label="Choose a surprise category">{(['All',...TOPIC_CATEGORIES] as const).map(filter=><button key={filter} data-category={filter} aria-pressed={category===filter} disabled={!topicsInCategory(topics,filter).length} title={CATEGORY_DESCRIPTIONS[filter]} onClick={()=>chooseCategory(filter)}>{filter}</button>)}</div>}
+      <div className="modal-content">{overlay==='library'?<div className="library">{libraryTopics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="topic-category" data-category={t.category}>{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">Enter <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
       {totalPages>1&&<div className="pagination"><button disabled={page===0} onClick={()=>setPage(p=>p-1)} aria-label="Previous page"><ChevronLeft size={18}/></button><span>{page+1} / {totalPages}</span><button disabled={page>=totalPages-1} onClick={()=>setPage(p=>p+1)} aria-label="Next page"><ChevronRight size={18}/></button></div>}
     </div></dialog><div className={`toast ${notice?'visible':''}`} role="status">{notice}</div>
   </div>;

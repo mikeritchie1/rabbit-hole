@@ -1,6 +1,6 @@
 # Rabbit Hole
 
-A cinematic, keyboard-first curiosity explorer. React + TypeScript + Vite, entirely static. Every topic has exactly six depths and each depth contains 1-4 explicit floating objects: facts, images, videos or articles. No backend, AI service, API key, or runtime content API.
+A cinematic, keyboard-first curiosity explorer. React + TypeScript + Vite, entirely static. Each topic has as many depths as its researched journey needs, and each depth contains 1-4 explicit floating objects: facts, images, videos or articles. No backend, AI service, API key, or runtime content API.
 
 ## Run locally
 
@@ -31,21 +31,30 @@ For a TV or phone on the same trusted Wi-Fi, use `npm run dev -- --host 0.0.0.0`
 | Key | Action |
 | --- | --- |
 | Up / Down | Descend / backtrack |
-| H | Exploration history |
 | F | Fullscreen |
-| Space | New random story (when not focused on a button/link) |
+| Space | Begin / new random story within the selected category |
 | Esc | Close overlay |
-| ? | Help |
 
-All actions have mouse/touch controls. Swipe up or down to change depth. Tangents are currently disabled. Down unwinds actual navigation, including tangent entries; on a directly loaded deep link it moves up one depth. Topic/depth URLs use hashes so refreshes work on static hosting. The history panel records up to 200 visits. Bookmarks and history stay in localStorage on that browser, with in-memory fallback if storage is blocked. Clearing browser data removes them. Random selection prefers topics outside the most recent eight visits and never immediately repeats the current topic when another exists.
+Explore opens the topic picker, with six topics per page in two rows of three. Clicking a category starts a matching topic and keeps Space / New Rabbit Hole in that category. All includes every topic. The selection is remembered in localStorage; anonymous recent visits also help avoid immediate repeats. Returning to Welcome keeps the selected category. Choosing a new category resets the backtrack trail so Back does not cross into the old group. A category with a single topic can replay that topic; an empty category is disabled.
+
+The four topic categories are:
+
+- **Explained:** extraordinary phenomena with established scientific mechanisms.
+- **Unsolved:** genuine mysteries with competing hypotheses.
+- **Mind-bending:** discoveries that challenge ordinary intuition.
+- **Dark & disturbing:** parasites, disasters, gruesome history and strange behaviour.
+
+Each topic has exactly one category; All is only a filter. Category labels describe the overall surprise, while individual fact evidence badges identify hypotheses or disputes.
+
+Swipe up/down to navigate on touchscreens, or use the on-screen arrows. Navigation can interrupt a flight. The logo returns to Welcome; fullscreen is in the top right. Tangents, bookmarks, history UI, sharing and Help controls are currently disabled or removed. Topic/depth hash URLs work with static hosting.
 
 ## Add a topic
 
-Copy the entire [GENERATE_TOPIC.md](GENERATE_TOPIC.md) into ChatGPT, replace the TOPIC on its first line, and ask it to research the topic. The prompt is self-contained and includes all field definitions plus a complete six-depth example. Save the returned JSON as `topics/<id>.json`, then run `npm run validate:topics` and `npm run build`. Vite discovers every topic automatically. Adding a file to a deployed site requires rebuilding and deploying.
+Copy the entire [GENERATE_TOPIC.md](GENERATE_TOPIC.md) into ChatGPT, replace the TOPIC on its first line, and ask it to research the topic. The prompt is self-contained and includes all field definitions plus a complete example. Save the returned JSON as `topics/<id>.json`, then run `npm run validate:topics` and `npm run build`. Vite discovers every topic automatically. Adding a file to a deployed site requires rebuilding and deploying.
 
-The current format is **schemaVersion 2**: a topic has exactly six entries in `levels`, and each level has 1-4 entries in `objects`. Each object uses exactly its own type's fields; the renderer displays those objects without filling empty slots or duplicating a takeaway. Version 1 fields (`body`, `takeaway`, and level-level media/source arrays) are no longer used. [topic.schema.json](topic.schema.json) is the machine-readable format for editors and other tools.
+The current format is **schemaVersion 2**: `category` must be one of the four surprise labels above; `levels` is a nonempty array with no maximum depth count, and each level has 1-4 entries in `objects`. Only the actual last level has `final: true`. Each object uses exactly its own type's fields; the renderer displays those objects without filling empty slots or duplicating a takeaway. Version 1 fields (`body`, `takeaway`, and level-level media/source arrays) are no longer used. [topic.schema.json](topic.schema.json) is the machine-readable format for editors and other tools.
 
-`src/schema.ts` is the executable source of truth. Every object is strict. The production build fails on malformed files, duplicate IDs, invalid final levels, broken tangent IDs, and out-of-range tangent depths. During development the UI skips malformed topics and disables broken links, showing diagnostics below the content. No valid topics yields a readable error screen.
+`src/schema.ts` is the executable source of truth. Every object is strict. New files omit tangents; legacy tangent fields are optional and still checked if present. The production build fails on malformed files, duplicate IDs, invalid final levels, broken tangent IDs, and out-of-range tangent depths. During development malformed topics are skipped; the CLI reports validation errors. No valid topics yields a readable error screen.
 
 ## Deploy to GitHub Pages
 

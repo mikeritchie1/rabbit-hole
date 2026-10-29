@@ -16,7 +16,12 @@
     },
     "category": {
       "type": "string",
-      "minLength": 1
+      "enum": [
+        "Explained",
+        "Unsolved",
+        "Mind-bending",
+        "Dark & disturbing"
+      ]
     },
     "hook": {
       "type": "string",
@@ -51,8 +56,7 @@
       "additionalProperties": false
     },
     "levels": {
-      "minItems": 6,
-      "maxItems": 6,
+      "minItems": 1,
       "type": "array",
       "items": {
         "type": "object",
@@ -288,7 +292,7 @@
                       "level": {
                         "type": "integer",
                         "minimum": 1,
-                        "maximum": 6
+                        "maximum": 9007199254740991
                       },
                       "label": {
                         "type": "string",
@@ -324,7 +328,7 @@
                       "level": {
                         "type": "integer",
                         "minimum": 1,
-                        "maximum": 6
+                        "maximum": 9007199254740991
                       },
                       "label": {
                         "type": "string",
@@ -363,55 +367,10 @@
           "id",
           "title",
           "objects",
-          "tangents",
           "final"
         ],
         "additionalProperties": false
-      },
-      "prefixItems": [
-        {
-          "properties": {
-            "final": {
-              "const": false
-            }
-          }
-        },
-        {
-          "properties": {
-            "final": {
-              "const": false
-            }
-          }
-        },
-        {
-          "properties": {
-            "final": {
-              "const": false
-            }
-          }
-        },
-        {
-          "properties": {
-            "final": {
-              "const": false
-            }
-          }
-        },
-        {
-          "properties": {
-            "final": {
-              "const": false
-            }
-          }
-        },
-        {
-          "properties": {
-            "final": {
-              "const": true
-            }
-          }
-        }
-      ]
+      }
     }
   },
   "required": [
@@ -425,5 +384,5 @@
   ],
   "additionalProperties": false,
   "title": "Rabbit Hole topic - version 2",
-  "description": "Exactly six depths, with one to four explicit objects per depth. The CLI additionally checks unique level/object IDs and tangent references."
+  "description": "One of four surprise categories; any nonzero number of depths, each containing one to four explicit objects. Only the last depth must be final. The CLI additionally validates final flags, unique IDs and any legacy tangent references."
 }

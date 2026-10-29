@@ -45,7 +45,7 @@ Topic:
 - schemaVersion: exactly the number 2.
 - id: a unique lowercase kebab-case slug, such as messenger-pigeons.
 - title: a concise descriptive topic title.
-- category: a short category label.
+- category: exactly ONE of "Explained", "Unsolved", "Mind-bending", or "Dark & disturbing", following the classification rules below. Use the exact spelling and capitalisation. "All" is a website filter, never a topic category.
 - hook: one or two concrete introductory sentences for the topic picker.
 - image: the cover-image object defined below.
 - levels: a nonempty array of depth objects in their viewing order, with no fixed count or maximum length. You decide its length from the research.
@@ -55,6 +55,19 @@ Each depth:
 - title: a short, specific discovery heading.
 - objects: an array of 1-4 typed objects, using only the fields of that object's type.
 - final: false for every depth except the last; true for the last depth only, regardless of its position in the array.
+
+### Choose the topic's type of surprise
+
+Assign one category to the overall rabbit hole, based on its main appeal:
+
+- **Explained:** Something extraordinary with a scientifically established mechanism. Explain the supported mechanism; identify any unsettled secondary details honestly.
+- **Unsolved:** A genuine mystery with competing hypotheses. Show the evidence and where explanations disagree. Do not manufacture uncertainty around an established explanation just to use this label.
+- **Mind-bending:** A discovery that challenges ordinary intuition, such as a brainless organism solving a maze. It can be well explained; the category describes the surprise, not a lack of evidence.
+- **Dark & disturbing:** Parasites, disasters, gruesome history and strange behaviour, where the unsettling aspect is central to the story.
+
+If several categories could fit, choose the one that best describes the main reason someone would explore this topic. Do not output an array, combine labels, invent another category, or assign a different topic category at each depth. Evidence badges on individual facts remain separate from this overall classification.
+
+The website displays this label on each topic in Explore. Selecting a category starts a matching rabbit hole and keeps subsequent random selections inside that category until the visitor chooses another category or All. Your JSON must therefore classify the topic accurately; it must not contain website filter state.
 
 A fact object has exactly:
 { "type": "fact", "id": "unique-object-id", "title": "Specific claim", "text": "The factual explanation", "evidence": "documented", "sources": [{ "title": "Actual source title", "publisher": "Actual publisher", "url": "https://a-verified-source" }] }
@@ -80,8 +93,6 @@ Before answering, check the structure, confirm the route has a natural researche
 
 I will save your JSON as UTF-8 at topics/<id>.json. The app discovers topic files automatically. If you have direct access to my repository instead of ordinary ChatGPT, save the file there and use the existing topic validator; otherwise return the full copyable JSON. The local installation command is npm run validate:topics; rebuilding/deploying includes the new topic in the production site.
 
-If the repository's existing validator still enforces the previous format, report the compatibility mismatch rather than changing the content to fit its old depth count or adding fields absent from this contract. Do not modify application code unless I explicitly request it.
-
 ## Complete example
 
 The following example demonstrates four different object types and varying object counts, including a depth containing only one explanation. Its particular length is illustrative, not a required count, limit or default. Follow its STRUCTURE, not its number of depths. Research a new route and new content for the TOPIC specified at the start of this prompt. Do not copy pigeon content into an unrelated topic.
@@ -91,7 +102,7 @@ The following example demonstrates four different object types and varying objec
   "schemaVersion": 2,
   "id": "messenger-pigeons",
   "title": "A pigeon can find a home it cannot see.",
-  "category": "Animal navigation",
+  "category": "Mind-bending",
   "hook": "Follow a messenger pigeon from its loft into invisible maps, magnetic senses, and birds that cross oceans without landing.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",

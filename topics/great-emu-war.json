@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 2,
+  "id": "great-emu-war",
+  "title": "The War Australia Fought Against Emus",
+  "category": "Mind-bending",
+  "hook": "In 1932, Australian soldiers carried machine guns into wheat fields to stop migrating emus. Their disastrous ambush was only the beginning of a much longer battle with the birds.",
+  "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Emu_running_on_the_beach_at_Monkey_Mia%2C_July_2020_01.jpg/960px-Emu_running_on_the_beach_at_Monkey_Mia%2C_July_2020_01.jpg",
+    "alt": "An emu running across a sandy beach at Monkey Mia in Western Australia in 2020.",
+    "credit": "Calistemon · CC BY-SA 4.0 · cropped and darkened for topic cover; modern photograph, not the 1932 operation",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emu_running_on_the_beach_at_Monkey_Mia,_July_2020_01.jpg"
+  },
+  "levels": [
+    {
+      "id": "why-the-farms-needed-help",
+      "title": "The emus arrived where desperate farmers grew wheat.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "veterans-and-migrants",
+          "title": "An estimated 20,000 birds met a farming crisis",
+          "text": "After World War I, returned soldiers were settled on difficult farmland in Western Australia's Wheatbelt. Drought and collapsing wheat prices left them struggling. In 1932, an estimated 20,000 migrating emus damaged crops and fences. Farmers asked Defence Minister George Pearce for machine guns; the so-called war was a culling operation, not a declared conflict.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Environmental issues from the not so distant past",
+              "publisher": "National Archives of Australia",
+              "url": "https://www.naa.gov.au/blog/environmental-issues-not-so-distant-past"
+            },
+            {
+              "title": "Australia's Emu War spawns feature film, jokes and memes 90 years on",
+              "publisher": "ABC News",
+              "url": "https://www.abc.net.au/news/2022-12-10/great-emu-war-90-years-on-army-wheatbelt-battle-history/101752238"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "a-mob-in-open-country",
+          "title": "What an emu mob actually looks like",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/EmuMob.jpg",
+            "alt": "A group of wild emus standing on bare ground beside a wire fence in arid Australian country.",
+            "credit": "Chudditch · CC BY-SA 3.0 · cropped and darkened for display; later photograph in New South Wales, not 1932",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmuMob.jpg"
+          },
+          "caption": "Wild emus beside a fence at Fowlers Gap Research Station. This later scene illustrates the birds and the barriers involved, not the 1932 campaign."
+        },
+        {
+          "type": "video",
+          "id": "abc-explains-the-war",
+          "title": "The Great Emu War: how it started and who won | ABC Australia",
+          "channel": "ABC Australia",
+          "youtubeId": "ejiYxSWrkdY",
+          "note": "Modern English-language account with historical context and archive material; 'won' is a popular metaphor, not a military outcome."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-smallest-army",
+      "title": "The army brought two machine guns and 10,000 rounds.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "merediths-detachment",
+          "title": "Three artillerymen confronted dispersed birds",
+          "text": "Major Gwynydd Meredith led a tiny Royal Australian Artillery party, including two gunners, to the Campion district in November 1932. They had two Lewis light machine guns and 10,000 rounds. The plan depended on farmers herding emus into concentrated groups within firing range; the birds kept scattering across the paddocks.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Brigadier Gwynydd Meredith: First commanding officer of the School of Artillery",
+              "publisher": "Sydney Harbour Federation Trust",
+              "url": "https://www.harbourtrust.gov.au/discover-and-learn/harbour-history/historical-people-and-landmarks/brigadier-gwynydd-meredith/"
+            },
+            {
+              "title": "Emu: National Symbols and Ecological Limits",
+              "publisher": "Libby Robin · Boom and Bust: Bird Stories for a Dry Country · CSIRO Publishing, 2009",
+              "url": "https://openresearch-repository.anu.edu.au/bitstreams/c76f8ca1-5e83-4be7-981a-c7e9e2689bd0/download"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "the-lewis-gun-crew",
+          "title": "The actual weapon, photographed in 1932",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Sargent_McMurray_and_J._O%27Hallroan_Emu_War.jpg",
+            "alt": "Black-and-white archival photograph of two artillerymen operating a Lewis machine gun in a field.",
+            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons · cropped for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sargent_McMurray_and_J._O%27Hallroan_Emu_War.jpg"
+          },
+          "caption": "The archival caption identifies Sergeant McMurray and Gunner O'Halloran with a Lewis gun. These were real soldiers, not actors in a later reenactment."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-botched-ambush",
+      "title": "A thousand emus arrived. Then the gun jammed.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "waterhole-ambush",
+          "title": "The best-looking target escaped",
+          "text": "On 4 November, troops tried to ambush roughly 1,000 emus near a watering point. One Lewis gun jammed; accounts report only 12 birds killed before the flock escaped. An automatic weapon could fire rapidly, but that offered little advantage when the target broke into scattered, fast-moving groups.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Emu: National Symbols and Ecological Limits",
+              "publisher": "Libby Robin · Boom and Bust: Bird Stories for a Dry Country · CSIRO Publishing, 2009",
+              "url": "https://openresearch-repository.anu.edu.au/bitstreams/c76f8ca1-5e83-4be7-981a-c7e9e2689bd0/download"
+            },
+            {
+              "title": "Australia's Emu War spawns feature film, jokes and memes 90 years on",
+              "publisher": "ABC News",
+              "url": "https://www.abc.net.au/news/2022-12-10/great-emu-war-90-years-on-army-wheatbelt-battle-history/101752238"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "truck-mounted-failure",
+          "title": "Mounting a gun on a truck made it harder to aim",
+          "text": "Meredith's men also tried chasing emus with a Lewis gun mounted on a truck. The vehicle bounced over rough farmland, spoiling the gunner's aim, and could not reliably catch the fleeing birds. Mobility did not solve the basic problem of tracking a fast, unpredictable target.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Looking back: Australia's Emu Wars",
+              "publisher": "Australian Geographic",
+              "url": "https://www.australiangeographic.com.au/nature-wildlife/2016/10/australias-emu-wars/"
+            },
+            {
+              "title": "The Great Emu War: How Australia was beaten by a bird",
+              "publisher": "Forces News",
+              "url": "https://www.forcesnews.com/services/tri-service/great-emu-war-how-australia-was-beaten-bird"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "original-cinema-newsreel",
+          "title": "Western Australia Makes War On Emus",
+          "channel": "British Movietone",
+          "youtubeId": "Y1wA0PKeJqc",
+          "note": "Contemporary footage circulated as a cinema newsreel in 1933. The jaunty English narration is period commentary, not a reliable account of the cull's success."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-war-becomes-a-scandal",
+      "title": "The guns were recalled, then sent back again.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "two-campaigns-not-one",
+          "title": "The first withdrawal was not the end",
+          "text": "Following poor results and embarrassing press coverage, the troops were withdrawn on 8 November. Under renewed pressure from Western Australia, the operation resumed on 12 November and ended in December. Reported kills vary widely; the soldiers never stopped emus from returning to farmland. This was an unsuccessful cull, not a battle in which birds attacked an army.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Australia's Emu War spawns feature film, jokes and memes 90 years on",
+              "publisher": "ABC News",
+              "url": "https://www.abc.net.au/news/2022-12-10/great-emu-war-90-years-on-army-wheatbelt-battle-history/101752238"
+            },
+            {
+              "title": "Environmental issues from the not so distant past",
+              "publisher": "National Archives of Australia",
+              "url": "https://www.naa.gov.au/blog/environmental-issues-not-so-distant-past"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "cameras-at-the-waterhole",
+          "title": "A cameraman was there to record the campaign",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Australian_soldiers_resting_during_Emu_War.jpg",
+            "alt": "Black-and-white image of men beside a waterhole during the Emu War; a camera is reflected in the water.",
+            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons · cropped for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Australian_soldiers_resting_during_Emu_War.jpg"
+          },
+          "caption": "A 1932 campaign photograph includes the filming setup reflected in the water. Newsreel cameras were part of this extraordinary operation."
+        },
+        {
+          "type": "article",
+          "id": "protest-telegram",
+          "title": "A protest telegram reached the prime minister",
+          "publisher": "National Archives of Australia",
+          "url": "https://www.naa.gov.au/blog/environmental-issues-not-so-distant-past",
+          "description": "The Archives preserves a telegram opposing the killing of emus in Western Australia. The agency also records further requests for military help in 1934, 1943 and 1948; the Commonwealth refused them. The backlash was documented, not invented by internet memes."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-weather-moves-emus",
+      "title": "Emus move for food, not under orders.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "nomads-follow-rain",
+          "title": "A flock may travel hundreds of kilometres",
+          "text": "Emus are nomadic. When food and water are plentiful, they can stay in one area; when conditions change, they travel to find better feeding grounds. The Australian Museum records movements of hundreds of kilometres, sometimes 15–25 kilometres a day. Grain farms turned into attractive stops along those movements.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Emu",
+              "publisher": "Australian Museum",
+              "url": "https://australian.museum/learn/animals/birds/emu/"
+            },
+            {
+              "title": "Australia's Emu War spawns feature film, jokes and memes 90 years on",
+              "publisher": "ABC News",
+              "url": "https://www.abc.net.au/news/2022-12-10/great-emu-war-90-years-on-army-wheatbelt-battle-history/101752238"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "later-migration-study",
+          "title": "The September–October movements became an agricultural research problem",
+          "publisher": "Journal of the Department of Agriculture, Western Australia · Long and Tozer, 1964",
+          "url": "https://library.dpird.wa.gov.au/journal_agriculture4/vol5/iss12/8/",
+          "description": "Long and Tozer examined recurring emu movements and control efforts. Their 1964 paper notes that movements in September and October were familiar to Western Australian farmers, although detailed tracking data remained scarce. The 1932 encounter was part of a repeating ecological pattern."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-fence-outlasts-the-war",
+      "title": "Forty-four years later, 50,000 emus met a fence.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "rabbit-fence-repurposed",
+          "title": "A rabbit barrier became an emu barrier",
+          "text": "Western Australia built its original rabbit-proof fences between 1902 and 1907. As their role in stopping rabbits diminished, the fences became important for keeping periodic emu movements away from crops. The surviving, modified State Barrier Fence is now about 1,350 kilometres long and is also used against wild dogs.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "State Barrier Fence",
+              "publisher": "Western Australian Department of Primary Industries and Regional Development",
+              "url": "https://www.dpird.wa.gov.au/businesses/pests-weeds-and-diseases/control-methods/state-barrier-fence/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "fifty-thousand-at-the-fence",
+          "title": "In 1976, a migration overwhelmed the landscape again",
+          "publisher": "Michael T. Sexton · Journal of the Department of Agriculture, Western Australia, 1976",
+          "url": "https://library.dpird.wa.gov.au/journal_agriculture4/vol17/iss3/3/",
+          "description": "A contemporary agricultural report described emus moving southwest from the Murchison and Gascoyne regions in search of food. By mid-June 1976, barrier fences had stopped a wave of birds, with an estimated 50,000 congregating along them. Four decades after the guns, migration remained a huge challenge."
+        },
+        {
+          "type": "image",
+          "id": "modern-state-barrier-fence",
+          "title": "The barrier still cuts across Western Australia",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/State_Barrier_Fence_in_Karara_Rangeland_Park%2C_Western_Australia%2C_October_2025_04.jpg/1280px-State_Barrier_Fence_in_Karara_Rangeland_Park%2C_Western_Australia%2C_October_2025_04.jpg",
+            "alt": "A metal mesh barrier fence and closed gate extending across dry bushland at Karara Rangeland Park, Western Australia, in 2025.",
+            "credit": "Calistemon · CC BY-SA 4.0 · cropped and darkened for display; 2025 image of the modern fence, not a 1932 photograph",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:State_Barrier_Fence_in_Karara_Rangeland_Park,_Western_Australia,_October_2025_04.jpg"
+          },
+          "caption": "The State Barrier Fence photographed in 2025 at Karara Rangeland Park. This is the physical infrastructure that outlasted the machine-gun campaign."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}
