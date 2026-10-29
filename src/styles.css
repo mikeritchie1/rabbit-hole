@@ -87,3 +87,13 @@
 .welcome-begin svg{margin-left:6px}
 @media(max-width:650px){.welcome-screen{gap:18px;inset:13% 5% 10%}.welcome-logo{gap:19px}.welcome-controls{gap:12px}.welcome-controls>div{gap:15px}.welcome-selection{font-size:18px}.topbar nav{gap:18px}.welcome-explore{font-size:11px}}
 @media(max-height:600px){.welcome-screen{inset:13% 4% 8%;gap:9px}.welcome-logo{gap:12px}.welcome-logo .brand-orbit{width:33px;height:33px}.welcome-logo>span:last-child{font-size:9px}.welcome-screen h1{font-size:34px;margin:0}.welcome-controls{flex-direction:row;gap:22px;align-items:center;font-size:10px}.welcome-controls>div{gap:7px}.welcome-controls kbd{min-width:42px;font-size:9px;padding:5px}.welcome-keys{width:47px;gap:3px}.welcome-keys kbd{min-width:0;padding:2px 5px;font-size:12px}.welcome-explore{font-size:10px;margin:0}.welcome-begin{padding:8px 18px;font-size:11px}.welcome-selection{font-size:15px}}
+
+/* Plain instructions, matching the in-scene keyboard hints. */
+.welcome-controls{align-items:center;gap:10px;font-size:clamp(9px,.65vw,12px);letter-spacing:2.1px;text-align:center;color:#a2b6d2}
+.welcome-controls p{margin:0;line-height:1.7}
+.welcome-explore{font-size:clamp(8px,.6vw,11px);letter-spacing:1.8px;color:#9db3d1}
+.welcome-begin{border:0;border-radius:0;background:none;box-shadow:none;padding:8px 0;font-size:clamp(10px,.7vw,13px);letter-spacing:2.4px}
+.welcome-begin:hover{background:none;border-color:transparent;color:#fff}
+.topbar nav>.fullscreen-control{display:flex!important;margin-left:5px}
+@media(max-width:650px){.topbar nav{gap:12px}.topbar .brand{letter-spacing:2px}.topbar nav>.fullscreen-control{width:28px;height:28px;margin-left:0}.welcome-controls{gap:9px;font-size:8px;letter-spacing:1.5px}.welcome-explore{font-size:8px;letter-spacing:1.1px}.welcome-begin{font-size:10px;letter-spacing:2px}}
+@media(max-height:600px){.welcome-controls{flex-direction:column;gap:4px;font-size:8px;letter-spacing:1.5px}.welcome-explore{font-size:8px}.welcome-begin{padding:4px 0;font-size:9px}}

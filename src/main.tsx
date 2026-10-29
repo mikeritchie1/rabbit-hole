@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUp, ArrowDown, History, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Sparkles, Orbit, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUp, ArrowDown, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Sparkles, Orbit, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import { topics } from './data';
 import { back, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
 import type { Topic } from './schema';
@@ -30,7 +30,7 @@ function Discovery({topic,depth,preview=false,onSources}:{topic:Topic;depth:numb
   </div>;
 }
 
-type Overlay='history'|'library'|'sources'|null;
+type Overlay='library'|'sources'|null;
 type Flight={id:number;direction:'forward'|'backward';from:Place|null}|null;
 function App(){
   const [started,setStarted]=useState(false);
@@ -42,6 +42,11 @@ function App(){
   const flying=useRef(false),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
+  const welcome=()=>{
+    if(flightTimer.current)clearTimeout(flightTimer.current);
+    flying.current=false;setFlight(null);setStarted(false);setSelectedTopic(null);setOverlay(null);
+    history.replaceState(null,'',location.pathname+location.search);
+  };
   const travel=(next:Journey,direction:'forward'|'backward'='forward')=>{
     if(flying.current||(started&&same(current,next.current)))return;
     flying.current=true;setFlight({id:Date.now(),direction,from:started?current:null});setJourney(next);setStarted(true);setOverlay(null);
@@ -80,35 +85,35 @@ function App(){
   useEffect(()=>{const handler=(e:KeyboardEvent)=>{
     if(e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;if(e.key==='Escape'){setOverlay(null);return;}if(overlay)return;
     const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    const actions:Record<string,()=>void>={ArrowUp:deeper,ArrowDown:up,h:()=>{if(started)open('history');},f:()=>void toggleFullscreen(),' ':newHole};
+    const actions:Record<string,()=>void>={ArrowUp:deeper,ArrowDown:up,f:()=>void toggleFullscreen(),' ':newHole};
     const action=actions[e.key.length===1?e.key.toLowerCase():e.key];if(action){e.preventDefault();action();}
   };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler);});
   const outgoingTopic=flight?.from?topics.find(t=>t.id===flight.from!.topicId)!:null;
-  const historyItems=[...journal].reverse(),perPage=compact?3:5;
   const sourceItems=Array.from(new Map(level.objects.flatMap(object=>{
     if(object.type==='fact')return object.sources.map(s=>({title:s.title,by:s.publisher,url:s.url}));
     if(object.type==='video')return [{title:object.title,by:`${object.channel} · ${object.note}`,url:`https://www.youtube.com/watch?v=${object.youtubeId}`}];
     if(object.type==='image')return [{title:object.title,by:`${object.caption} · ${object.image.credit}`,url:object.image.sourceUrl}];
     return [{title:object.title,by:object.publisher,url:object.url}];
   }).map(source=>[source.url,source])).values());
-  const totalPages=overlay==='history'?Math.ceil(historyItems.length/perPage):overlay==='library'?Math.ceil(topics.length/(compact?1:2)):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
+  const totalPages=overlay==='library'?Math.ceil(topics.length/(compact?1:2)):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
   return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''}`}>
     <Space flight={flight?.id||0}/>
     <header className="topbar">
-      {started&&<><button className="brand" onClick={()=>open('library')} aria-label="Rabbit Hole — browse"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span></div></>}
-      <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole}>New Rabbit Hole</button></nav>
+      {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span></div></>}
+      <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
     </header>
     {!started?<main className="welcome-screen">
       <div className="welcome-logo" aria-label="Rabbit Hole"><span className="brand-orbit"/><span>RABBIT HOLE</span></div>
       <h1>Welcome.</h1>
       <div className="welcome-controls">
-        <div><span className="welcome-keys"><kbd>↑</kbd><kbd>↓</kbd></span><span>Go deeper or back up</span></div>
-        <div><kbd>Space</kbd><span>A new rabbit hole</span></div>
-        <div><kbd>F</kbd><span>Fullscreen</span></div>
+        <p>PRESS ↑ TO GO DEEPER</p>
+        <p>PRESS ↓ TO GO BACK</p>
+        <p>PRESS SPACE FOR A NEW RABBIT HOLE</p>
+        <p>PRESS F FOR FULLSCREEN</p>
       </div>
-      <button className="welcome-explore" onClick={()=>open('library')}>Use <strong>Explore</strong> to select a topic <ArrowUpRight size={14}/></button>
+      <button className="welcome-explore" onClick={()=>open('library')}>USE EXPLORE TO SELECT A TOPIC</button>
       {selectedTopic&&<p className="welcome-selection">{topic.title}</p>}
-      <button className="welcome-begin" onClick={newHole}>Press <kbd>Space</kbd> to begin <ArrowUpRight size={16}/></button>
+      <button className="welcome-begin" onClick={newHole}>PRESS SPACE TO BEGIN</button>
     </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}}}>
       <div className="discovery-heading" key={`${topic.id}-${current.level}`} aria-live="polite"><h1>{level.title}</h1></div>
       <div className="perspective-space">
@@ -117,14 +122,13 @@ function App(){
         {flight?.from&&outgoingTopic&&<div key={`out-${flight.id}`} className={`depth-plane departure departure-${flight.direction}`} aria-hidden="true" inert><Discovery topic={outgoingTopic} depth={flight.from.level} preview onSources={()=>{}}/></div>}
         <div key={`${topic.id}-${current.level}`} className={`depth-plane present ${flight?`arrival arrival-${flight.direction}`:''}`}><Discovery topic={topic} depth={current.level} onSources={()=>open('sources')}/></div>
       </div>
-      <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} disabled={!!flight} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="portal-label">{level.final?'THE BOTTOM':'NEXT LEVEL'}<small>{level.final?'ANOTHER UNIVERSE AWAITS':'THERE’S MORE'}</small></span><span className="portal-line"/><span className="event-horizon"><span/></span></button>
+      <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} disabled={!!flight} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
     </main>}
     <footer className="hud">
-      {started&&<><div className="utility-controls"><button aria-label="History" title="History (H)" onClick={()=>open('history')}><History size={16}/></button><button aria-label="Sources" title="Sources" onClick={()=>open('sources')}><BookOpen size={16}/></button></div><div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final||!!flight} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={(!journey.trail.length&&current.level===1)||!!flight} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div></>}
-      <div className="utility-controls right-tools"><button aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></div>
+      {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final||!!flight} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={(!journey.trail.length&&current.level===1)||!!flight} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div>}
     </footer>
-    <dialog ref={dialog} className="overlay" aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='history'?'Your trail':overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
-      <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*(compact?1:2),(page+1)*(compact?1:2)).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">{started?'Enter':'Select'} <ArrowUpRight size={16}/></span></div></button>)}</div>:overlay==='sources'?<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>:<div className="history-list">{!historyItems.length?<p className="empty">Your discoveries will appear here.</p>:historyItems.slice(page*perPage,(page+1)*perPage).map((p,i)=>{const t=topics.find(t=>t.id===p.topicId)!;return <button key={`${p.topicId}-${p.level}-${i}`} onClick={()=>{go(p);setOverlay(null);}}><span className="history-number">{String(p.level).padStart(2,'0')}</span><span><small>{t.category}</small><strong>{t.levels[p.level-1].title}</strong></span><ArrowUpRight size={18}/></button>;})}</div>}</div>
+    <dialog ref={dialog} className="overlay" aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
+      <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*(compact?1:2),(page+1)*(compact?1:2)).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">{started?'Enter':'Select'} <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
       {totalPages>1&&<div className="pagination"><button disabled={page===0} onClick={()=>setPage(p=>p-1)} aria-label="Previous page"><ChevronLeft size={18}/></button><span>{page+1} / {totalPages}</span><button disabled={page>=totalPages-1} onClick={()=>setPage(p=>p+1)} aria-label="Next page"><ChevronRight size={18}/></button></div>}
     </div></dialog><div className={`toast ${notice?'visible':''}`} role="status">{notice}</div>
   </div>;
