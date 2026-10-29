@@ -1,16 +1,23 @@
 import type { Topic } from './schema';
 export type Place={topicId:string;level:number};
-export type Journey={current:Place;trail:Place[]};
-// The trail records previous topics, not individual depth changes.
+export type Journey={current:Place;trail:Place[];ahead:Place[]};
+// Insert after the current topic without discarding topics to its right.
+export function insertTopic(journey:Journey,place:Place):Journey{
+  return {current:place,trail:[...journey.trail,journey.current],ahead:journey.ahead};
+}
 export function visit(journey:Journey,place:Place):Journey{
-  return {current:place,trail:place.topicId===journey.current.topicId?journey.trail:[...journey.trail,journey.current]};
+  return place.topicId===journey.current.topicId?{...journey,current:place}:insertTopic(journey,place);
 }
 export function back(journey:Journey):Journey{
   return journey.current.level>1?{...journey,current:{...journey.current,level:journey.current.level-1}}:journey;
 }
 export function previousTopic(journey:Journey):Journey{
   if(!journey.trail.length)return journey;
-  return {current:journey.trail[journey.trail.length-1],trail:journey.trail.slice(0,-1)};
+  return {current:journey.trail[journey.trail.length-1],trail:journey.trail.slice(0,-1),ahead:[journey.current,...journey.ahead]};
+}
+export function nextTopic(journey:Journey):Journey{
+  if(!journey.ahead.length)return journey;
+  return {current:journey.ahead[0],trail:[...journey.trail,journey.current],ahead:journey.ahead.slice(1)};
 }
 export function randomTopic(topics:Topic[],recent:string[],current?:string){
   const others=topics.filter(t=>t.id!==current);

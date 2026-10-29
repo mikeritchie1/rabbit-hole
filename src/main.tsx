@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUp, ArrowDown, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Sparkles, Orbit, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Sparkles, Orbit, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import { topics } from './data';
-import { back, previousTopic, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
+import { back, previousTopic, nextTopic, insertTopic, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
 import type { Topic } from './schema';
 import { Space, type SpaceMotion } from './Space';
 import { TOPIC_CATEGORIES, CATEGORY_DESCRIPTIONS, isCategoryFilter, topicsInCategory, type CategoryFilter } from './categories';
@@ -38,7 +38,7 @@ function App(){
   const [started,setStarted]=useState(false);
   const [category,setCategory]=useState<CategoryFilter>(readCategory);
   const [journal,setJournal]=useState<Place[]>(()=>readPlaces('rh-history'));
-  const [journey,setJourney]=useState<Journey>(()=>({current:parseHash(location.hash,topics)||{topicId:randomTopic(topics,readPlaces('rh-history').slice(-8).map(p=>p.topicId)).id,level:1},trail:[]}));
+  const [journey,setJourney]=useState<Journey>(()=>({current:parseHash(location.hash,topics)||{topicId:randomTopic(topics,readPlaces('rh-history').slice(-8).map(p=>p.topicId)).id,level:1},trail:[],ahead:[]}));
   const [overlay,setOverlay]=useState<Overlay>(null),[page,setPage]=useState(0),[notice,setNotice]=useState('');
   const [fullscreen,setFullscreen]=useState(!!document.fullscreenElement),[flight,setFlight]=useState<Flight>(null),[compact,setCompact]=useState(innerWidth<650||innerHeight<600);
   const flightSequence=useRef(0),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
@@ -70,13 +70,14 @@ function App(){
   const go=(p:Place)=>travel(visit(journeyRef.current,p));
   const deeper=()=>{const place=journeyRef.current.current;const target=topics.find(t=>t.id===place.topicId)!;if(startedRef.current&&place.level<target.levels.length)go({...place,level:place.level+1});};
   const up=()=>{if(startedRef.current)travel(back(journeyRef.current),'backward');};
-  const previousHole=()=>{if(startedRef.current)travel(previousTopic(journeyRef.current),'backward');};
+  const previousHole=()=>{if(!startedRef.current)return;const next=previousTopic(journeyRef.current);if(next!==journeyRef.current)travel(next,'backward',true);};
+  const nextHole=()=>{if(!startedRef.current)return;const next=nextTopic(journeyRef.current);if(next!==journeyRef.current)travel(next,'forward',true);};
   const startRandom=(filter:CategoryFilter)=>{
     const pool=topicsInCategory(topics,filter);
     if(!pool.length){setNotice('No rabbit holes in this category yet.');return;}
     const next=randomTopic(pool,journal.slice(-8).map(p=>p.topicId),startedRef.current?journeyRef.current.current.topicId:undefined);
     const place={topicId:next.id,level:1};
-    travel(hasExplored.current?visit(journeyRef.current,place):{current:place,trail:[]},'forward',true);
+    travel(hasExplored.current?insertTopic(journeyRef.current,place):{current:place,trail:[],ahead:[]},'forward',true);
   };
   const newHole=()=>startRandom(category);
   const chooseCategory=(filter:CategoryFilter)=>{
@@ -84,8 +85,8 @@ function App(){
     setCategory(filter);setPage(0);startRandom(filter);
   };
   const chooseTopic=(topicId:string)=>{
-    if(hasExplored.current)go({topicId,level:1});
-    else travel({current:{topicId,level:1},trail:[]});
+    if(hasExplored.current)travel(insertTopic(journeyRef.current,{topicId,level:1}),'forward',true);
+    else travel({current:{topicId,level:1},trail:[],ahead:[]});
     setOverlay(null);
   };
   const toggleFullscreen=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{setNotice('Fullscreen is unavailable in this browser.');}};
@@ -104,7 +105,7 @@ function App(){
   useEffect(()=>{const handler=(e:KeyboardEvent)=>{
     if(e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;if(e.key==='Escape'){setOverlay(null);return;}if(overlay)return;
     const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    const actions:Record<string,()=>void>={ArrowUp:deeper,ArrowDown:up,Backspace:previousHole,f:()=>void toggleFullscreen(),' ':newHole};
+    const actions:Record<string,()=>void>={ArrowUp:deeper,ArrowDown:up,ArrowLeft:previousHole,ArrowRight:nextHole,f:()=>void toggleFullscreen(),' ':newHole};
     const action=actions[e.key.length===1?e.key.toLowerCase():e.key];if(action){e.preventDefault();action();}
   };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler);});
   const outgoingTopic=flight?.from?topics.find(t=>t.id===flight.from!.topicId)!:null;
@@ -130,12 +131,12 @@ function App(){
         <p>PRESS ↑ TO GO DEEPER</p>
         <p>PRESS ↓ TO GO BACK</p>
         <p>PRESS SPACE FOR A NEW RABBIT HOLE</p>
-        <p>PRESS BACKSPACE FOR THE PREVIOUS RABBIT HOLE</p>
+        <p>PRESS ← / → FOR PREVIOUS / NEXT RABBIT HOLE</p>
         <p>PRESS F FOR FULLSCREEN</p>
       </div>
       <button className="welcome-explore" onClick={()=>open('library')}>USE EXPLORE TO SELECT A TOPIC</button>
       <button className="welcome-begin" onClick={newHole}>PRESS SPACE TO BEGIN</button>
-    </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}}}>
+    </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}else{if(dx<0)nextHole();else previousHole();}}}>
       {orbiting&&flight?.from&&outgoingTopic&&<div className={`discovery-heading heading-departure-${flight.direction}`} key={`heading-out-${flight.id}`} style={flight.headingStyle} aria-hidden="true"><h1>{outgoingTopic.levels[flight.from.level-1].title}</h1></div>}
       <div ref={heading} className={`discovery-heading ${orbiting?`heading-arrival-${flight.direction}`:''}`} key={`${topic.id}-${current.level}-${flightSequence.current}`} aria-live="polite"><h1>{level.title}</h1></div>
       <div className="perspective-space">
@@ -147,7 +148,7 @@ function App(){
       <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
     </main>}
     <footer className="hud">
-      {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small><small className="space-hint">PRESS BACKSPACE FOR THE PREVIOUS RABBIT HOLE</small></span></div>}
+      {started&&<div className="depth-navigation"><div className="navigation-buttons"><button className="topic-nav-button" onClick={previousHole} disabled={!journey.trail.length} aria-label="Previous rabbit hole" title="Previous rabbit hole (←)"><ArrowLeft size={16}/></button><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><button className="topic-nav-button" onClick={nextHole} disabled={!journey.ahead.length} aria-label="Next existing rabbit hole" title="Next rabbit hole (→)"><ArrowRight size={16}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small><small className="space-hint">PRESS ← / → FOR PREVIOUS / NEXT RABBIT HOLE</small></span></div>}
     </footer>
     <dialog ref={dialog} className={`overlay ${overlay==='library'?'explore-overlay':''}`} aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
       {overlay==='library'&&<div className="category-filters" role="group" aria-label="Choose a surprise category">{(['All',...TOPIC_CATEGORIES] as const).map(filter=><button key={filter} data-category={filter} aria-pressed={category===filter} disabled={!topicsInCategory(topics,filter).length} title={CATEGORY_DESCRIPTIONS[filter]} onClick={()=>chooseCategory(filter)}>{filter}</button>)}</div>}
