@@ -7,7 +7,7 @@
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nyos_Lake.jpg",
     "alt": "Lake Nyos, a blue-green crater lake surrounded by steep green hills in Cameroon, photographed after the 1986 disaster.",
-    "credit": "Jack Lockwood, USGS · public domain (US government work) · cropped and darkened for display",
+    "credit": "Jack Lockwood, USGS · public domain (US government work) ·",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nyos_Lake.jpg"
   },
   "levels": [
@@ -205,7 +205,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Lake_Nyos_1986_001.jpg",
             "alt": "A 1986 aftermath photograph of Lake Nyos and a rocky promontory scoured by the eruption's water surge.",
-            "credit": "Jack Lockwood, USGS · public domain (US government work) · cropped and darkened for display",
+            "credit": "Jack Lockwood, USGS · public domain (US government work) ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_Nyos_1986_001.jpg"
           },
           "caption": "This shows the aftermath, not the eruption itself. Investigators found that displaced lake water had surged over a promontory about 80 metres above the lake."
@@ -247,7 +247,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Lake_nyos_co2_vent_%28cropped%29.jpg",
             "alt": "A tall white jet of water and gas rises from a degassing installation floating on Lake Nyos, photographed in 2006.",
-            "credit": "Bill Evans, USGS · public domain (US government work) · source photograph already cropped; additionally cropped and darkened for display",
+            "credit": "Bill Evans, USGS · public domain (US government work) · source photograph already cropped; additionally",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_nyos_co2_vent_(cropped).jpg"
           },
           "caption": "USGS photograph from 2006: the white jet is the engineered release of gas-rich water, far more controlled than the 1986 burst."
@@ -311,7 +311,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Lake_Kivu_2021.jpg",
             "alt": "Panoramic view of Lake Kivu near Goma, with a broad blue lake, wooded shores, and hills beyond.",
-            "credit": "A junaid alam khan · CC BY-SA 4.0 · cropped and darkened for display under ShareAlike terms",
+            "credit": "A junaid alam khan · CC BY-SA 4.0 ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_Kivu_2021.jpg"
           },
           "caption": "Lake Kivu appears peaceful from shore, but its deep gas-rich layers are now both a monitored hazard and a source of electricity."

@@ -7,7 +7,7 @@
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Mycorhizes-01.jpg",
     "alt": "Fine white ectomycorrhizal fungal threads surrounding the brown root tips of a white spruce.",
-    "credit": "André-Ph. D. Picard · CC BY-SA 3.0 · may be cropped and darkened for display",
+    "credit": "André-Ph. D. Picard · CC BY-SA 3.0 ·",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mycorhizes-01.jpg"
   },
   "levels": [
@@ -22,7 +22,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Mycorhizes-01.jpg",
             "alt": "White, hairlike fungal mycelium wrapped around branching brown white-spruce roots in a close-up experiment photograph.",
-            "credit": "André-Ph. D. Picard · CC BY-SA 3.0 · may be cropped and darkened for display",
+            "credit": "André-Ph. D. Picard · CC BY-SA 3.0 ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mycorhizes-01.jpg"
           },
           "caption": "Real ectomycorrhizal mycelium on white-spruce roots, photographed during research at Université Laval; the threads extend beyond the root itself."
@@ -248,7 +248,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Monotropa_uniflora_ghost_pipe.jpg",
             "alt": "Cluster of pale, nearly translucent ghost pipe flowers with drooping bell-shaped heads growing among brown forest leaves.",
-            "credit": "Gageills · CC0 1.0 public domain dedication · may be cropped and darkened for display",
+            "credit": "Gageills · CC0 1.0 public domain dedication ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monotropa_uniflora_ghost_pipe.jpg"
           },
           "caption": "Ghost pipe, Monotropa uniflora, lacks the green chlorophyll used by ordinary plants to capture sunlight."

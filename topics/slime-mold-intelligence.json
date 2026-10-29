@@ -7,7 +7,7 @@
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Physarum_polycephalum_plasmodium.jpg",
     "alt": "Bright yellow Physarum polycephalum plasmodium spreading over dark tree bark.",
-    "credit": "frankenstoen · CC BY 2.5 · cropped and darkened for display",
+    "credit": "frankenstoen · CC BY 2.5 ·",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_plasmodium.jpg"
   },
   "levels": [
@@ -22,7 +22,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Physarum_polycephalum_plasmodium.jpg",
             "alt": "Yellow branching slime-mould plasmodium growing across dark bark.",
-            "credit": "frankenstoen · CC BY 2.5 · cropped and darkened for display",
+            "credit": "frankenstoen · CC BY 2.5 ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_plasmodium.jpg"
           },
           "caption": "Physarum polycephalum is neither a mushroom nor an animal. Its yellow, many-nucleated plasmodium can spread into a visible web."

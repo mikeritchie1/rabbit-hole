@@ -7,7 +7,7 @@
   "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Emu_running_on_the_beach_at_Monkey_Mia%2C_July_2020_01.jpg/960px-Emu_running_on_the_beach_at_Monkey_Mia%2C_July_2020_01.jpg",
     "alt": "An emu running across a sandy beach at Monkey Mia in Western Australia in 2020.",
-    "credit": "Calistemon · CC BY-SA 4.0 · cropped and darkened for topic cover; modern photograph, not the 1932 operation",
+    "credit": "Calistemon · CC BY-SA 4.0 ·; modern photograph, not the 1932 operation",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emu_running_on_the_beach_at_Monkey_Mia,_July_2020_01.jpg"
   },
   "levels": [
@@ -41,7 +41,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/EmuMob.jpg",
             "alt": "A group of wild emus standing on bare ground beside a wire fence in arid Australian country.",
-            "credit": "Chudditch · CC BY-SA 3.0 · cropped and darkened for display; later photograph in New South Wales, not 1932",
+            "credit": "Chudditch · CC BY-SA 3.0 ·; later photograph in New South Wales, not 1932",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:EmuMob.jpg"
           },
           "caption": "Wild emus beside a fence at Fowlers Gap Research Station. This later scene illustrates the birds and the barriers involved, not the 1932 campaign."
@@ -91,7 +91,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Sargent_McMurray_and_J._O%27Hallroan_Emu_War.jpg",
             "alt": "Black-and-white archival photograph of two artillerymen operating a Lewis machine gun in a field.",
-            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons · cropped for display",
+            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sargent_McMurray_and_J._O%27Hallroan_Emu_War.jpg"
           },
           "caption": "The archival caption identifies Sergeant McMurray and Gunner O'Halloran with a Lewis gun. These were real soldiers, not actors in a later reenactment."
@@ -190,7 +190,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Australian_soldiers_resting_during_Emu_War.jpg",
             "alt": "Black-and-white image of men beside a waterhole during the Emu War; a camera is reflected in the water.",
-            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons · cropped for display",
+            "credit": "Unknown photographer · Australian Crown copyright expired, public domain per Wikimedia Commons ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Australian_soldiers_resting_during_Emu_War.jpg"
           },
           "caption": "A 1932 campaign photograph includes the filming setup reflected in the water. Newsreel cameras were part of this extraordinary operation."
@@ -281,7 +281,7 @@
           "image": {
             "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/State_Barrier_Fence_in_Karara_Rangeland_Park%2C_Western_Australia%2C_October_2025_04.jpg/1280px-State_Barrier_Fence_in_Karara_Rangeland_Park%2C_Western_Australia%2C_October_2025_04.jpg",
             "alt": "A metal mesh barrier fence and closed gate extending across dry bushland at Karara Rangeland Park, Western Australia, in 2025.",
-            "credit": "Calistemon · CC BY-SA 4.0 · cropped and darkened for display; 2025 image of the modern fence, not a 1932 photograph",
+            "credit": "Calistemon · CC BY-SA 4.0 ·; 2025 image of the modern fence, not a 1932 photograph",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:State_Barrier_Fence_in_Karara_Rangeland_Park,_Western_Australia,_October_2025_04.jpg"
           },
           "caption": "The State Barrier Fence photographed in 2025 at Karara Rangeland Park. This is the physical infrastructure that outlasted the machine-gun campaign."

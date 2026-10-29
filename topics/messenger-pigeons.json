@@ -7,7 +7,7 @@
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",
     "alt": "A rock pigeon with an iridescent neck, the species from which homing pigeons descend.",
-    "credit": "Bramans · CC BY-SA 4.0 · cropped and darkened for display",
+    "credit": "Bramans · CC BY-SA 4.0 ·",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rock_pigeon_or_common_pigeon_(Columba_livia).jpg"
   },
   "levels": [
@@ -58,7 +58,7 @@
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",
             "alt": "A rock pigeon with an iridescent neck, the species from which homing pigeons descend.",
-            "credit": "Bramans · CC BY-SA 4.0 · cropped and darkened for display",
+            "credit": "Bramans · CC BY-SA 4.0 ·",
             "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rock_pigeon_or_common_pigeon_(Columba_livia).jpg"
           },
           "caption": "Homing pigeons are domestic rock pigeons, Columba livia. The familiar urban pigeon belongs to this species too."
