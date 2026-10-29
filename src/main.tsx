@@ -31,7 +31,7 @@ function Discovery({topic,depth,preview=false,onSources}:{topic:Topic;depth:numb
 }
 
 type Overlay='library'|'sources'|null;
-type Flight={id:number;direction:'forward'|'backward';from:Place|null}|null;
+type Flight={id:number;direction:'forward'|'backward';from:Place|null;departureStyle?:React.CSSProperties}|null;
 function App(){
   const [started,setStarted]=useState(false);
   const [selectedTopic,setSelectedTopic]=useState<string|null>(null);
@@ -39,22 +39,31 @@ function App(){
   const [journey,setJourney]=useState<Journey>(()=>({current:parseHash(location.hash,topics)||{topicId:randomTopic(topics,readPlaces('rh-history').slice(-8).map(p=>p.topicId)).id,level:1},trail:[]}));
   const [overlay,setOverlay]=useState<Overlay>(null),[page,setPage]=useState(0),[notice,setNotice]=useState('');
   const [fullscreen,setFullscreen]=useState(!!document.fullscreenElement),[flight,setFlight]=useState<Flight>(null),[compact,setCompact]=useState(innerWidth<650||innerHeight<600);
-  const flying=useRef(false),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
+  const flightSequence=useRef(0),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
+  const present=useRef<HTMLDivElement>(null),journeyRef=useRef(journey),startedRef=useRef(started);
+  journeyRef.current=journey;startedRef.current=started;
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
   const welcome=()=>{
     if(flightTimer.current)clearTimeout(flightTimer.current);
-    flying.current=false;setFlight(null);setStarted(false);setSelectedTopic(null);setOverlay(null);
+    startedRef.current=false;setFlight(null);setStarted(false);setSelectedTopic(null);setOverlay(null);
     history.replaceState(null,'',location.pathname+location.search);
   };
   const travel=(next:Journey,direction:'forward'|'backward'='forward')=>{
-    if(flying.current||(started&&same(current,next.current)))return;
-    flying.current=true;setFlight({id:Date.now(),direction,from:started?current:null});setJourney(next);setStarted(true);setOverlay(null);
-    flightTimer.current=setTimeout(()=>{flying.current=false;setFlight(null);},1550);
+    const previous=journeyRef.current;
+    if(startedRef.current&&same(previous.current,next.current))return;
+    if(flightTimer.current)clearTimeout(flightTimer.current);
+    // Continue the departing scene from its visible position if a flight is interrupted.
+    const visual=present.current?getComputedStyle(present.current):null;
+    const departureStyle=visual?{'--departure-transform':visual.transform,'--departure-opacity':visual.opacity,'--departure-filter':visual.filter} as React.CSSProperties:undefined;
+    const id=++flightSequence.current;
+    setFlight({id,direction,from:startedRef.current?previous.current:null,departureStyle});
+    journeyRef.current=next;startedRef.current=true;setJourney(next);setStarted(true);setOverlay(null);
+    flightTimer.current=setTimeout(()=>setFlight(active=>active?.id===id?null:active),1550);
   };
-  const go=(p:Place)=>travel(visit(journey,p));
-  const deeper=()=>{if(started&&!level.final)go({...current,level:current.level+1});};
-  const up=()=>{if(started)travel(back(journey),'backward');};
+  const go=(p:Place)=>travel(visit(journeyRef.current,p));
+  const deeper=()=>{const place=journeyRef.current.current;const target=topics.find(t=>t.id===place.topicId)!;if(startedRef.current&&place.level<target.levels.length)go({...place,level:place.level+1});};
+  const up=()=>{if(startedRef.current)travel(back(journeyRef.current),'backward');};
   const newHole=()=>{
     if(!started){
       const next=selectedTopic?topics.find(t=>t.id===selectedTopic)!:randomTopic(topics,journal.slice(-8).map(p=>p.topicId));
@@ -119,13 +128,13 @@ function App(){
       <div className="perspective-space">
         {[2,1].map(offset=>{const depth=current.level+offset;return depth<=topic.levels.length?<div key={`distant-${topic.id}-${depth}`} className={`depth-plane distant distant-${offset}`} aria-hidden="true" inert><Discovery topic={topic} depth={depth} preview onSources={()=>{}}/></div>:null;})}
         <div className="orbital-path" aria-hidden="true">{[0,1,2,3,4,5].map(i=><i key={i} style={{'--ring':i} as React.CSSProperties}/>)}</div>
-        {flight?.from&&outgoingTopic&&<div key={`out-${flight.id}`} className={`depth-plane departure departure-${flight.direction}`} aria-hidden="true" inert><Discovery topic={outgoingTopic} depth={flight.from.level} preview onSources={()=>{}}/></div>}
-        <div key={`${topic.id}-${current.level}`} className={`depth-plane present ${flight?`arrival arrival-${flight.direction}`:''}`}><Discovery topic={topic} depth={current.level} onSources={()=>open('sources')}/></div>
+        {flight?.from&&outgoingTopic&&<div key={`out-${flight.id}`} style={flight.departureStyle} className={`depth-plane departure departure-${flight.direction}`} aria-hidden="true" inert><Discovery topic={outgoingTopic} depth={flight.from.level} preview onSources={()=>{}}/></div>}
+        <div ref={present} key={`${topic.id}-${current.level}`} className={`depth-plane present ${flight?`arrival arrival-${flight.direction}`:''}`}><Discovery topic={topic} depth={current.level} onSources={()=>open('sources')}/></div>
       </div>
-      <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} disabled={!!flight} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
+      <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
     </main>}
     <footer className="hud">
-      {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final||!!flight} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={(!journey.trail.length&&current.level===1)||!!flight} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div>}
+      {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={!journey.trail.length&&current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div>}
     </footer>
     <dialog ref={dialog} className={`overlay ${overlay==='library'?'explore-overlay':''}`} aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
       <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">{started?'Enter':'Select'} <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
