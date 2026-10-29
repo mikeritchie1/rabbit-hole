@@ -64,3 +64,26 @@
 
 .depth-navigation small.space-hint{display:block;font-size:inherit;letter-spacing:inherit;color:#becfeb;margin-top:10px}
 @media(max-width:650px),(max-height:600px){.depth-navigation small.space-hint{display:block;font-size:inherit;letter-spacing:inherit;margin-top:6px}}
+
+/* Welcome screen shares the orbit mark and star field with the discoveries. */
+.at-welcome .topbar{justify-content:flex-end}
+.welcome-screen{position:absolute;inset:12% 5% 10%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2.5vh,26px);text-align:center;animation:heading-in 1.1s ease both}
+.welcome-logo{display:flex;flex-direction:column;align-items:center;gap:23px}
+.welcome-logo .brand-orbit{width:clamp(42px,8.5vh,78px);height:clamp(42px,8.5vh,78px);box-shadow:0 0 28px #b7cfff25}
+.welcome-logo>span:last-child{font-size:clamp(10px,1.1vw,16px);letter-spacing:.5em;margin-left:.5em}
+.welcome-screen h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,7vh,72px);font-weight:400;line-height:1;letter-spacing:.02em;margin:0 0 4px;color:#edf3ff}
+.welcome-controls{display:flex;flex-direction:column;gap:13px;align-items:flex-start;color:#b6c7e1;font-size:clamp(12px,1.1vw,17px)}
+.welcome-controls>div{display:flex;gap:20px;align-items:center}
+.welcome-controls kbd{min-width:69px;font-size:11px;padding:7px 10px;letter-spacing:1px}
+.welcome-keys{display:flex;gap:5px;width:69px}
+.welcome-keys kbd{min-width:0;flex:1;font-size:14px;padding:3px 8px}
+.welcome-explore{display:flex;align-items:center;gap:5px;font-size:clamp(11px,1vw,15px);line-height:1.5;color:#8da5c8;margin-top:3px;padding:0}
+.welcome-explore strong{font-weight:500;color:#d3e2fa}
+.welcome-explore svg{margin-left:5px}
+.welcome-selection{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;line-height:1.2;color:#d1dff6;margin:0;max-width:90%;text-wrap:balance}
+.welcome-begin{display:flex;align-items:center;gap:9px;color:#dae8ff;font-size:clamp(12px,1vw,16px);letter-spacing:.07em;border:1px solid #a8c9ff3b;border-radius:30px;padding:12px 23px;background:#8ab1ff07;box-shadow:0 0 35px #83aaff0a;transition:background .25s,border-color .25s}
+.welcome-begin:hover{background:#a5c5ff12;border-color:#c3dbff88}
+.welcome-begin kbd{border:0;background:none;padding:0;min-width:0;font-size:inherit;font-weight:500;text-transform:uppercase;letter-spacing:.1em}
+.welcome-begin svg{margin-left:6px}
+@media(max-width:650px){.welcome-screen{gap:18px;inset:13% 5% 10%}.welcome-logo{gap:19px}.welcome-controls{gap:12px}.welcome-controls>div{gap:15px}.welcome-selection{font-size:18px}.topbar nav{gap:18px}.welcome-explore{font-size:11px}}
+@media(max-height:600px){.welcome-screen{inset:13% 4% 8%;gap:9px}.welcome-logo{gap:12px}.welcome-logo .brand-orbit{width:33px;height:33px}.welcome-logo>span:last-child{font-size:9px}.welcome-screen h1{font-size:34px;margin:0}.welcome-controls{flex-direction:row;gap:22px;align-items:center;font-size:10px}.welcome-controls>div{gap:7px}.welcome-controls kbd{min-width:42px;font-size:9px;padding:5px}.welcome-keys{width:47px;gap:3px}.welcome-keys kbd{min-width:0;padding:2px 5px;font-size:12px}.welcome-explore{font-size:10px;margin:0}.welcome-begin{padding:8px 18px;font-size:11px}.welcome-selection{font-size:15px}}
