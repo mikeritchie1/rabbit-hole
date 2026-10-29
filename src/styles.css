@@ -97,3 +97,16 @@
 .topbar nav>.fullscreen-control{display:flex!important;margin-left:5px}
 @media(max-width:650px){.topbar nav{gap:12px}.topbar .brand{letter-spacing:2px}.topbar nav>.fullscreen-control{width:28px;height:28px;margin-left:0}.welcome-controls{gap:9px;font-size:8px;letter-spacing:1.5px}.welcome-explore{font-size:8px;letter-spacing:1.1px}.welcome-begin{font-size:10px;letter-spacing:2px}}
 @media(max-height:600px){.welcome-controls{flex-direction:column;gap:4px;font-size:8px;letter-spacing:1.5px}.welcome-explore{font-size:8px}.welcome-begin{padding:4px 0;font-size:9px}}
+
+/* Explore uses a six-topic page: three columns and two rows. */
+.explore-overlay{width:min(1120px,94vw);height:min(780px,88dvh)}
+.explore-overlay .library{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:16px}
+.explore-overlay .library>button{flex-direction:column;min-width:0}
+.explore-overlay .library img,.explore-overlay .library .image-fallback{width:100%;height:40%;min-height:0}
+.explore-overlay .library>button>div:not(.image-fallback){padding:13px 15px;gap:6px}
+.explore-overlay .library h3{font-size:clamp(17px,1.5vw,23px);line-height:1.08;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.explore-overlay .library .tiny-label{font-size:6px;letter-spacing:1.3px}
+.explore-overlay .library p{font-size:10px;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.explore-overlay .library-action{padding-top:4px;font-size:9px}
+@media(max-width:650px){.explore-overlay{width:96vw;height:88dvh}.explore-overlay .modal{padding:17px 12px;gap:14px}.explore-overlay .modal-heading h2{font-size:25px}.explore-overlay .library{gap:8px}.explore-overlay .library>button>div:not(.image-fallback){padding:9px 7px;gap:5px}.explore-overlay .library h3{font-size:15px;line-height:1.1}.explore-overlay .library p,.explore-overlay .library .tiny-label{display:none}.explore-overlay .library-action{font-size:8px}.explore-overlay .library-action svg{width:12px}}
+@media(max-height:600px){.explore-overlay{height:94dvh}.explore-overlay .modal{padding:14px 18px;gap:10px}.explore-overlay .modal-heading h2{font-size:25px}.explore-overlay .library{gap:10px}.explore-overlay .library>button>div:not(.image-fallback){padding:8px 12px;gap:4px}.explore-overlay .library h3{font-size:17px;-webkit-line-clamp:2}.explore-overlay .library p,.explore-overlay .library .tiny-label{display:none}.explore-overlay .library-action{font-size:8px}.explore-overlay .pagination button{height:20px}}
