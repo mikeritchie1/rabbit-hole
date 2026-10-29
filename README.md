@@ -30,12 +30,13 @@ For a TV or phone on the same trusted Wi-Fi, use `npm run dev -- --host 0.0.0.0`
 
 | Key | Action |
 | --- | --- |
-| Up / Down | Descend / backtrack |
+| Up / Down | Descend / move up within the current topic; Down stops at depth 1 |
+| Backspace | Previous topic from this page session, at the depth you left it |
 | F | Fullscreen |
 | Space | Begin / new random story within the selected category |
 | Esc | Close overlay |
 
-Explore opens the topic picker, with six topics per page in two rows of three. Clicking a category starts a matching topic and keeps Space / New Rabbit Hole in that category. All includes every topic. The selection is remembered in localStorage; anonymous recent visits also help avoid immediate repeats. Returning to Welcome keeps the selected category. Choosing a new category resets the backtrack trail so Back does not cross into the old group. A category with a single topic can replay that topic; an empty category is disabled.
+Explore opens the topic picker, with six topics per page in two rows of three. Clicking a category starts a matching topic and keeps Space / New Rabbit Hole in that category. All includes every topic. The selection is remembered in localStorage; anonymous recent visits also help avoid immediate repeats. Returning to Welcome keeps the selected category. Down never crosses into another topic. Backspace walks backward through topics visited since this page was opened, including across category changes and returns to Welcome, and stops at the first one. This session history is separate from the stored recent visits used for random selection. Revisiting a topic with Backspace does not add a new history entry; there is no 200-topic limit on this session trail. The active category still controls future random choices. A category with a single topic can replay that topic; an empty category is disabled.
 
 The four topic categories are:
 

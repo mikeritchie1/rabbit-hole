@@ -1,10 +1,16 @@
 import type { Topic } from './schema';
 export type Place={topicId:string;level:number};
 export type Journey={current:Place;trail:Place[]};
-export function visit(journey:Journey,place:Place):Journey{return {current:place,trail:[...journey.trail,journey.current].slice(-200)};}
+// The trail records previous topics, not individual depth changes.
+export function visit(journey:Journey,place:Place):Journey{
+  return {current:place,trail:place.topicId===journey.current.topicId?journey.trail:[...journey.trail,journey.current]};
+}
 export function back(journey:Journey):Journey{
-  if(journey.trail.length)return {current:journey.trail[journey.trail.length-1],trail:journey.trail.slice(0,-1)};
   return journey.current.level>1?{...journey,current:{...journey.current,level:journey.current.level-1}}:journey;
+}
+export function previousTopic(journey:Journey):Journey{
+  if(!journey.trail.length)return journey;
+  return {current:journey.trail[journey.trail.length-1],trail:journey.trail.slice(0,-1)};
 }
 export function randomTopic(topics:Topic[],recent:string[],current?:string){
   const others=topics.filter(t=>t.id!==current);
