@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 2,
+  "id": "slime-mold-intelligence",
+  "title": "The Brainless Organism That Solves Mazes",
+  "category": "Strange biology",
+  "hook": "A single yellow cell finds shortcuts, builds railway-like networks, and remembers where it has been. Follow the experiments that challenge what it means to learn without a brain.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Physarum_polycephalum_plasmodium.jpg",
+    "alt": "Bright yellow Physarum polycephalum plasmodium spreading over dark tree bark.",
+    "credit": "frankenstoen · CC BY 2.5 · cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_plasmodium.jpg"
+  },
+  "levels": [
+    {
+      "id": "one-cell-many-paths",
+      "title": "This entire moving network is one cell.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "yellow-on-bark",
+          "title": "A living network on a log",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Physarum_polycephalum_plasmodium.jpg",
+            "alt": "Yellow branching slime-mould plasmodium growing across dark bark.",
+            "credit": "frankenstoen · CC BY 2.5 · cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_plasmodium.jpg"
+          },
+          "caption": "Physarum polycephalum is neither a mushroom nor an animal. Its yellow, many-nucleated plasmodium can spread into a visible web."
+        },
+        {
+          "type": "fact",
+          "id": "pulsing-without-neurons",
+          "title": "It pumps information through its own body",
+          "text": "The feeding stage of Physarum is a giant cell containing many nuclei but no neurons. Its tubes rhythmically contract, driving cytoplasm back and forth. These flows move nutrients and chemical signals; changes in contraction and tube width help coordinate a body that has no central controller.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Mechanism of signal propagation in Physarum polycephalum",
+              "publisher": "Proceedings of the National Academy of Sciences, 2017",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/28465441/"
+            },
+            {
+              "title": "Physarum polycephalum: Smart Network Adaptation",
+              "publisher": "Annual Review of Condensed Matter Physics, 2024",
+              "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-conmatphys-040821-115312"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-maze-without-a-mind",
+      "title": "Give it a maze, and dead ends disappear.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "maze-before-after",
+          "title": "The maze before and after",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Slime_mold_solves_maze.png",
+            "alt": "Two-panel explanatory diagram showing slime mould spread throughout maze passages and then reduced to a route connecting two food sites.",
+            "credit": "Philcha · public domain · explanatory reconstruction of a published experiment; displayed uncropped to preserve the diagram",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Slime_mold_solves_maze.png"
+          },
+          "caption": "An illustration based on Nakagaki's 2000 experiment, not the original experiment photographs. Yellow indicates the organism; red marks food locations."
+        },
+        {
+          "type": "fact",
+          "id": "nakagaki-maze",
+          "title": "The shortest surviving connection won",
+          "text": "Toshiyuki Nakagaki and colleagues let Physarum occupy a maze, then placed food at two positions. The organism withdrew from dead ends and maintained a short connection between the food sites. It did not plan a route first: its spreading and pruning produced the result.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Maze-solving by an amoeboid organism",
+              "publisher": "Nature, 2000",
+              "url": "https://www.nature.com/articles/35035159"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "living-maze-timelapse",
+          "title": "Slime mold solving maze",
+          "channel": "Daniel Brunner",
+          "youtubeId": "5UfMU9TsoEM",
+          "note": "Time-lapse of a separate maze demonstration lasting about 92 hours in real time. The uploader does not identify the slime-mould species, so this is not footage of Nakagaki's original experiment."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-railway-from-oats",
+      "title": "It built a network resembling Tokyo's railways.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "network-adaptation-illustration",
+          "title": "A food network reorganises itself",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Physarum_polycephalum_network.jpg",
+            "alt": "Multi-panel illustration showing an initially sprawling yellow Physarum network changing into fewer thicker connecting tubes between food sites.",
+            "credit": "Tim Tim (VD fr) · CC BY-SA 4.0 · adapted illustration of network optimisation; displayed uncropped",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_network.jpg"
+          },
+          "caption": "An illustrative adaptation of network experiments, not a photograph of Tokyo's trial. Strong connections survive as others recede."
+        },
+        {
+          "type": "fact",
+          "id": "tokyo-oat-cities",
+          "title": "Oat flakes stood in for cities",
+          "text": "In 2010 researchers arranged food sources to represent cities around Tokyo. Physarum grew a transport network whose efficiency, cost and resilience compared surprisingly well with the actual rail system. It did not reproduce every line or design a railway deliberately; local growth rules produced similar trade-offs.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Rules for biologically inspired adaptive network design",
+              "publisher": "Science, 2010",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/20093467/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "flow-reinforces-flow",
+          "title": "Busy tubes become stronger routes",
+          "text": "Contraction waves push fluid and signals through Physarum's tubes. Models and experiments show how greater flow can reinforce a tube while little-used branches shrink. Repeating this feedback across a network can balance short connections with alternative routes, without any part knowing the whole map.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Mechanism of signal propagation in Physarum polycephalum",
+              "publisher": "Proceedings of the National Academy of Sciences, 2017",
+              "url": "https://doi.org/10.1073/pnas.1618114114"
+            },
+            {
+              "title": "Rules for biologically inspired adaptive network design",
+              "publisher": "Science, 2010",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/20093467/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "memory-left-on-the-ground",
+      "title": "It leaves its memory outside its body.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "slime-trail-memory",
+          "title": "A slime trail marks explored territory",
+          "text": "As Physarum moves, it deposits extracellular slime. It tends to avoid areas coated with that material, effectively using the environment as a record of where it has already travelled. This is an external spatial memory, not recollection stored in a brain.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Slime mold uses an externalized spatial ‘memory’ to navigate in complex environments",
+              "publisher": "Proceedings of the National Academy of Sciences, 2012",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/23045640/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "u-trap-test",
+          "title": "96% escaped a trap when their trails were informative",
+          "text": "Researchers put food behind a U-shaped barrier. On clean agar, 23 of 24 organisms reached it within 120 hours. On agar already coated with slime, only 8 of 24 succeeded. When everything smelled previously visited, their external memory stopped helping them distinguish new ground.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Slime mold uses an externalized spatial ‘memory’ to navigate in complex environments",
+              "publisher": "Proceedings of the National Academy of Sciences, 2012",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3491460/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "learning-without-neurons",
+      "title": "It can learn—and pass a lesson to another cell.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "quinine-habituation",
+          "title": "Repeated bitterness became less alarming",
+          "text": "In 2016, scientists repeatedly made Physarum cross bridges containing repellent quinine or caffeine to reach food. Over several days it crossed more readily. Its aversion returned after a break, and it still reacted to a different repellent: evidence of habituation rather than simple exhaustion.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Habituation in non-neural organisms: evidence from slime moulds",
+              "publisher": "Proceedings of the Royal Society B, 2016",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/27122563/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "knowledge-through-fusion",
+          "title": "Two cells fuse; one acquires the other's learned response",
+          "publisher": "Proceedings of the Royal Society B, 2016",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5204175/",
+          "description": "Researchers fused habituated Physarum with individuals that had never encountered the repellent. After sufficient contact, the previously naive slime mould showed the less-avoidant response—even after separation. What physical or chemical information carries this learned change remains unresolved."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "expecting-the-next-shock",
+      "title": "It slowed down before the next shock arrived.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "timed-unpleasant-pulses",
+          "title": "Three regular shocks produced a fourth response",
+          "text": "In 2008, researchers gave Physarum three bouts of unfavourable conditions at regular intervals. Each time, it slowed. After conditions returned to normal, some organisms slowed again around the time the next bout would have occurred—even though nothing unpleasant happened then.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Amoebae Anticipate Periodic Events",
+              "publisher": "Physical Review Letters, 2008",
+              "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.100.018101"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "timing-without-a-clock-brain",
+          "title": "A timing response is not proof of conscious prediction",
+          "publisher": "Physical Review Letters, 2008",
+          "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.100.018101",
+          "description": "Saigusa and colleagues analysed how an internal dynamical system could retain traces of periodic stimulation. The experiment demonstrates a time-linked behavioural response; it does not show that a slime mould imagines the future. Even a cell with no neurons can exhibit a kind of temporal memory."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}

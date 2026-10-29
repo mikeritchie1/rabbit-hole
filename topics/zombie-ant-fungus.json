@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 2,
+  "id": "zombie-ant-fungus",
+  "title": "The fungus that turns ants into zombies",
+  "category": "Parasitic fungi",
+  "hook": "An infected ant climbs vegetation, bites down, and dies exactly where a fungus can reproduce. Follow the trail into locked jaw muscles, an untouched brain, species-specific chemicals, and a parasite of the parasite.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ophiocordyceps.jpg",
+    "alt": "A dead Polyrhachis exercita ant infected with Ophiocordyceps, with fungal growth protruding from its body on a leaf.",
+    "credit": "ChanduBandi · CC BY 4.0 · different ant host from the carpenter-ant studies; cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ophiocordyceps.jpg"
+  },
+  "levels": [
+    {
+      "id": "a-spore-finds-an-ant",
+      "title": "The attack begins outside the nest.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "through-the-armour",
+          "title": "A spore penetrates the ant's armour",
+          "text": "A foraging ant can pick up an Ophiocordyceps spore on its outer shell, or cuticle. The spore germinates, penetrates that barrier, and the fungus multiplies inside the body. It cannot complete its reproductive cycle inside the ant colony, so transmission depends on the outside world.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Graveyards on the Move: The Spatio-Temporal Distribution of Dead Ophiocordyceps-Infected Ants",
+              "publisher": "Andersen et al. · PLOS ONE, 2009",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004835"
+            },
+            {
+              "title": "Zombie ant death grip due to hypercontracted mandibular muscles",
+              "publisher": "Mangold et al. · Journal of Experimental Biology, 2019",
+              "url": "https://doi.org/10.1242/jeb.200683"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "corpse-becomes-a-launcher",
+          "title": "The corpse becomes a spore launcher",
+          "text": "Before dying, an infected ant climbs and bites vegetation, remaining suspended. Later, a fungal stalk grows from near the back of its head. Reproductive structures on that stalk release spores toward the ground, where other ants forage. The ant's final position is useful to the fungus, not the ant.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Graveyards on the Move: The Spatio-Temporal Distribution of Dead Ophiocordyceps-Infected Ants",
+              "publisher": "Andersen et al. · PLOS ONE, 2009",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004835"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "pbs-eons-film",
+          "title": "Cordyceps Turned These Ants Into Zombies",
+          "channel": "PBS Eons",
+          "youtubeId": "mXlyKwpLbSw",
+          "note": "English. Explores the fungus and its evolutionary history; prehistoric scenes are reconstructions, not footage of ancient infections."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-precise-place-to-die",
+      "title": "The death site is surprisingly precise.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "twenty-five-centimetres",
+          "title": "In one rainforest, the dead hung 25 cm up",
+          "text": "Researchers studying infected Camponotus leonardi ants in Thailand found bodies concentrated on low leaves roughly 25 centimetres above the soil. That cool, humid understory suits fungal development. It is a measured pattern at this study site, not a universal height programmed into every zombie ant.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Behavioral mechanisms and morphological symptoms of zombie ants dying from fungal infection",
+              "publisher": "Hughes et al. · BMC Ecology, 2011",
+              "url": "https://link.springer.com/article/10.1186/1472-6785-11-13"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "noon-and-convulsions",
+          "title": "Convulsions precede a near-noon bite",
+          "text": "Field observers watched infected ants wander erratically and repeatedly fall from plants during convulsions. Their switch from walking to biting a leaf vein happened abruptly, clustered around solar noon. The researchers suggested falling helps keep them low; the cue coordinating bite time remains uncertain.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Behavioral mechanisms and morphological symptoms of zombie ants dying from fungal infection",
+              "publisher": "Hughes et al. · BMC Ecology, 2011",
+              "url": "https://link.springer.com/article/10.1186/1472-6785-11-13"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "leaf-vein-cadaver",
+          "title": "An actual ant fixed to a leaf vein",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Ant_infected_by_Ophiocordyceps_unilateralis.png",
+            "alt": "Two scientific photographs: a leaf in dense Thai vegetation and a close-up of a dead Camponotus leonardi attached to a leaf vein, with a dark fungal stalk extending from its head.",
+            "credit": "David P. Hughes and Maj-Britt Pontoppidan · CC BY 2.5 · original photograph rotated 180 degrees for clarity; additionally cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ant_infected_by_Ophiocordyceps_unilateralis.png"
+          },
+          "caption": "The close-up shows the attachment and mature stalk; the published photograph was rotated 180 degrees to make the structure easier to see."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-death-grip",
+      "title": "The jaws become a permanent anchor.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "punctured-leaf-veins",
+          "title": "The mandibles actually puncture the leaf",
+          "text": "Scientists removed 29 dead infected ants from leaves and inspected the marks beneath them. In 27 cases the mandibles had cut into the main vein. These punctures create a firm physical anchor; the fungus later adds adhesive material, helping the corpse stay in place while its stalk develops.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Behavioral mechanisms and morphological symptoms of zombie ants dying from fungal infection",
+              "publisher": "Hughes et al. · BMC Ecology, 2011",
+              "url": "https://link.springer.com/article/10.1186/1472-6785-11-13"
+            },
+            {
+              "title": "Graveyards on the Move: The Spatio-Temporal Distribution of Dead Ophiocordyceps-Infected Ants",
+              "publisher": "Andersen et al. · PLOS ONE, 2009",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004835"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "jaw-muscle-hypercontraction",
+          "title": "Microscopy shows an extreme muscle squeeze",
+          "text": "In infected ants, the jaw muscles' sarcomeres—the tiny units that shorten during contraction—appeared shortened, swollen, and disrupted. That supports an abnormal sustained contraction, even though motor nerves still appeared present. Fungal chemicals or direct muscle contact may trigger it, but the decisive signal has not been demonstrated.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Zombie ant death grip due to hypercontracted mandibular muscles",
+              "publisher": "Mangold et al. · Journal of Experimental Biology, 2019",
+              "url": "https://doi.org/10.1242/jeb.200683"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "injury-is-not-enough",
+          "title": "Zombie ant death grip due to hypercontracted mandibular muscles",
+          "publisher": "Journal of Experimental Biology, 2019",
+          "url": "https://doi.org/10.1242/jeb.200683",
+          "description": "As a comparison, researchers infected ants with Beauveria bassiana, a fungus that does not make ants perform the death grip. It also damaged muscle membranes, showing that injury alone cannot explain the highly specific final bite."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-brain-stays-uninvaded",
+      "title": "The fungus surrounds muscles, not the brain.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "brain-left-physically-intact",
+          "title": "The brain was physically uninvaded",
+          "text": "In 2017, researchers scanned thin slices of manipulated carpenter ants and reconstructed their tissues in 3D. Fungal cells occupied the body and invaded muscles, but were not found inside the brain. That rules out direct brain invasion in these specimens—not chemical influence on the brain.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Three-dimensional visualization and a deep-learning model reveal complex fungal parasite networks in behaviorally manipulated ants",
+              "publisher": "Fredericksen et al. · PNAS, 2017",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5703306/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "connected-fungal-cells",
+          "title": "Fungal cells form a network around muscle fibres",
+          "text": "Of 1,014 fungal cells examined, 59% connected to at least one neighbour through tiny tubes roughly one micrometre long. Three-dimensional imaging showed these connections wrapping around ant muscle fibres. They may distribute resources or coordinate activity, but the images alone do not prove how behaviour is commanded.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Three-dimensional visualization and a deep-learning model reveal complex fungal parasite networks in behaviorally manipulated ants",
+              "publisher": "Fredericksen et al. · PNAS, 2017",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5703306/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-species-specific-recipe",
+      "title": "Killing an ant is easier than controlling it.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "four-species-two-zombies",
+          "title": "The fungus killed four species but controlled two",
+          "text": "Researchers injected one North American zombie-ant fungus into four ant species. It could kill all four, but only the two species it naturally manipulates developed the characteristic biting behaviour. This laboratory test bypassed natural spore entry and revealed that behavioural control depends on the host's identity.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Species-specific ant brain manipulation by a specialized fungal parasite",
+              "publisher": "de Bekker et al. · BMC Evolutionary Biology, 2014",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4174324/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "chemical-cocktail-not-found",
+          "title": "A chemical cocktail is suspected, not decoded",
+          "text": "Growing the fungus beside isolated brains from different ant species produced different mixtures of secreted molecules. Researchers identified guanidinobutyric acid and sphingosine as candidates, but injecting them into ants, alone or together, did not recreate zombie behaviour. The complete molecular instructions remain unknown.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Species-specific ant brain manipulation by a specialized fungal parasite",
+              "publisher": "de Bekker et al. · BMC Evolutionary Biology, 2014",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4174324/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-parasites-parasite",
+      "title": "Even the zombie fungus has an enemy.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "fungus-on-fungus",
+          "title": "Other fungi sabotage the spore-making stalk",
+          "text": "Researchers counted 432 infected ant cadavers across five Brazilian forest graveyards. Another fungus had parasitized 55.4% of them, often disabling the zombie fungus's reproductive structures. Only 6.5% of the sampled cadavers carried mature fruiting bodies. The manipulator had become a host itself.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Disease Dynamics in a Specialized Parasite of Ant Societies",
+              "publisher": "Andersen et al. · PLOS ONE, 2012",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0036352"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "rain-switches-on-spores",
+          "title": "A rain-like humidity pulse triggered spores",
+          "text": "At ambient forest conditions, none of 15 mature stalks tested were firing spores. Under high humidity mimicking heavy rainfall, 13 of 31 mature stalks released them in the laboratory. A dead ant with a stalk is therefore not necessarily contagious at that moment: even its fungus must wait for suitable conditions.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Disease Dynamics in a Specialized Parasite of Ant Societies",
+              "publisher": "Andersen et al. · PLOS ONE, 2012",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0036352"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "stroma-anatomy-diagram",
+          "title": "The fungus's spore-producing anatomy",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Schematic_drawing_of_Ophiocordyceps_unilateralis_morphology_on_an_infected_ant.png",
+            "alt": "Scientific schematic of an ant infected by Ophiocordyceps showing a stalk, labelled stroma, and the lateral perithecia that produce spores.",
+            "credit": "Lenapcrd · CC BY-SA 4.0 · scientific illustration; cropped and darkened for display under ShareAlike terms",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Schematic_drawing_of_Ophiocordyceps_unilateralis_morphology_on_an_infected_ant.png"
+          },
+          "caption": "The perithecia, attached to the stroma, are the reproductive chambers where sexual spores develop—the parts another fungus can spoil."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}

@@ -34,7 +34,6 @@ type Overlay='library'|'sources'|null;
 type Flight={id:number;direction:'forward'|'backward';from:Place|null;departureStyle?:React.CSSProperties}|null;
 function App(){
   const [started,setStarted]=useState(false);
-  const [selectedTopic,setSelectedTopic]=useState<string|null>(null);
   const [journal,setJournal]=useState<Place[]>(()=>readPlaces('rh-history'));
   const [journey,setJourney]=useState<Journey>(()=>({current:parseHash(location.hash,topics)||{topicId:randomTopic(topics,readPlaces('rh-history').slice(-8).map(p=>p.topicId)).id,level:1},trail:[]}));
   const [overlay,setOverlay]=useState<Overlay>(null),[page,setPage]=useState(0),[notice,setNotice]=useState('');
@@ -46,7 +45,7 @@ function App(){
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
   const welcome=()=>{
     if(flightTimer.current)clearTimeout(flightTimer.current);
-    startedRef.current=false;setFlight(null);setStarted(false);setSelectedTopic(null);setOverlay(null);
+    startedRef.current=false;setFlight(null);setStarted(false);setOverlay(null);
     history.replaceState(null,'',location.pathname+location.search);
   };
   const travel=(next:Journey,direction:'forward'|'backward'='forward')=>{
@@ -65,18 +64,17 @@ function App(){
   const deeper=()=>{const place=journeyRef.current.current;const target=topics.find(t=>t.id===place.topicId)!;if(startedRef.current&&place.level<target.levels.length)go({...place,level:place.level+1});};
   const up=()=>{if(startedRef.current)travel(back(journeyRef.current),'backward');};
   const newHole=()=>{
-    if(!started){
-      const next=selectedTopic?topics.find(t=>t.id===selectedTopic)!:randomTopic(topics,journal.slice(-8).map(p=>p.topicId));
+    if(!startedRef.current){
+      const next=randomTopic(topics,journal.slice(-8).map(p=>p.topicId));
       travel({current:{topicId:next.id,level:1},trail:[]});
-      setSelectedTopic(null);
     }else{
       const next=randomTopic(topics,journal.slice(-8).map(p=>p.topicId),current.topicId);
       go({topicId:next.id,level:1});
     }
   };
   const chooseTopic=(topicId:string)=>{
-    if(started)go({topicId,level:1});
-    else{setSelectedTopic(topicId);setJourney({current:{topicId,level:1},trail:[]});}
+    if(startedRef.current)go({topicId,level:1});
+    else travel({current:{topicId,level:1},trail:[]});
     setOverlay(null);
   };
   const toggleFullscreen=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{setNotice('Fullscreen is unavailable in this browser.');}};
@@ -121,7 +119,6 @@ function App(){
         <p>PRESS F FOR FULLSCREEN</p>
       </div>
       <button className="welcome-explore" onClick={()=>open('library')}>USE EXPLORE TO SELECT A TOPIC</button>
-      {selectedTopic&&<p className="welcome-selection">{topic.title}</p>}
       <button className="welcome-begin" onClick={newHole}>PRESS SPACE TO BEGIN</button>
     </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}}}>
       <div className="discovery-heading" key={`${topic.id}-${current.level}`} aria-live="polite"><h1>{level.title}</h1></div>
@@ -137,7 +134,7 @@ function App(){
       {started&&<div className="depth-navigation"><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={!journey.trail.length&&current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small></span></div>}
     </footer>
     <dialog ref={dialog} className={`overlay ${overlay==='library'?'explore-overlay':''}`} aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
-      <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">{started?'Enter':'Select'} <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
+      <div className="modal-content">{overlay==='library'?<div className="library">{topics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="tiny-label">{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p><span className="library-action">Enter <ArrowUpRight size={16}/></span></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
       {totalPages>1&&<div className="pagination"><button disabled={page===0} onClick={()=>setPage(p=>p-1)} aria-label="Previous page"><ChevronLeft size={18}/></button><span>{page+1} / {totalPages}</span><button disabled={page>=totalPages-1} onClick={()=>setPage(p=>p+1)} aria-label="Next page"><ChevronRight size={18}/></button></div>}
     </div></dialog><div className={`toast ${notice?'visible':''}`} role="status">{notice}</div>
   </div>;

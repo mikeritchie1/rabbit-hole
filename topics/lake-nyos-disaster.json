@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 2,
+  "id": "lake-nyos-disaster",
+  "title": "The Lake That Suffocated Entire Villages",
+  "category": "Deadly natural phenomena",
+  "hook": "One night in Cameroon, an invisible cloud escaped from a lake and swept through sleeping villages. The cause was not lava or fire, but an enormous reservoir of gas hidden in deep water.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nyos_Lake.jpg",
+    "alt": "Lake Nyos, a blue-green crater lake surrounded by steep green hills in Cameroon, photographed after the 1986 disaster.",
+    "credit": "Jack Lockwood, USGS · public domain (US government work) · cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nyos_Lake.jpg"
+  },
+  "levels": [
+    {
+      "id": "the-night-air-turned-lethal",
+      "title": "An invisible cloud ran downhill.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-august-night",
+          "title": "About 1,700 people died without an eruption of lava",
+          "text": "On 21 August 1986, Lake Nyos released a huge volume of carbon dioxide into the surrounding countryside. Roughly 1,700 people and thousands of livestock died, many in their homes. Investigators found no evidence that fresh lava or an explosive volcanic eruption had caused the deaths.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "The 1986 Lake Nyos Gas Disaster in Cameroon, West Africa",
+              "publisher": "Kling et al. · Science, 1987",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17789781/"
+            },
+            {
+              "title": "Lake Nyos, Cameroon",
+              "publisher": "NASA Earth Observatory",
+              "url": "https://science.nasa.gov/earth/earth-observatory/lake-nyos-cameroon-86244/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "valleys-channels",
+          "title": "The valleys became channels for the gas",
+          "text": "Carbon dioxide is denser than ordinary air. Released in a massive, concentrated cloud, it poured into low ground and followed valleys for at least 15 kilometres. People could lose consciousness as oxygen was displaced and carbon dioxide reached dangerous concentrations; the cloud itself was invisible.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Volcanic Activity Report on Oku Volcanic Field — August 1986",
+              "publisher": "Smithsonian Institution · Global Volcanism Program",
+              "url": "https://volcano.si.edu/showreport.cfm?doi=10.5479/si.GVP.SEAN198608-224030"
+            },
+            {
+              "title": "Lake Nyos disaster, Cameroon, 1986: the medical effects of large scale emission of carbon dioxide?",
+              "publisher": "Baxter et al. · BMJ, 1989",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/2502283/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-clues-left-behind",
+      "title": "The clues looked like a chemical attack.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-lake-turned-red",
+          "title": "Deep water turned the lake rusty red",
+          "text": "After the disaster, Lake Nyos changed from its usual appearance to a reddish-brown colour. Iron-rich water from the depths had reached the surface; its dissolved iron reacted with oxygen and formed rusty particles. That colour change was evidence of deep water being violently disturbed.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Volcanic Activity Report on Oku Volcanic Field — August 1986",
+              "publisher": "Smithsonian Institution · Global Volcanism Program",
+              "url": "https://volcano.si.edu/showreport.cfm?doi=10.5479/si.GVP.SEAN198608-224030"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "the-mysterious-blisters",
+          "title": "Blisters did not necessarily mean acid gas",
+          "text": "Doctors documented blisters or reddened skin in 161 of 845 hospital-treated survivors. Initially mistaken for chemical burns, the injuries were later linked by one medical team to prolonged unconsciousness. Their precise cause was debated; the findings alone could not prove an acid cloud had escaped.",
+          "evidence": "disputed",
+          "sources": [
+            {
+              "title": "Lake Nyos disaster, Cameroon, 1986: the medical effects of large scale emission of carbon dioxide?",
+              "publisher": "Baxter et al. · BMJ, 1989",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/2502283/"
+            },
+            {
+              "title": "Acute health impact of the Lake Nyos disaster in Cameroon",
+              "publisher": "Journal of Volcanology and Geothermal Research, 1989",
+              "url": "https://www.sciencedirect.com/science/article/pii/0377027389900644"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-carbonated-lake",
+      "title": "The lake was a gigantic pressurized soda bottle.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "magma-without-erupting",
+          "title": "Magma supplied the gas without erupting",
+          "text": "Carbon dioxide from underground volcanic sources entered Lake Nyos through groundwater. Its deep water was dense and rarely mixed with the surface, allowing CO₂ to accumulate over years. At more than 200 metres deep, the pressure also kept enormous quantities dissolved instead of bubbling out.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "The 1986 Lake Nyos Gas Disaster in Cameroon, West Africa",
+              "publisher": "Kling et al. · Science, 1987",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17789781/"
+            },
+            {
+              "title": "Degassing Lakes Nyos and Monoun: Defusing certain disaster",
+              "publisher": "Kling et al. · Proceedings of the National Academy of Sciences, 2005",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1242283/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "the-runaway-foam",
+          "title": "One rising plume can feed a runaway eruption",
+          "text": "When gas-rich deep water rises, pressure decreases and dissolved CO₂ forms bubbles. The bubbling mixture is less dense than surrounding water, so it rises faster, pulling more gas-rich water upward. That positive feedback can produce a violent, self-amplifying release without any new volcanic explosion.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Dynamics of Lake Eruptions and Possible Ocean Eruptions",
+              "publisher": "Zhang and Kling · Annual Review of Earth and Planetary Sciences, 2006",
+              "url": "https://doi.org/10.1146/annurev.earth.34.031405.125001"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "a-millisecond-of-bubbles",
+          "title": "A laboratory eruption filmed at 4,000 frames per second",
+          "publisher": "Annual Review of Earth and Planetary Sciences, 2006",
+          "url": "https://doi.org/10.1146/annurev.earth.34.031405.125001",
+          "description": "In a pressure-release experiment using CO₂-saturated liquid, nearly all bubbles appeared within about one millisecond. The paper includes slow-motion laboratory footage showing foam forming rapidly. It demonstrates the physics, not an actual recording of the 1986 disaster."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "what-started-it",
+      "title": "The mechanism is known. The first trigger is not.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "unknown-first-disturbance",
+          "title": "Nobody has proved what started the release",
+          "text": "A landslide, unusual weather-driven mixing, or an instability developing within the gas-loaded water could have started the first rising plume. Each is a proposed trigger, not an established cause. Scientists can explain the runaway gas release much more confidently than the event that initiated it.",
+          "evidence": "hypothesis",
+          "sources": [
+            {
+              "title": "An overview of the structure, hazards, and methods of investigation of Nyos-type lakes from the geochemical perspective",
+              "publisher": "Tassi and Rouwet · Journal of Limnology, 2014",
+              "url": "https://doi.org/10.4081/jlimnol.2014.836"
+            },
+            {
+              "title": "Volcanic Activity Report on Oku Volcanic Field — August 1986",
+              "publisher": "Smithsonian Institution · Global Volcanism Program",
+              "url": "https://volcano.si.edu/showreport.cfm?doi=10.5479/si.GVP.SEAN198608-224030"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "monoun-was-the-warning",
+          "title": "Another Cameroonian lake had killed 37 people",
+          "text": "On 15 August 1984, Lake Monoun released a lethal gas cloud that killed 37 people. It was only about two years before Nyos. Together the disasters established an extraordinary natural hazard: a lake can erupt with dissolved gas even when there is no fresh magma eruption.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Origin of the lethal gas burst from Lake Monoun, Cameroun",
+              "publisher": "US Geological Survey",
+              "url": "https://www.usgs.gov/publications/origin-lethal-gas-burst-lake-monoun-cameroun"
+            },
+            {
+              "title": "Dynamics of Lake Eruptions and Possible Ocean Eruptions",
+              "publisher": "Zhang and Kling · Annual Review of Earth and Planetary Sciences, 2006",
+              "url": "https://doi.org/10.1146/annurev.earth.34.031405.125001"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "water-wave-aftermath",
+          "title": "The escaping gas also drove a giant water surge",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Lake_Nyos_1986_001.jpg",
+            "alt": "A 1986 aftermath photograph of Lake Nyos and a rocky promontory scoured by the eruption's water surge.",
+            "credit": "Jack Lockwood, USGS · public domain (US government work) · cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_Nyos_1986_001.jpg"
+          },
+          "caption": "This shows the aftermath, not the eruption itself. Investigators found that displaced lake water had surged over a promontory about 80 metres above the lake."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-controlled-eruption",
+      "title": "Engineers made the lake erupt safely on purpose.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "self-powered-degassing-pipe",
+          "title": "A pipe uses the lake's own gas as its pump",
+          "text": "In 2001, engineers began drawing CO₂-rich water from roughly 200 metres down through a pipe. As the water rose, gas bubbles expanded, making the column lighter and sustaining the upward flow without constant pumping. The gas escaped gradually above the lake; two additional pipes were installed in 2011 to reduce the reservoir further.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Degassing Lakes Nyos and Monoun: Defusing certain disaster",
+              "publisher": "Kling et al. · Proceedings of the National Academy of Sciences, 2005",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1242283/"
+            },
+            {
+              "title": "Lake Nyos, Cameroon",
+              "publisher": "NASA Earth Observatory",
+              "url": "https://science.nasa.gov/earth/earth-observatory/lake-nyos-cameroon-86244/"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "the-degassing-fountain",
+          "title": "A real fountain of CO₂-rich water",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Lake_nyos_co2_vent_%28cropped%29.jpg",
+            "alt": "A tall white jet of water and gas rises from a degassing installation floating on Lake Nyos, photographed in 2006.",
+            "credit": "Bill Evans, USGS · public domain (US government work) · source photograph already cropped; additionally cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_nyos_co2_vent_(cropped).jpg"
+          },
+          "caption": "USGS photograph from 2006: the white jet is the engineered release of gas-rich water, far more controlled than the 1986 burst."
+        },
+        {
+          "type": "video",
+          "id": "scishow-deadly-lake",
+          "title": "Cameroon's Deadly Lake Bomb Has Been Defused",
+          "channel": "SciShow",
+          "youtubeId": "5okDacdZ2sc",
+          "note": "English-language explainer published in 2026. 'Defused' refers to engineered gas reduction; continued monitoring matters because volcanic CO₂ can still enter the lake."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-lake-that-makes-electricity",
+      "title": "Another gas-filled lake is being used as a power source.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "kivu-stores-two-gases",
+          "title": "Lake Kivu hides both carbon dioxide and methane",
+          "text": "On the Rwanda–DR Congo border, Lake Kivu contains immense stores of dissolved CO₂ and flammable methane below roughly 250 metres. Unlike frightening predictions of an imminent spontaneous burst, measurements reported in 2020 found gas concentrations approximately steady and well below the bubbling threshold. Volcanic disturbances remain a possible hazard.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "No increasing risk of a limnic eruption at Lake Kivu: Intercomparison study reveals gas concentrations close to steady state",
+              "publisher": "Bärenbold et al. · PLOS ONE, 2020",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0237836"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "turning-risk-into-electricity",
+          "title": "A power plant burns the gas once trapped underwater",
+          "text": "At Lake Kivu, engineers raise methane-rich deep water, separate the gas, and burn the methane to generate electricity. The KivuWatt plant began operation in 2015 with about 26 megawatts of capacity. Water must be returned at suitable depths to avoid disrupting the lake's protective layering.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Methane Gas",
+              "publisher": "Rwanda Energy Group",
+              "url": "https://reg.rw/what-we-do/generation/methane-gas/"
+            },
+            {
+              "title": "Methane extraction from Lake Kivu: Scientific background and challenges",
+              "publisher": "Eawag · Swiss Federal Institute of Aquatic Science and Technology, 2021",
+              "url": "https://www.dora.lib4ri.ch/eawag/islandora/object/eawag%3A22449/datastream/PDF/Schmid-2021-Methane_extraction_from_Lake_Kivu.-%28published_version%29.pdf"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "lake-kivu-view",
+          "title": "A second lake with a hidden gas reservoir",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Lake_Kivu_2021.jpg",
+            "alt": "Panoramic view of Lake Kivu near Goma, with a broad blue lake, wooded shores, and hills beyond.",
+            "credit": "A junaid alam khan · CC BY-SA 4.0 · cropped and darkened for display under ShareAlike terms",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lake_Kivu_2021.jpg"
+          },
+          "caption": "Lake Kivu appears peaceful from shore, but its deep gas-rich layers are now both a monitored hazard and a source of electricity."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}

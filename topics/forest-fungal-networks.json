@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 2,
+  "id": "forest-fungal-networks",
+  "title": "The hidden fungal networks beneath forests",
+  "category": "Underground ecology",
+  "hook": "Real fungal threads can link tree roots and move resources. Follow the experiments that revealed them, the surprising holes in the 'wood wide web' story, and a ghostly plant that survives by taking fungal carbon.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Mycorhizes-01.jpg",
+    "alt": "Fine white ectomycorrhizal fungal threads surrounding the brown root tips of a white spruce.",
+    "credit": "André-Ph. D. Picard · CC BY-SA 3.0 · may be cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mycorhizes-01.jpg"
+  },
+  "levels": [
+    {
+      "id": "the-threads-on-the-roots",
+      "title": "Those white threads aren't roots. They're a fungus.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "actual-fungus-on-spruce-roots",
+          "title": "The hidden partnership, photographed",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Mycorhizes-01.jpg",
+            "alt": "White, hairlike fungal mycelium wrapped around branching brown white-spruce roots in a close-up experiment photograph.",
+            "credit": "André-Ph. D. Picard · CC BY-SA 3.0 · may be cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mycorhizes-01.jpg"
+          },
+          "caption": "Real ectomycorrhizal mycelium on white-spruce roots, photographed during research at Université Laval; the threads extend beyond the root itself."
+        },
+        {
+          "type": "fact",
+          "id": "an-extra-root-system",
+          "title": "Fungal filaments explore soil that roots cannot",
+          "text": "Mycorrhizal fungi form partnerships with plant roots. Their microscopic tubes, called hyphae, spread through narrow soil spaces and absorb nutrients such as phosphorus and nitrogen. In return, photosynthesizing plants supply carbon compounds. Some fungal individuals colonize multiple plants, making a shared underground connection physically possible.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Reciprocal rewards stabilize cooperation in the mycorrhizal symbiosis",
+              "publisher": "Kiers et al. · Science, 2011",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/21836016/"
+            },
+            {
+              "title": "Architecture of the wood-wide web: Rhizopogon spp. genets link multiple Douglas-fir cohorts",
+              "publisher": "Beiler et al. · New Phytologist, 2010",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/19878460/"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "stanford-underground-video",
+          "title": "Stanford scientists tap into the fungal network",
+          "channel": "Stanford",
+          "youtubeId": "0P8r8tmNE5c",
+          "note": "English-language introduction by Stanford fungal ecologist Kabir Peay. Explains root partnerships and the distinction between visible mushrooms and hidden fungal mycelium."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-market-under-the-ground",
+      "title": "Plants and fungi can negotiate a microscopic trade.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "oak-boletus-exchange-diagram",
+          "title": "The two-way exchange at a root",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Mutualistic_mycorrhiza_en.svg/500px-Mutualistic_mycorrhiza_en.svg.png",
+            "alt": "Illustration showing an oak tree and a bolete mushroom connected underground, with arrows for mineral nutrients and photosynthetic carbon moving between plant and fungus.",
+            "credit": "Nefronus · CC BY-SA 4.0 · conceptual diagram; display uncropped and undarkened so arrows remain legible",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mutualistic_mycorrhiza_en.svg"
+          },
+          "caption": "An illustration of oak–bolete mutualism, not a photograph or evidence of whole-forest communication. Each partner supplies something the other needs."
+        },
+        {
+          "type": "fact",
+          "id": "reward-the-better-fungus",
+          "title": "Plants gave more carbon to better fungal suppliers",
+          "text": "In a 2011 experiment, researchers paired plants with fungal strains differing in the phosphorus they supplied. Plants allocated more carbohydrates to useful partners; fungi also preferentially rewarded good trading partners. This was tested in controlled arbuscular-mycorrhizal partnerships, not as evidence that forest trees consciously share food.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Reciprocal rewards stabilize cooperation in the mycorrhizal symbiosis",
+              "publisher": "Kiers et al. · Science, 2011",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/21836016/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "fluorescent-phosphorus-cargo",
+          "title": "Researchers tracked phosphorus through fungal tubes",
+          "text": "In 2019, scientists attached fluorescent quantum dots to a phosphorus source and watched an arbuscular-mycorrhizal fungus redistribute it. When one area was phosphorus-rich and another poor, the fungus moved more phosphorus toward poorer patches and delivered more to host roots. These were controlled laboratory networks.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Mycorrhizal Fungi Respond to Resource Inequality by Moving Phosphorus from Rich to Poor Patches across Networks",
+              "publisher": "Whiteside et al. · Current Biology, 2019",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/31178314/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "drawing-the-invisible-network",
+      "title": "DNA revealed one fungus associated with 19 trees.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "wood-wide-web-schematic",
+          "title": "A model of shared roots and fungal threads",
+          "image": {
+            "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Mycorrhizal_network.svg/960px-Mycorrhizal_network.svg.png",
+            "alt": "Color illustration of several trees with underground roots, fungal connections, and different arrows representing possible resource flows; also shows non-mycorrhizal and parasitic relationships.",
+            "credit": "Charlotte Roy, Salsero35 and Nefronus · CC BY-SA 4.0 · conceptual illustration; display uncropped and undarkened",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mycorrhizal_network.svg"
+          },
+          "caption": "A schematic of possible plant–fungus relationships. Its arrows illustrate ideas; they are not a map of proven transfers between real forest trees."
+        },
+        {
+          "type": "fact",
+          "id": "rhizopogon-dna-map",
+          "title": "A 30-by-30-metre forest plot exposed shared partners",
+          "text": "Researchers sampled fungal root tips in a Canadian old-growth Douglas-fir forest and matched fungal DNA fingerprints. A single Rhizopogon fungal genotype appeared on roots from as many as 19 trees, including different ages. Shared DNA identifies potential links; it does not show that nutrients were flowing between those trees.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Architecture of the wood-wide web: Rhizopogon spp. genets link multiple Douglas-fir cohorts",
+              "publisher": "Beiler et al. · New Phytologist, 2010",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/19878460/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "one-hundred-ten-quadrillion-kilometres",
+          "title": "The global underground total is almost unimaginable",
+          "publisher": "Stewart et al. · Science, 2026",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42275513/",
+          "description": "Using more than 16,000 soil cores and a predictive model, researchers estimated 110 quadrillion kilometres of living arbuscular-mycorrhizal hyphae in global topsoils. That adds up lengths across countless separate networks, mainly beyond the forest-specific fungi mapped above; it is not one connected organism."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-radioactive-carbon-test",
+      "title": "Scientists found carbon in a neighbour—but how did it get there?",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "simard-carbon-isotopes",
+          "title": "Paper birch and Douglas-fir exchanged labeled carbon",
+          "text": "In a 1997 field experiment, Suzanne Simard and colleagues exposed neighbouring trees to differently labeled carbon dioxide. Carbon isotope signatures later appeared in the other species. They reported transfer in both directions, with net gain by Douglas-fir under some conditions. That established tracer movement, not deliberate feeding of offspring.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Net transfer of carbon between ectomycorrhizal tree species in the field",
+              "publisher": "Simard et al. · Nature, 1997",
+              "url": "https://www.nature.com/articles/41557"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "severed-hyphae-control",
+          "title": "Cutting fungal threads did not eliminate the isotope transfer",
+          "text": "A related 1997 birch–fir experiment compared intact fungal connections with ones cut just before carbon labeling. About five percent of recovered isotope crossed between plants, but transfer did not significantly differ when hyphae were severed. Soil pathways therefore remained a plausible alternative to direct fungal transport.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Reciprocal transfer of carbon isotopes between ectomycorrhizal Betula papyrifera and Pseudotsuga menziesii",
+              "publisher": "Simard et al. · New Phytologist, 1997",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/33863069/"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "ted-ed-secret-language",
+          "title": "The secret language of trees - Camille Defrenne and Suzanne Simard",
+          "channel": "TED-Ed",
+          "youtubeId": "V4m9SefyRjg",
+          "note": "English-language 2019 animation of the famous 'wood wide web' interpretation. Its statements about intentional tree communication, warnings and preferential support for relatives go beyond the evidence assessed in a 2023 scientific review."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-warning-signal-question",
+      "title": "A plant warning experiment worked. A forest-wide alarm is unproven.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "bean-aphid-warning-experiment",
+          "title": "Unattacked bean plants changed their scent",
+          "text": "In controlled experiments, broad beans attacked by aphids shared fungal connections with unattacked neighbours. Connected neighbours released defensive odors that repelled aphids and attracted their parasitic wasp enemies. The result supports a signal-associated effect in this setup; the exact traveling substance and generality across forests remain unresolved.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Underground signals carried through common mycelial networks warn neighbouring plants of aphid attack",
+              "publisher": "Babikova et al. · Ecology Letters, 2013",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/23656527/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "mother-tree-evidence-check",
+          "title": "A review challenged the 'mother tree' narrative",
+          "publisher": "Karst, Jones and Hoeksema · Nature Ecology & Evolution, 2023",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36782032/",
+          "description": "Reviewing forest studies, the authors found insufficient evidence that shared fungal networks routinely improve seedling survival. They found no published peer-reviewed demonstration that mature trees preferentially send resources or warnings to their own offspring through these networks."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-ghost-pipe-hijack",
+      "title": "Some plants no longer photosynthesize. They take carbon from fungi.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "white-ghost-pipe-flowers",
+          "title": "A plant without green leaves",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Monotropa_uniflora_ghost_pipe.jpg",
+            "alt": "Cluster of pale, nearly translucent ghost pipe flowers with drooping bell-shaped heads growing among brown forest leaves.",
+            "credit": "Gageills · CC0 1.0 public domain dedication · may be cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monotropa_uniflora_ghost_pipe.jpg"
+          },
+          "caption": "Ghost pipe, Monotropa uniflora, lacks the green chlorophyll used by ordinary plants to capture sunlight."
+        },
+        {
+          "type": "fact",
+          "id": "ghost-pipe-borrows-photosynthesis",
+          "title": "Ghost pipe gets its sugars from another plant, indirectly",
+          "text": "Ghost pipe cannot make food with sunlight. Instead, it takes carbon through fungal partners that also associate with photosynthesizing plants. DNA analysis of 56 fungal samples from ghost-pipe roots in Massachusetts found every one belonged to the Russulaceae family. This is a documented, specialized carbon pathway—not proof that trees choose to donate.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Monotropa uniflora plants of eastern Massachusetts form mycorrhizae with a diversity of russulacean fungi",
+              "publisher": "Yang and Pfister · Mycologia, 2006",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17139846/"
+            },
+            {
+              "title": "Mycoheterotrophy in the wood-wide web",
+              "publisher": "Merckx et al. · Nature Plants, 2024",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/38641664/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "life-without-photosynthesis",
+          "title": "Its cells still run on ordinary sugars",
+          "publisher": "Hazinia et al. · Plant Direct, 2026",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42005352/",
+          "description": "A 2026 study examined ghost-pipe cell structures, metabolites and gene activity. Despite its lack of photosynthesis, sugars and organic acids were abundant in its tissues. The plant still needs chemical energy to grow; the fungal connection supplies its carbon instead of sunlight-driven sugar production."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}

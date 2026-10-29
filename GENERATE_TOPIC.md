@@ -1,14 +1,16 @@
 TOPIC: [REPLACE THIS WITH THE TOPIC YOU WANT]
 
-Create one complete, researched rabbit hole for my website, Rabbit Hole. Use web browsing to verify the content. I will copy the JSON you return directly into my repository.
+Create one complete, researched rabbit hole for my website, Rabbit Hole. Use web browsing to verify the content. Return one complete JSON file in the format below.
 
 ## What I want to experience
 
-Start at the requested topic and follow an interesting train of thought downward. Build exactly SIX ordered depths. Privately plan the route before writing: after each discovery, consider what it explains, what experiment reveals it, what unexpected consequence it has, or what closely related thing becomes interesting because of it. Choose the next step from those connections. It should feel like following curiosity, rather than reading six headings from an encyclopaedia.
+Start at the requested topic and follow an interesting train of thought downward. There is NO fixed number of depths and NO upper limit. Research the subject first, then independently decide what belongs at each depth and how many depths the complete journey needs. Privately plan the route before writing: after each discovery, consider what it explains, what experiment reveals it, what unexpected consequence it has, or what closely related thing becomes interesting because of it. Choose the next step from those connections. It should feel like following curiosity, rather than reading headings from an encyclopaedia.
+
+Let the research determine the length. Continue while the next depth adds a distinct, compelling, well-supported discovery connected to the route so far. Explore the mechanisms, experiments, consequences and related subjects that genuinely reward going deeper. Do not stop at an arbitrary number, pad to a target, or ask me to choose a depth count. Decide on your own when further continuation would become repetitive, weakly connected or unsupported, and end there. The result must be a complete, finite journey, even though there is no cap on its length.
 
 Start with the subject itself and get concrete quickly. Every depth must teach me something. Give names, mechanisms, experiments, observations and surprising details. If you introduce a mechanism, explain how it works in plain language. A headline or an unanswered question does not count as a fact. Avoid filler such as "the mystery gets deeper", "there is more than meets the eye", and repeated summaries of what I already learned.
 
-For example, a pigeon journey could begin with how messenger pigeons actually deliver messages, then follow smell maps and navigation experiments, magnetic detection mechanisms, a sun-compass experiment, a robin's proposed light-sensitive compass, and other impressive birds such as an ocean-crossing godwit or a frigatebird that sleeps in flight. Related birds can be a depth INSIDE the original topic file. The route may broaden naturally; it does not need six depths only about the original animal. Do not force this same sequence onto every topic.
+For example, a pigeon journey could begin with how messenger pigeons actually deliver messages, then follow smell maps and navigation experiments, magnetic detection mechanisms, a sun-compass experiment, a robin's proposed light-sensitive compass, and other impressive birds such as an ocean-crossing godwit or a frigatebird that sleeps in flight. Related birds can be depths INSIDE the original topic file. The route may broaden naturally; it need not stay exclusively about the original animal. Split or combine these discoveries into as many depths as the material deserves. Do not force this same sequence onto every topic.
 
 Give me the actual interesting content. "Pigeons have a magnetic compass" is too shallow on its own. Explain the proposed biological detector, the evidence, and what remains unresolved. Do not turn a hypothesis into a certainty to make the story more exciting. Check recent research when an older popular explanation may have changed.
 
@@ -22,7 +24,7 @@ Each object must add something distinct. Do not put a fact in one object and par
 
 Aim for 25-50 words per fact, with up to 70 when a mechanism needs room. Titles should be short, specific statements. An article description should normally be 25-45 words and convey actual information, rather than saying "read more". Keep image captions and video notes concise. The whole depth must fit a screen without scrolling. Prefer two or three good objects to four cramped ones.
 
-The sixth depth must contain a final concrete discovery. It can open an intriguing related direction, but must not consist only of a recap, a vague question, or a lecture about curiosity.
+The final depth, wherever you decide it belongs, must contain a final concrete discovery. It can open an intriguing related direction, but must not consist only of a recap, a vague question, or a lecture about curiosity.
 
 ## Research requirements
 
@@ -46,14 +48,13 @@ Topic:
 - category: a short category label.
 - hook: one or two concrete introductory sentences for the topic picker.
 - image: the cover-image object defined below.
-- levels: an array of EXACTLY SIX depth objects in their viewing order.
+- levels: a nonempty array of depth objects in their viewing order, with no fixed count or maximum length. You decide its length from the research.
 
 Each depth:
 - id: a kebab-case ID unique within this topic.
 - title: a short, specific discovery heading.
 - objects: an array of 1-4 typed objects, using only the fields of that object's type.
-- tangents: exactly {"left": null, "right": null}, or replace a null with a valid tangent object.
-- final: false for depths 1-5; true for depth 6 only.
+- final: false for every depth except the last; true for the last depth only, regardless of its position in the array.
 
 A fact object has exactly:
 { "type": "fact", "id": "unique-object-id", "title": "Specific claim", "text": "The factual explanation", "evidence": "documented", "sources": [{ "title": "Actual source title", "publisher": "Actual publisher", "url": "https://a-verified-source" }] }
@@ -71,28 +72,19 @@ The topic cover uses exactly the same four image fields as an image object's nes
 
 All strings must be nonempty, all URLs must use HTTPS, and all IDs must contain only lowercase letters/numbers separated by single hyphens. Object IDs must be unique within their depth. Every fact has at least one source. Do not include body, takeaway, eyebrow, level-level sources, level-level videos, or a level-level image; those belong to the old format. Do not use null for required object fields or add unused fields from other object types.
 
-## Tangent rules
-
-Tangents are currently disabled in the app. For every new depth, always use {"left": null, "right": null}. The contract below is retained for future use; do not generate tangent links while this feature is disabled.
-
-A non-null tangent has exactly:
-{ "topicId": "an-existing-topic-id", "level": 1, "label": "A concise connection", "reason": "Why these discoveries are connected" }
-
-The level is an integer from 1 to 6 and is ONE-BASED. Tangents can point to another known topic or a meaningful depth of this same topic. Do not force connections, create fake destination topics, or add links merely to duplicate the next/back controls. The app handles the return path automatically.
-
-If I have not supplied the repository's current topic IDs and content, leave both tangent slots null. A factual aside about another animal or event can still be an ordinary depth/object in the new topic. It does not need a separate topic file or a tangent.
-
 ## Output and installation
 
-Return the intended filename, topics/<id>.json, followed by ONE complete JSON code block containing the topic. Return all six depths with real researched content. No ellipses, comments, placeholder values, omitted levels, Markdown inside strings, or trailing commas. The illustrative field placeholders above must never appear in the final JSON.
+Return the intended filename, topics/<id>.json, followed by ONE complete JSON code block containing the topic. Return every depth of the complete journey you decided on, with real researched content. Do not arbitrarily shorten the route, stop mid-journey, or ask whether I want the rest. No ellipses, comments, placeholder values, omitted levels, Markdown inside strings, or trailing commas. The illustrative field placeholders above must never appear in the final JSON.
 
-Before answering, check the structure, count six depths, count 1-4 objects per depth, check the final flags, check IDs, remove duplicate information, and verify that every source/media link is real. Do not claim to have run repository commands unless you actually have that access.
+Before answering, check the structure, confirm the route has a natural researched ending, count 1-4 objects per depth, ensure only the actual last depth has final set to true, check IDs, remove duplicate information, and verify that every source/media link is real. Do not impose a depth cap during this check. Do not claim to have run repository commands unless you actually have that access.
 
 I will save your JSON as UTF-8 at topics/<id>.json. The app discovers topic files automatically. If you have direct access to my repository instead of ordinary ChatGPT, save the file there and use the existing topic validator; otherwise return the full copyable JSON. The local installation command is npm run validate:topics; rebuilding/deploying includes the new topic in the production site.
 
-## Complete six-depth example
+If the repository's existing validator still enforces the previous format, report the compatibility mismatch rather than changing the content to fit its old depth count or adding fields absent from this contract. Do not modify application code unless I explicitly request it.
 
-The following is a real format example from this repo, not a script to retell verbatim. It demonstrates four different object types and varying object counts, including a depth containing only one explanation. Follow its STRUCTURE. Research a new route and new content for the TOPIC specified at the start of this prompt. Do not copy pigeon content into an unrelated topic.
+## Complete example
+
+The following example demonstrates four different object types and varying object counts, including a depth containing only one explanation. Its particular length is illustrative, not a required count, limit or default. Follow its STRUCTURE, not its number of depths. Research a new route and new content for the TOPIC specified at the start of this prompt. Do not copy pigeon content into an unrelated topic.
 
 ```json
 {
@@ -161,10 +153,6 @@ The following is a real format example from this repo, not a script to retell ve
           "caption": "Homing pigeons are domestic rock pigeons, Columba livia. The familiar urban pigeon belongs to this species too."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
       "final": false
     },
     {
@@ -208,15 +196,6 @@ The following is a real format example from this repo, not a script to retell ve
           "description": "An analysis of 216 recorded flight tracks found evidence of pigeons following roads and being attracted to highway exits. Familiar landmarks provide another kind of navigation information."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": {
-          "topicId": "messenger-pigeons",
-          "level": 4,
-          "label": "The sun is another compass",
-          "reason": "Smells may provide location information; a sun compass helps the bird hold a direction."
-        }
-      },
       "final": false
     },
     {
@@ -260,15 +239,6 @@ The following is a real format example from this repo, not a script to retell ve
           "description": "Cells once described as magnetosensitive neurons in the upper beak were identified as iron-rich macrophages instead. Finding iron in tissue does not, by itself, identify a working compass."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": {
-          "topicId": "messenger-pigeons",
-          "level": 5,
-          "label": "A compass made from light",
-          "reason": "Migratory robins offer a different candidate mechanism: magnetically sensitive chemistry in an eye protein."
-        }
-      },
       "final": false
     },
     {
@@ -290,10 +260,6 @@ The following is a real format example from this repo, not a script to retell ve
           ]
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
       "final": false
     },
     {
@@ -339,10 +305,6 @@ The following is a real format example from this repo, not a script to retell ve
           ]
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
       "final": false
     },
     {
@@ -386,15 +348,6 @@ The following is a real format example from this repo, not a script to retell ve
           "description": "The frigatebirds studied averaged 0.69 hours of sleep daily during flight: roughly 42 minutes, and only 7.4% of their sleep time on land. Sleeping airborne did not mean obtaining their usual amount of sleep."
         }
       ],
-      "tangents": {
-        "left": {
-          "topicId": "messenger-pigeons",
-          "level": 5,
-          "label": "Back to the robin's compass",
-          "reason": "Revisit the chemistry that may help a migrating songbird hold its heading."
-        },
-        "right": null
-      },
       "final": true
     }
   ]
