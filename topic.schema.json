@@ -1,0 +1,429 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 2
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hook": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "credit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "url",
+        "alt",
+        "credit",
+        "sourceUrl"
+      ],
+      "additionalProperties": false
+    },
+    "levels": {
+      "minItems": 6,
+      "maxItems": 6,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "objects": {
+            "minItems": 1,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "fact"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "evidence": {
+                      "type": "string",
+                      "enum": [
+                        "documented",
+                        "experiment",
+                        "hypothesis",
+                        "disputed"
+                      ]
+                    },
+                    "sources": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "publisher": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "publisher",
+                          "url"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "title",
+                    "text",
+                    "evidence",
+                    "sources"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "image"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "alt": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "credit": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "sourceUrl": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [
+                        "url",
+                        "alt",
+                        "credit",
+                        "sourceUrl"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "caption": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "title",
+                    "image",
+                    "caption"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "video"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "channel": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "youtubeId": {
+                      "type": "string",
+                      "pattern": "^[\\w-]{11}$"
+                    },
+                    "note": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "title",
+                    "channel",
+                    "youtubeId",
+                    "note"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "article"
+                    },
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "publisher": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "title",
+                    "publisher",
+                    "url",
+                    "description"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "tangents": {
+            "type": "object",
+            "properties": {
+              "left": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "topicId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 6
+                      },
+                      "label": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "reason": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "topicId",
+                      "level",
+                      "label",
+                      "reason"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "topicId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 6
+                      },
+                      "label": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "reason": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "topicId",
+                      "level",
+                      "label",
+                      "reason"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "left",
+              "right"
+            ],
+            "additionalProperties": false
+          },
+          "final": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "objects",
+          "tangents",
+          "final"
+        ],
+        "additionalProperties": false
+      },
+      "prefixItems": [
+        {
+          "properties": {
+            "final": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "final": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "final": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "final": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "final": {
+              "const": false
+            }
+          }
+        },
+        {
+          "properties": {
+            "final": {
+              "const": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "category",
+    "hook",
+    "image",
+    "levels"
+  ],
+  "additionalProperties": false,
+  "title": "Rabbit Hole topic - version 2",
+  "description": "Exactly six depths, with one to four explicit objects per depth. The CLI additionally checks unique level/object IDs and tangent references."
+}

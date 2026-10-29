@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 2,
+  "id": "dancing-plague",
+  "title": "Strasbourg tried to cure compulsive dancing with more dancing.",
+  "category": "Strange history",
+  "hook": "A dancing outbreak led to paid musicians, a ban on music, a pilgrimage, and a puzzle that reaches far beyond sixteenth-century Strasbourg.",
+  "image": {
+    "url": "https://pdr-assets.b-cdn.net/essays/the-dancing-plague-of-1518/Hondius_brugje-copy-849x1024.jpg",
+    "alt": "Hondius engraving after Bruegel depicting dancers at Molenbeek in 1564, a later outbreak, not Strasbourg in 1518.",
+    "credit": "Hondius after Bruegel, 1642 · public domain · later outbreak",
+    "sourceUrl": "https://publicdomainreview.org/essay/the-dancing-plague-of-1518"
+  },
+  "levels": [
+    {
+      "id": "the-outbreak",
+      "title": "In 1518, dancing became a public emergency.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "onset",
+          "title": "The outbreak was treated as an affliction",
+          "text": "In July 1518, Strasbourg experienced an outbreak of compulsive dancing. Later accounts describe a woman commonly called Frau Troffea dancing first, followed by others. The city's response treated the movements as an illness, not ordinary celebration.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "The Dancing Plague of 1518",
+              "publisher": "Ned Pennant-Rea · The Public Domain Review",
+              "url": "https://publicdomainreview.org/essay/the-dancing-plague-of-1518"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "rtl-history",
+          "title": "The Dancing Plague of Strasbourg: The Cursed Ball of 1518",
+          "channel": "RTL · Lorant Deutsch",
+          "youtubeId": "lQX8yBanH0c",
+          "note": "French-language history episode. Dramatic storytelling should be read alongside the written sources."
+        },
+        {
+          "type": "fact",
+          "id": "uncertain-toll",
+          "title": "The famous death count is not a secure statistic",
+          "text": "Popular retellings give precise daily deaths or hundreds of fatalities. The surviving accounts do not establish one reliable toll. The outbreak and the authorities' response are better supported than those dramatic numbers.",
+          "evidence": "disputed",
+          "sources": [
+            {
+              "title": "Dancing plague of 1518: deaths and source debate",
+              "publisher": "Wikipedia · historical source overview",
+              "url": "https://en.wikipedia.org/wiki/Dancing_plague_of_1518"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-official-cure",
+      "title": "The city hired musicians to keep the dancers moving.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "medical-response",
+          "title": "Doctors recommended dancing the illness away",
+          "text": "Physicians blamed overheated blood. Authorities provided dancing spaces and paid musicians and dancers, hoping continued movement would exhaust the illness. The response increased public exposure to the very behaviour the council wanted to stop.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "The Dancing Plague of 1518",
+              "publisher": "Ned Pennant-Rea · The Public Domain Review",
+              "url": "https://publicdomainreview.org/essay/the-dancing-plague-of-1518"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "reversal-and-shrine",
+          "title": "The policy flipped from musical treatment to religious ritual",
+          "text": "The council later restricted public dancing and music. Sufferers were taken to a shrine associated with Saint Vitus, where accounts describe red shoes, holy water and crosses. People who feared a saint's punishment were offered a ritual intended to remove it.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "The Dancing Plague of 1518",
+              "publisher": "Ned Pennant-Rea · The Public Domain Review",
+              "url": "https://publicdomainreview.org/essay/the-dancing-plague-of-1518"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-ergot-hypothesis",
+      "title": "Poisoned grain sounds plausible, but the symptoms must fit.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "ergot-effects",
+          "title": "Ergot poisoning can cause convulsions, not just hallucinations",
+          "text": "Ergot fungi associated with rye can cause severe poisoning, including convulsions and disrupted circulation. This prompted a proposed food-based explanation for dancing outbreaks. But a substance causing unusual behaviour is not enough to show it caused Strasbourg's particular episode.",
+          "evidence": "disputed",
+          "sources": [
+            {
+              "title": "In a spin: the mysterious dancing epidemic of 1518",
+              "publisher": "John Waller · Endeavour, 2008",
+              "url": "https://www.sciencedirect.com/science/article/pii/S0160932708000379"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "testing-ergot",
+          "title": "Why Waller argues against the ergot explanation",
+          "publisher": "John Waller · Endeavour, 2008",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0160932708000379",
+          "description": "His argument considers prolonged movement and the regional pattern of outbreaks. These features, he argues, fit stress and shared beliefs better than a single contaminated food supply. The cause remains disputed."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": {
+          "topicId": "dancing-plague",
+          "level": 4,
+          "label": "Stress and shared expectations",
+          "reason": "Explore the competing explanation for why the symptoms took this particular form."
+        }
+      },
+      "final": false
+    },
+    {
+      "id": "fear-and-expectation",
+      "title": "A feared punishment supplied a pattern for the symptoms.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "cultural-pattern",
+          "title": "Stress and belief may have shaped involuntary movement",
+          "text": "Historian John Waller argues that hardship and fear made people vulnerable, while belief that Saint Vitus could compel dancing gave distress a culturally familiar form. Onlookers recognising that pattern could experience it too. This is a proposed explanation for real symptoms, not a claim that sufferers were pretending or a diagnosis proven centuries later.",
+          "evidence": "hypothesis",
+          "sources": [
+            {
+              "title": "The medieval dancing plague: what caused people to dance themselves to death?",
+              "publisher": "BBC History Magazine / HistoryExtra",
+              "url": "https://www.historyextra.com/period/medieval/the-medieval-dance-of-death/"
+            },
+            {
+              "title": "A forgotten plague: making sense of dancing mania",
+              "publisher": "John Waller · The Lancet, 2009",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/19238695/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "other-dancing-outbreaks",
+      "title": "The dancing appeared in other places and other centuries.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "rhine-and-moselle",
+          "title": "An earlier wave spread between towns in 1374",
+          "text": "Accounts place dancing outbreaks around Aachen, Liege and Maastricht in 1374, spreading to other towns and eventually Strasbourg. Waller notes that the later outbreaks clustered along the Rhine and Moselle rather than appearing evenly across Europe.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "In a spin: the mysterious dancing epidemic of 1518",
+              "publisher": "John Waller · Endeavour, 2008",
+              "url": "https://www.sciencedirect.com/science/article/pii/S0160932708000379"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "molenbeek-engraving",
+          "title": "Molenbeek, 1564: another dancing episode",
+          "image": {
+            "url": "https://pdr-assets.b-cdn.net/essays/the-dancing-plague-of-1518/Hondius_brugje-copy-849x1024.jpg",
+            "alt": "Hondius engraving after Bruegel depicting dancers at Molenbeek in 1564, a later outbreak, not Strasbourg in 1518.",
+            "credit": "Hondius after Bruegel, 1642 · public domain · later outbreak",
+            "sourceUrl": "https://publicdomainreview.org/essay/the-dancing-plague-of-1518"
+          },
+          "caption": "This 1642 engraving by Hendrik Hondius follows Bruegel's drawing of dancers at Molenbeek in 1564. It depicts a later episode, not an eyewitness scene of Strasbourg in 1518."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-laughter-connection",
+      "title": "Centuries later, doctors recorded an outbreak of laughing.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "tanganyika",
+          "title": "The 1962 outbreak involved crying and distress as well as laughter",
+          "text": "A 1963 medical report documented an outbreak in Tanganyika, now part of Tanzania. Later historical research describes laughing, crying and restlessness beginning at a girls' school. It offers a comparison for socially patterned symptoms, not proof that Strasbourg had the same cause.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "An epidemic of laughing in the Bukoba district of Tanganyika",
+              "publisher": "A. M. Rankin and P. J. Philip · Central African Journal of Medicine, 1963",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/13973013/"
+            },
+            {
+              "title": "Investigating \"mass hysteria\" in early postcolonial Uganda",
+              "publisher": "Yolana Pringle · Medical History, 2016",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4988490/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "historical-context",
+          "title": "Why the social setting matters as much as the strange symptom",
+          "publisher": "Medical History, 2016",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4988490/",
+          "description": "A historical study examines East African psychiatric interpretations of collective symptoms and social change. It challenges the idea that a dramatic label, by itself, explains the people experiencing them."
+        }
+      ],
+      "tangents": {
+        "left": {
+          "topicId": "dancing-plague",
+          "level": 4,
+          "label": "Return to the proposed mechanism",
+          "reason": "Compare the historical interpretation without assuming the two outbreaks were identical."
+        },
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}

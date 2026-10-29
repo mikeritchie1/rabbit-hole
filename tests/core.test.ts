@@ -1,0 +1,18 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, readdirSync } from 'node:fs';
+import { validateCollection } from '../src/schema';
+import { back, visit, randomTopic, parseHash, placeHash } from '../src/navigation';
+const files=Object.fromEntries(readdirSync('topics').filter(f=>f.endsWith('.json')).map(f=>[f,readFileSync(`topics/${f}`,'utf8')]));
+const allTopics=validateCollection(files).topics;
+const topics=allTopics.filter(t=>['messenger-pigeons','dancing-plague'].includes(t.id));
+test('all shipped topics validate, with six levels each',()=>{assert.deepEqual(validateCollection(files).errors,[]);assert.equal(topics.length,2);assert.ok(topics.every(t=>t.levels.length===6));});
+test('malformed JSON is isolated while good topics load',()=>{const r=validateCollection({...files,'bad.json':'{ nope'});assert.equal(r.topics.length,allTopics.length);assert.match(r.errors.join(),/invalid JSON/);});
+test('missing required fields and untrusted URL schemes are rejected',()=>{const t=structuredClone(topics[0]);t.image.url='javascript:alert(1)';assert.equal(validateCollection({bad:t}).topics.length,0);assert.equal(validateCollection({bad:{id:'x'}}).topics.length,0);});
+test('duplicate topic IDs and premature final levels fail validation',()=>{assert.match(validateCollection({a:topics[0],b:topics[0]}).errors.join(),/duplicate/);const t=structuredClone(topics[0]);t.levels[0].final=true;assert.match(validateCollection({a:t}).errors.join(),/last level/);});
+test('broken tangent references are reported and disabled',()=>{const t=structuredClone(topics[0]);t.levels[0].tangents.left={topicId:'missing',level:1,label:'x',reason:'x'};const r=validateCollection({a:t});assert.match(r.errors.join(),/broken left tangent/);assert.equal(r.topics[0].levels[0].tangents.left,null);});
+test('out-of-range tangent destinations are rejected',()=>{const t=structuredClone(topics[0]);t.levels[0].tangents.left={topicId:t.id,level:7,label:'x',reason:'x'};const result=validateCollection({a:t});assert.equal(result.topics.length,0);assert.ok(result.errors.length>0);});
+test('backtracking unwinds a nested tangent to the exact original place',()=>{const a={topicId:topics[0].id,level:5};const b={topicId:topics[1].id,level:4};const initial={current:a,trail:[]};const branched=visit(initial,b);const deeper=visit(branched,{...b,level:5});assert.deepEqual(back(deeper),branched);assert.deepEqual(back(branched),initial);});
+test('deep links round-trip and reject invalid levels',()=>{const p={topicId:topics[0].id,level:4};assert.deepEqual(parseHash(placeHash(p),topics),p);for(const level of ['-1','0','2.5','999','NaN'])assert.equal(parseHash(`#topic=${p.topicId}&level=${level}`,topics),null);assert.equal(parseHash('#topic=unknown',topics),null);});
+test('back from a direct deep link goes to the previous level',()=>{const j={current:{topicId:topics[0].id,level:4},trail:[]};assert.equal(back(j).current.level,3);});
+test('random selection avoids current and recent topics when alternatives exist',()=>{const third={...topics[0],id:'third'};for(let i=0;i<30;i++)assert.equal(randomTopic([...topics,third],[topics[1].id],topics[0].id).id,'third');assert.equal(randomTopic(topics,topics.map(t=>t.id),topics[0].id).id,topics[1].id);assert.equal(randomTopic([topics[0]],[],topics[0].id).id,topics[0].id);});

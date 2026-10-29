@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 2,
+  "id": "monarch-butterfly-migration",
+  "title": "The Butterfly That Inherits a Journey",
+  "category": "Animal mysteries",
+  "hook": "A butterfly flies from Canada to a forest in Mexico it has never seen. Its descendants travel north over several generations, yet a new generation somehow knows the way south.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Monarch_butterfly_%2870387%29.jpg",
+    "alt": "Orange-and-black monarch butterfly feeding on a blue salvia flower.",
+    "credit": "Rhododendrites · CC BY-SA 4.0 · cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monarch_butterfly_(70387).jpg"
+  },
+  "levels": [
+    {
+      "id": "a-journey-across-a-continent",
+      "title": "One butterfly flies thousands of kilometres.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "migration-map",
+          "title": "An entire continent becomes a migration route",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Monarch_Migration_map.jpg",
+            "alt": "Map showing eastern monarch migration toward central Mexico and western migration toward coastal California.",
+            "credit": "U.S. National Park Service · public domain · displayed without darkening to preserve map labels",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monarch_Migration_map.jpg"
+          },
+          "caption": "Eastern monarchs travel toward central Mexico. Western monarchs follow a different, shorter migration toward the Pacific coast."
+        },
+        {
+          "type": "fact",
+          "id": "four-thousand-kilometres",
+          "title": "The autumn journey can reach 4,000 km",
+          "text": "Eastern monarch butterflies leave Canada and the northern United States each autumn. Some travel approximately 4,000 kilometres to the mountains of central Mexico. They navigate toward overwintering forests they have never visited, without parents accompanying them.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Navigational mechanisms of migrating monarch butterflies",
+              "publisher": "Trends in Neurosciences, 2010",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/20627420/"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "national-geographic-migration",
+          "title": "Did you know Monarch's have a 3,000-mile migration each Fall? 🦋 #NationalGeographic",
+          "channel": "National Geographic",
+          "youtubeId": "s0IpE9l1mUQ",
+          "note": "English-language short introduction to the spectacular autumn migration. The 3,000-mile figure describes the upper end of the journey, not the distance every butterfly flies."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-generational-relay",
+      "title": "The return trip takes several generations.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "spring-migration-map",
+          "title": "The journey north is a relay",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Springmigrationmap.jpg",
+            "alt": "U.S. Forest Service map showing monarch butterfly spring migration routes northward from Mexico and coastal California.",
+            "credit": "U.S. Forest Service · public domain · displayed without cropping or darkening to preserve labels",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Springmigrationmap.jpg"
+          },
+          "caption": "Spring migration spreads northward through successive generations. The map illustrates broad routes, not the exact path of any individual butterfly."
+        },
+        {
+          "type": "fact",
+          "id": "different-butterflies",
+          "title": "The butterflies reaching Canada are descendants",
+          "text": "The monarchs that spent winter in Mexico fly north and lay eggs in spring. Their descendants continue the expansion, with two to four overlapping generations repopulating the northern breeding range. The autumn butterflies eventually born there have never visited Mexico, and neither have many of their immediate ancestors.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Modular switches shift monarch butterfly migratory flight behavior at their Mexican overwintering sites",
+              "publisher": "Proceedings of the National Academy of Sciences, 2024",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10901092/"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "monarch-metamorphosis",
+          "title": "Monarch Migration and Metamorphosis | Incredible Animal Journeys | National Geographic",
+          "channel": "National Geographic",
+          "youtubeId": "bZdIyCeahXk",
+          "note": "English-language footage of a monarch finding milkweed, laying eggs and the resulting transformation. This illustrates how a new generation replaces the previous one along the migration."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-mexican-forest",
+      "title": "Millions of butterflies become part of a forest.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "butterfly-covered-trees",
+          "title": "These are butterflies, not dead leaves",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Monarch_butterflies_clustering_on_trees_in_Mexico_%2833809230338%29.jpg",
+            "alt": "Dense clusters of overwintering monarch butterflies covering branches of trees in Mexico.",
+            "credit": "Lori Nordstrom / U.S. Fish & Wildlife Service · public domain · cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Monarch_butterflies_clustering_on_trees_in_Mexico_(33809230338).jpg"
+          },
+          "caption": "Photographed in Mexico in February 2019. Monarchs gather in astonishingly dense clusters during winter."
+        },
+        {
+          "type": "fact",
+          "id": "the-fir-sanctuary",
+          "title": "A tiny winter destination supports a vast migration",
+          "text": "Millions of monarchs concentrate in oyamel fir forests in central Mexico. UNESCO describes colonies packed tightly enough to bend tree branches. The protected World Heritage property contains eight major overwintering colonies. These forests shelter butterflies through the cold months before their spring departure.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Monarch Butterfly Biosphere Reserve",
+              "publisher": "UNESCO World Heritage Centre",
+              "url": "https://whc.unesco.org/en/list/1290"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "the-long-lived-generation",
+          "title": "These butterflies can live nine months",
+          "text": "Most breeding adult monarchs survive around two to five weeks. Autumn migrants can live six to nine months because they enter reproductive diapause, delaying reproduction while migrating and overwintering. The same species produces short-lived breeding generations and a remarkably long-lived migratory generation.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Monarch (Danaus plexippus)",
+              "publisher": "U.S. Fish & Wildlife Service",
+              "url": "https://www.fws.gov/species/monarch-danaus-plexippus"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "a-compass-in-the-antennae",
+      "title": "The butterfly has a clock inside its antennae.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-sun-clock",
+          "title": "The sun compass must calculate the time",
+          "text": "The sun moves across the sky, so its position alone cannot indicate a constant direction. Monarchs combine sunlight information with internal circadian clocks. This lets their navigation system adjust its heading as the sun moves, helping them maintain a consistent migratory direction.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Demystifying Monarch Butterfly Migration",
+              "publisher": "Current Biology, 2018",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/30205052/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "black-painted-antennae",
+          "title": "Black paint disrupted the navigation system",
+          "text": "In a 2009 experiment, scientists painted monarch antennae black to prevent light from synchronising their internal clocks. The butterflies could still fly, but their group orientation was disrupted. Butterflies with clear-painted antennae retained appropriate orientation. The clock needed for navigation was operating in the antennae.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Antennal circadian clocks coordinate sun compass orientation in migratory monarch butterflies",
+              "publisher": "Science, 2009",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2754321/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "magnetic-compass-experiment",
+          "title": "Monarchs also respond to Earth's magnetic field",
+          "publisher": "Nature Communications, 2014",
+          "url": "https://www.nature.com/articles/ncomms5164",
+          "description": "Researchers altered an Earth-strength magnetic field around monarchs in a flight simulator. Under suitable violet-blue illumination, their orientation changed. The result supports a light-dependent magnetic inclination compass, although the exact magnetic detector and its role outdoors remain unresolved."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "winter-reprograms-the-compass",
+      "title": "Cold temperatures can flip the migration direction.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "cold-reverses-flight",
+          "title": "Cold exposure can turn south into north",
+          "text": "In a 2013 experiment, autumn monarchs exposed to winter-like cold subsequently oriented north rather than south. Comparable butterflies kept without cold exposure continued orienting south. Winter temperature can recalibrate the sun compass, preparing surviving migrants for the spring journey back toward the United States.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Coldness Triggers Northward Flight in Remigrant Monarch Butterflies",
+              "publisher": "Current Biology, 2013",
+              "url": "https://www.sciencedirect.com/science/article/pii/S0960982213000870"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "autumn-switch",
+          "title": "Shorter days can activate the migration programme",
+          "text": "A 2025 study raised summer monarchs under simulated autumn conditions. They developed larger wings, partial reproductive diapause and southward orientation in an elevated flight simulator. The experiment shows that seasonal environmental signals can activate migratory traits even in butterflies that have never migrated.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Environmental, Developmental, and Genetic Conditions Shaping Monarch Butterfly Migration Behavior",
+              "publisher": "Scientific Reports, 2025",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11761016/"
+            }
+          ]
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": false
+    },
+    {
+      "id": "the-inherited-instinct",
+      "title": "DNA helps build the migration programme, but not a map.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "sequencing-monarchs",
+          "title": "Scientists compared 101 butterfly genomes",
+          "text": "Researchers sequenced 101 monarch genomes from migratory and non-migratory populations. Their strongest migration-associated genetic signals involved flight-muscle function and efficiency. They did not uncover a single gene specifying Mexico as a destination: migration depends on numerous biological traits working together.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "The genetics of monarch butterfly migration and warning colouration",
+              "publisher": "Nature, 2014",
+              "url": "https://www.nature.com/articles/nature13812"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "captivity-changes-navigation",
+          "title": "Captive generations can lose part of the instinct",
+          "text": "In a 2025 study, monarchs from a laboratory population maintained since 2016 showed weaker southward orientation than wild-derived autumn butterflies, despite outdoor rearing. They also developed smaller wings. The researchers could not conclusively separate inherited genetic changes from effects of captive rearing.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Environmental, Developmental, and Genetic Conditions Shaping Monarch Butterfly Migration Behavior",
+              "publisher": "Scientific Reports, 2025",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11761016/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "the-inherited-programme",
+          "title": "How can a journey survive across generations?",
+          "publisher": "Heredity, 2023",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10592233/",
+          "description": "Current genetic research points to interacting systems governing flight performance, seasonal development, reproduction and navigation. Monarchs inherit the machinery for migration, while their environment helps activate and direct it. How inexperienced butterflies locate the restricted Mexican overwintering forests remains unresolved."
+        }
+      ],
+      "tangents": {
+        "left": null,
+        "right": null
+      },
+      "final": true
+    }
+  ]
+}
