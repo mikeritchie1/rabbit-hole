@@ -4,9 +4,10 @@ const hash = (x:number,y:number) => { const n=Math.sin(x*127.1+y*311.7)*43758.54
 function noise(x:number,y:number){const ix=Math.floor(x),iy=Math.floor(y);let u=x-ix,v=y-iy;u=u*u*(3-2*u);v=v*v*(3-2*v);return (hash(ix,iy)*(1-u)+hash(ix+1,iy)*u)*(1-v)+(hash(ix,iy+1)*(1-u)+hash(ix+1,iy+1)*u)*v;}
 function cloud(x:number,y:number){let n=0,a=.55;for(let i=0;i<5;i++){n+=noise(x,y)*a;x=x*2.03+13;y=y*2.03+7;a*=.48;}return n;}
 
-export function Space({flight}:{flight:number}){
-  const sky=useRef<HTMLCanvasElement>(null),stars=useRef<HTMLCanvasElement>(null),pulse=useRef(-10000);
-  useEffect(()=>{if(flight)pulse.current=performance.now();},[flight]);
+export type SpaceMotion='forward'|'backward'|'orbit-right'|'orbit-left';
+export function Space({flight,motion='forward'}:{flight:number;motion?:SpaceMotion}){
+  const sky=useRef<HTMLCanvasElement>(null),stars=useRef<HTMLCanvasElement>(null),pulse=useRef(-10000),motionRef=useRef<SpaceMotion>(motion);
+  useEffect(()=>{if(flight){pulse.current=performance.now();motionRef.current=motion;}},[flight,motion]);
   useEffect(()=>{
     const canvas=sky.current!;
     const paint=()=>{
@@ -35,9 +36,14 @@ export function Space({flight}:{flight:number}){
       const dpr=Math.min(devicePixelRatio,2),w=innerWidth,h=innerHeight;
       if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
       ctx.clearRect(0,0,w,h);const dt=Math.min((now-last)/1000,.04);last=now;
-      const boost=reduced?0:Math.max(0,1-(now-pulse.current)/1500),speed=reduced?0:.013+Math.sin(boost*Math.PI)*1.8;
-      for(const p of points){const old=p.z;p.z-=dt*speed;if(p.z<.12)p.z=2.1;const x=w*.5+p.x/p.z*w*.5,y=h*.53+p.y/p.z*h*.5;if(x<0||x>w||y<0||y>h)continue;
-        ctx.strokeStyle=`rgba(191,216,255,${Math.min(.7,.42/p.z)})`;ctx.lineWidth=Math.max(.5,1.2/p.z);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(w*.5+p.x/(old+.002+boost*.065)*w*.5,h*.53+p.y/(old+.002+boost*.065)*h*.5);ctx.stroke();}
+      const boost=reduced?0:Math.max(0,1-(now-pulse.current)/1500),wave=Math.sin(boost*Math.PI);
+      const orbit=motionRef.current==='orbit-right'?-1:motionRef.current==='orbit-left'?1:0;
+      const speed=reduced?0:.013+(orbit?0:wave*1.8),sideways=orbit*wave*1.7;
+      for(const p of points){const old=p.z,oldX=p.x;p.z-=dt*speed;p.x+=dt*sideways;if(p.z<.12)p.z=2.1;if(p.x< -1.6){p.x+=3.2;continue;}if(p.x>1.6){p.x-=3.2;continue;}
+        const x=w*.5+p.x/p.z*w*.5,y=h*.53+p.y/p.z*h*.5;if(x<0||x>w||y<0||y>h)continue;
+        ctx.strokeStyle=`rgba(191,216,255,${Math.min(.7,.42/p.z)})`;ctx.lineWidth=Math.max(.5,1.2/p.z);ctx.beginPath();ctx.moveTo(x,y);
+        const tailZ=old+.002+(orbit?0:boost*.065);
+        ctx.lineTo(w*.5+(orbit?oldX:p.x)/tailZ*w*.5,h*.53+p.y/tailZ*h*.5);ctx.stroke();}
       if(!reduced)raf=requestAnimationFrame(draw);
     };raf=requestAnimationFrame(draw);return()=>cancelAnimationFrame(raf);
   },[]);

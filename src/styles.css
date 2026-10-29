@@ -132,3 +132,28 @@
 .topic-category[data-category="Dark & disturbing"]{color:#e4b6be;border-color:#d397a440;background:#d397a408}
 @media(max-width:650px){.category-filters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-top:0}.category-filters>button{font-size:8px;letter-spacing:0;padding:7px 3px;border-radius:8px;overflow-wrap:normal}.explore-overlay .library>button>div:not(.image-fallback){gap:5px}.topic-category{font-size:6px;letter-spacing:0;padding:2px 4px}.explore-overlay .library h3{font-size:14px;-webkit-line-clamp:2}}
 @media(max-height:600px){.category-filters{gap:6px;margin-top:0}.category-filters>button{padding:5px 10px;font-size:8px}.topic-category{font-size:6px;padding:2px 5px}.explore-overlay .library h3{font-size:15px}.explore-overlay .library img,.explore-overlay .library .image-fallback{height:32%}}
+
+/* Change topics by orbiting the fixed central black hole. */
+.arrival-orbit-right{animation:orbit-arrive-right 1.5s cubic-bezier(.22,.65,.22,1) both}
+.departure-orbit-right{animation:orbit-depart-left 1.5s cubic-bezier(.45,0,.35,1) both;pointer-events:none;z-index:4}
+.arrival-orbit-left{animation:orbit-arrive-left 1.5s cubic-bezier(.22,.65,.22,1) both}
+.departure-orbit-left{animation:orbit-depart-right 1.5s cubic-bezier(.45,0,.35,1) both;pointer-events:none;z-index:4}
+.heading-arrival-orbit-right{animation:heading-arrive-right 1.5s cubic-bezier(.22,.65,.22,1) both}
+.heading-arrival-orbit-left{animation:heading-arrive-left 1.5s cubic-bezier(.22,.65,.22,1) both}
+.heading-departure-orbit-right{animation:heading-depart-left 1.5s cubic-bezier(.45,0,.35,1) both}
+.heading-departure-orbit-left{animation:heading-depart-right 1.5s cubic-bezier(.45,0,.35,1) both}
+.orbital-path-orbit-right{animation:orbit-disk-right 1.5s ease both}
+.orbital-path-orbit-left{animation:orbit-disk-left 1.5s ease both}
+.orbit-turn .event-horizon{animation:orbit-horizon 1.5s ease both}
+@keyframes orbit-arrive-right{0%{opacity:0;transform:translateX(115vw) translateZ(-400px) rotateY(-55deg);filter:blur(2px)}25%{opacity:.5}60%{opacity:1}100%{opacity:1;transform:translateX(0) translateZ(0) rotateY(0);filter:blur(0)}}
+@keyframes orbit-depart-left{0%{opacity:var(--departure-opacity,1);transform:var(--departure-transform,none);filter:var(--departure-filter,none)}55%{opacity:var(--departure-opacity,1)}100%{opacity:0;transform:translateX(-115vw) translateZ(-400px) rotateY(55deg);filter:blur(2px)}}
+@keyframes orbit-arrive-left{0%{opacity:0;transform:translateX(-115vw) translateZ(-400px) rotateY(55deg);filter:blur(2px)}25%{opacity:.5}60%{opacity:1}100%{opacity:1;transform:translateX(0) translateZ(0) rotateY(0);filter:blur(0)}}
+@keyframes orbit-depart-right{0%{opacity:var(--departure-opacity,1);transform:var(--departure-transform,none);filter:var(--departure-filter,none)}55%{opacity:var(--departure-opacity,1)}100%{opacity:0;transform:translateX(115vw) translateZ(-400px) rotateY(-55deg);filter:blur(2px)}}
+@keyframes heading-arrive-right{from{opacity:0;transform:translateX(calc(-50% + 100vw)) rotateY(-40deg)}to{opacity:1;transform:translateX(-50%) rotateY(0)}}
+@keyframes heading-arrive-left{from{opacity:0;transform:translateX(calc(-50% - 100vw)) rotateY(40deg)}to{opacity:1;transform:translateX(-50%) rotateY(0)}}
+@keyframes heading-depart-left{from{opacity:var(--heading-opacity,1);transform:var(--heading-transform,translateX(-50%))}to{opacity:0;transform:translateX(calc(-50% - 100vw)) rotateY(40deg)}}
+@keyframes heading-depart-right{from{opacity:var(--heading-opacity,1);transform:var(--heading-transform,translateX(-50%))}to{opacity:0;transform:translateX(calc(-50% + 100vw)) rotateY(-40deg)}}
+@keyframes orbit-disk-right{0%{transform:rotateY(-32deg) rotateZ(-7deg)}50%{transform:rotateY(14deg) rotateZ(3deg)}100%{transform:rotateY(0) rotateZ(0)}}
+@keyframes orbit-disk-left{0%{transform:rotateY(32deg) rotateZ(7deg)}50%{transform:rotateY(-14deg) rotateZ(-3deg)}100%{transform:rotateY(0) rotateZ(0)}}
+@keyframes orbit-horizon{0%,100%{filter:brightness(1);transform:scale(1)}45%{filter:brightness(1.5);transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.heading-departure-orbit-right,.heading-departure-orbit-left{display:none}.heading-arrival-orbit-right,.heading-arrival-orbit-left{transform:translateX(-50%);opacity:1}}

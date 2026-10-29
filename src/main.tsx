@@ -4,7 +4,7 @@ import { ArrowUp, ArrowDown, Maximize, Minimize, X, ArrowUpRight, Play, Compass,
 import { topics } from './data';
 import { back, previousTopic, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
 import type { Topic } from './schema';
-import { Space } from './Space';
+import { Space, type SpaceMotion } from './Space';
 import { TOPIC_CATEGORIES, CATEGORY_DESCRIPTIONS, isCategoryFilter, topicsInCategory, type CategoryFilter } from './categories';
 import './styles.css';
 
@@ -33,7 +33,7 @@ function Discovery({topic,depth,preview=false,onSources}:{topic:Topic;depth:numb
 }
 
 type Overlay='library'|'sources'|null;
-type Flight={id:number;direction:'forward'|'backward';from:Place|null;departureStyle?:React.CSSProperties}|null;
+type Flight={id:number;direction:SpaceMotion;from:Place|null;departureStyle?:React.CSSProperties;headingStyle?:React.CSSProperties}|null;
 function App(){
   const [started,setStarted]=useState(false);
   const [category,setCategory]=useState<CategoryFilter>(readCategory);
@@ -42,7 +42,7 @@ function App(){
   const [overlay,setOverlay]=useState<Overlay>(null),[page,setPage]=useState(0),[notice,setNotice]=useState('');
   const [fullscreen,setFullscreen]=useState(!!document.fullscreenElement),[flight,setFlight]=useState<Flight>(null),[compact,setCompact]=useState(innerWidth<650||innerHeight<600);
   const flightSequence=useRef(0),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
-  const present=useRef<HTMLDivElement>(null),journeyRef=useRef(journey),startedRef=useRef(started),hasExplored=useRef(false);
+  const present=useRef<HTMLDivElement>(null),heading=useRef<HTMLDivElement>(null),journeyRef=useRef(journey),startedRef=useRef(started),hasExplored=useRef(false);
   journeyRef.current=journey;startedRef.current=started;
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
@@ -58,8 +58,12 @@ function App(){
     // Continue the departing scene from its visible position if a flight is interrupted.
     const visual=present.current?getComputedStyle(present.current):null;
     const departureStyle=visual?{'--departure-transform':visual.transform,'--departure-opacity':visual.opacity,'--departure-filter':visual.filter} as React.CSSProperties:undefined;
+    const headingVisual=heading.current?getComputedStyle(heading.current):null;
+    const headingStyle=headingVisual?{'--heading-transform':headingVisual.transform,'--heading-opacity':headingVisual.opacity} as React.CSSProperties:undefined;
+    const switchingTopic=startedRef.current&&(previous.current.topicId!==next.current.topicId||restart);
+    const motion:SpaceMotion=switchingTopic?(direction==='backward'?'orbit-left':'orbit-right'):direction;
     const id=++flightSequence.current;
-    setFlight({id,direction,from:startedRef.current?previous.current:null,departureStyle});
+    setFlight({id,direction:motion,from:startedRef.current?previous.current:null,departureStyle,headingStyle});
     journeyRef.current=next;startedRef.current=true;hasExplored.current=true;setJourney(next);setStarted(true);setOverlay(null);
     flightTimer.current=setTimeout(()=>setFlight(active=>active?.id===id?null:active),1550);
   };
@@ -104,6 +108,7 @@ function App(){
     const action=actions[e.key.length===1?e.key.toLowerCase():e.key];if(action){e.preventDefault();action();}
   };window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler);});
   const outgoingTopic=flight?.from?topics.find(t=>t.id===flight.from!.topicId)!:null;
+  const orbiting=flight?.direction==='orbit-right'||flight?.direction==='orbit-left';
   const sourceItems=Array.from(new Map(level.objects.flatMap(object=>{
     if(object.type==='fact')return object.sources.map(s=>({title:s.title,by:s.publisher,url:s.url}));
     if(object.type==='video')return [{title:object.title,by:`${object.channel} · ${object.note}`,url:`https://www.youtube.com/watch?v=${object.youtubeId}`}];
@@ -112,8 +117,8 @@ function App(){
   }).map(source=>[source.url,source])).values());
   const libraryTopics=topicsInCategory(topics,category);
   const totalPages=overlay==='library'?Math.ceil(libraryTopics.length/6):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
-  return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''}`}>
-    <Space flight={flight?.id||0}/>
+  return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''} ${orbiting?'orbit-turn':''}`}>
+    <Space flight={flight?.id||0} motion={flight?.direction}/>
     <header className="topbar">
       {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span></div></>}
       <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole} title={`New rabbit hole: ${category}`}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
@@ -131,12 +136,13 @@ function App(){
       <button className="welcome-explore" onClick={()=>open('library')}>USE EXPLORE TO SELECT A TOPIC</button>
       <button className="welcome-begin" onClick={newHole}>PRESS SPACE TO BEGIN</button>
     </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}}}>
-      <div className="discovery-heading" key={`${topic.id}-${current.level}`} aria-live="polite"><h1>{level.title}</h1></div>
+      {orbiting&&flight?.from&&outgoingTopic&&<div className={`discovery-heading heading-departure-${flight.direction}`} key={`heading-out-${flight.id}`} style={flight.headingStyle} aria-hidden="true"><h1>{outgoingTopic.levels[flight.from.level-1].title}</h1></div>}
+      <div ref={heading} className={`discovery-heading ${orbiting?`heading-arrival-${flight.direction}`:''}`} key={`${topic.id}-${current.level}-${flightSequence.current}`} aria-live="polite"><h1>{level.title}</h1></div>
       <div className="perspective-space">
         {[2,1].map(offset=>{const depth=current.level+offset;return depth<=topic.levels.length?<div key={`distant-${topic.id}-${depth}`} className={`depth-plane distant distant-${offset}`} aria-hidden="true" inert><Discovery topic={topic} depth={depth} preview onSources={()=>{}}/></div>:null;})}
-        <div className="orbital-path" aria-hidden="true">{[0,1,2,3,4,5].map(i=><i key={i} style={{'--ring':i} as React.CSSProperties}/>)}</div>
+        <div className={`orbital-path ${orbiting?`orbital-path-${flight.direction}`:''}`} key={orbiting?`orbit-${flight.id}`:'orbit-rest'} aria-hidden="true">{[0,1,2,3,4,5].map(i=><i key={i} style={{'--ring':i} as React.CSSProperties}/>)}</div>
         {flight?.from&&outgoingTopic&&<div key={`out-${flight.id}`} style={flight.departureStyle} className={`depth-plane departure departure-${flight.direction}`} aria-hidden="true" inert><Discovery topic={outgoingTopic} depth={flight.from.level} preview onSources={()=>{}}/></div>}
-        <div ref={present} key={`${topic.id}-${current.level}`} className={`depth-plane present ${flight?`arrival arrival-${flight.direction}`:''}`}><Discovery topic={topic} depth={current.level} onSources={()=>open('sources')}/></div>
+        <div ref={present} key={`${topic.id}-${current.level}-${flightSequence.current}`} className={`depth-plane present ${flight?`arrival arrival-${flight.direction}`:''}`}><Discovery topic={topic} depth={current.level} onSources={()=>open('sources')}/></div>
       </div>
       <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
     </main>}
