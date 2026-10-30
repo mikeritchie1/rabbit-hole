@@ -7,14 +7,29 @@ import type { Topic } from './schema';
 import { Space, type SpaceMotion } from './Space';
 import { TOPIC_CATEGORIES, CATEGORY_DESCRIPTIONS, isCategoryFilter, topicsInCategory, type CategoryFilter } from './categories';
 import './styles.css';
+import { createImagePreloader, depthImages } from './preload';
 
 function readPlaces(key:string):Place[]{try{const raw=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(raw)?raw.filter(p=>p&&topics.some(t=>t.id===p.topicId&&Number.isInteger(p.level)&&p.level>=1&&p.level<=t.levels.length)).slice(-200):[];}catch{return [];}}
 function save(key:string,value:unknown){try{localStorage.setItem(key,JSON.stringify(value));}catch{}}
 function readCategory():CategoryFilter{try{const value=JSON.parse(localStorage.getItem('rh-category')||'"All"');return isCategoryFilter(value)?value:'All';}catch{return 'All';}}
 const same=(a:Place,b:Place)=>a.topicId===b.topicId&&a.level===b.level;
 const localDiagrams=import.meta.glob('../diagrams/*.svg',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
+const resolveImage=(src:string)=>localDiagrams[`../${src}`]??src;
+// Retain recently decoded images as well as relying on the browser HTTP cache.
+const warmImages=new Map<string,HTMLImageElement>();
+const preloadImages=createImagePreloader(url=>new Promise<void>((resolve,reject)=>{
+  const img=new Image();
+  const timeout=setTimeout(()=>{img.onload=null;img.onerror=null;reject(new Error('Image preload timed out'));},15000);
+  img.onload=()=>{clearTimeout(timeout);void img.decode().catch(()=>{}).then(()=>{
+    warmImages.set(url,img);
+    if(warmImages.size>100)warmImages.delete(warmImages.keys().next().value!);
+    resolve();
+  });};
+  img.onerror=()=>{clearTimeout(timeout);reject(new Error('Image unavailable'));};
+  img.src=resolveImage(url);
+}));
 function SafeImage({src,alt}:{src:string;alt:string}){
-  src=localDiagrams[`../${src}`]??src;
+  src=resolveImage(src);
   const [failed,setFailed]=useState(false);
   const image=useRef<HTMLImageElement>(null);
   useEffect(()=>setFailed(false),[src]);
@@ -83,9 +98,33 @@ function App(){
   const flightSequence=useRef(0),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
   const present=useRef<HTMLDivElement>(null),heading=useRef<HTMLDivElement>(null),journeyRef=useRef(journey),startedRef=useRef(started),hasExplored=useRef(false);
   const seenTopics=useRef(new Set<string>());
+  const preparedTopics=useRef(new Map<CategoryFilter,Topic>());
   const topicLabel=useRef<HTMLElement>(null);
   journeyRef.current=journey;startedRef.current=started;
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
+  const prepareRandom=(filter:CategoryFilter)=>{
+    const cached=preparedTopics.current.get(filter);
+    if(cached&&!seenTopics.current.has(cached.id))return cached;
+    const pool=topicsInCategory(topics,filter).filter(t=>!seenTopics.current.has(t.id));
+    if(!pool.length){preparedTopics.current.delete(filter);return undefined;}
+    const next=randomTopic(pool,journal.slice(-8).map(p=>p.topicId),startedRef.current?journeyRef.current.current.topicId:undefined);
+    preparedTopics.current.set(filter,next);
+    preloadImages(depthImages(next,1),2);
+    return next;
+  };
+  useEffect(()=>{prepareRandom(category);},[category,started,current.topicId]);
+  useEffect(()=>{
+    if(!started)return;
+    preloadImages([...depthImages(topic,current.level),...depthImages(topic,current.level+1)],3);
+    // Give likely entry points a head start before warming the rest of the journey.
+    const timer=setTimeout(()=>preloadImages(topic.levels.flatMap((_,index)=>depthImages(topic,index+1)),0),250);
+    return()=>clearTimeout(timer);
+  },[started,topic,current.level]);
+  useEffect(()=>{
+    if(overlay!=='library')return;
+    const visible=topicsInCategory(topics,category).slice(page*6,(page+1)*6);
+    preloadImages(visible.flatMap(t=>[t.image.url,...depthImages(t,1)]),2);
+  },[overlay,category,page]);
   useLayoutEffect(()=>{
     const label=topicLabel.current,app=label?.closest<HTMLElement>('.app');
     if(!label||!app)return;
@@ -106,6 +145,8 @@ function App(){
   const travel=(next:Journey,direction:'forward'|'backward'='forward',restart=false)=>{
     const previous=journeyRef.current;
     if(!restart&&startedRef.current&&same(previous.current,next.current))return;
+    const destination=topics.find(t=>t.id===next.current.topicId);
+    if(destination)preloadImages(depthImages(destination,next.current.level),4);
     if(flightTimer.current)clearTimeout(flightTimer.current);
     // Continue the departing scene from its visible position if a flight is interrupted.
     const visual=present.current?getComputedStyle(present.current):null;
@@ -126,15 +167,16 @@ function App(){
   const previousHole=()=>{if(!startedRef.current)return;const next=previousTopic(journeyRef.current);if(next!==journeyRef.current)travel(next,'backward',true);};
   const nextHole=()=>{if(!startedRef.current)return;const next=nextTopic(journeyRef.current);if(next!==journeyRef.current)travel(next,'forward',true);};
   const startRandom=(filter:CategoryFilter)=>{
-    const pool=topicsInCategory(topics,filter).filter(t=>!seenTopics.current.has(t.id));
-    if(!pool.length){setNotice(filter==='All'?'There are no more rabbit holes.':'There are no more rabbit holes in this category.');return;}
-    const next=randomTopic(pool,journal.slice(-8).map(p=>p.topicId),startedRef.current?journeyRef.current.current.topicId:undefined);
+    const next=prepareRandom(filter);
+    if(!next){setNotice(filter==='All'?'There are no more rabbit holes.':'There are no more rabbit holes in this category.');return;}
+    preparedTopics.current.delete(filter);
     const place={topicId:next.id,level:1};
     travel(hasExplored.current?insertTopic(journeyRef.current,place):{current:place,trail:[],ahead:[]},'forward',true);
   };
   const newHole=()=>startRandom(category);
   const chooseCategory=(filter:CategoryFilter)=>{
     if(!topicsInCategory(topics,filter).length)return;
+    prepareRandom(filter);
     setCategory(filter);setPage(0);
   };
   const chooseTopic=(topicId:string)=>{
