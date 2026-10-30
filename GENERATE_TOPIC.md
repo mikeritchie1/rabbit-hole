@@ -1,97 +1,97 @@
 TOPIC: [REPLACE THIS WITH THE TOPIC YOU WANT]
 
-Create one complete, researched rabbit hole for my website, Rabbit Hole. Use web browsing to verify the content. Return one complete JSON file in the format below.
+Create a researched rabbit hole for my website, Rabbit Hole. Browse to verify the content, then deliver one complete topic JSON file plus useful optional HTML experiments.
 
-## What I want to experience
+## Journey
 
-Start at the requested topic and follow an interesting train of thought downward. There is NO fixed number of depths and NO upper limit. Research the subject first, then independently decide what belongs at each depth and how many depths the complete journey needs. Privately plan the route before writing: after each discovery, consider what it explains, what experiment reveals it, what unexpected consequence it has, or what closely related thing becomes interesting because of it. Choose the next step from those connections. It should feel like following curiosity, rather than reading headings from an encyclopaedia.
+- Plan a connected train of discoveries before writing. Start with the requested subject, then follow mechanisms, experiments, consequences and surprising connections. Related subjects can stay inside this topic file: messenger pigeons might lead through smell maps, compass experiments and other birds' extraordinary abilities. Choose a route suited to this topic.
+- SIX depths minimum, no maximum. Independently choose a satisfying, finite stopping point from the research; six is not a target. Do not pad, impose a cap, ask me for a count or stop mid-journey. You need not exhaust every possible connection.
+- Every depth, including the last, must teach a concrete discovery. Explain how mechanisms work in plain language, with specific names, evidence and details. Skip obvious encyclopaedia background, filler, repeated summaries and unanswered-question cards. Explain the evidence and uncertainty behind a claim such as a pigeon's magnetic compass, rather than merely naming it.
+- If I later ask to go further, research and append distinct connected depths to the existing JSON. Preserve content and IDs unless corrections are needed; change the previous endpoint's final flag to false and mark only the new last depth true. Return the complete updated file. Extensions need not add six depths: the minimum applies to the whole topic. The endpoint is provisional.
 
-Let the research determine the length. Continue while the next depth adds a distinct, compelling, well-supported discovery connected to the route so far. Explore the mechanisms, experiments, consequences and related subjects that genuinely reward going deeper. Do not stop at an arbitrary number, pad to a target, or ask me to choose a depth count. Decide on your own when further continuation would become repetitive, weakly connected or unsupported, and end there. The result must be a complete, finite journey, even though there is no cap on its length.
+## Objects and space
 
-Start with the subject itself and get concrete quickly. Every depth must teach me something. Give names, mechanisms, experiments, observations and surprising details. If you introduce a mechanism, explain how it works in plain language. A headline or an unanswered question does not count as a fact. Avoid filler such as "the mystery gets deeper", "there is more than meets the eye", and repeated summaries of what I already learned.
+- Each depth has 1-4 objects in any combination or order. If any text box has multiple paragraphs, the maximum is THREE objects for that depth. Use fewer when needed; the whole depth must fit a screen without scrolling. Never pad to the maximum.
+- Supported types: fact (text), image (including maps, diagrams and illustrations), video (YouTube), article, experiment (local interactive HTML). At least one fact.text or article.description per depth must explain the discovery without requiring a click or video. No automatic takeaway or topic-image cards.
+- Each object must add distinct information. Do not repeat headlines, facts or media across depths, or paraphrase a fact as another card. A source can support different claims. Captions describe what is shown; article descriptions convey a specific fact, not just "read more".
+- Text boxes may have one or several focused paragraphs; encode paragraph breaks as \n\n within JSON strings. Single-paragraph facts normally use 25-50 words, up to 70 for mechanisms. Article descriptions normally use 25-45 words. Multiple paragraphs may exceed these guidelines when needed, subject to the space limits. Keep titles, captions and video notes concise.
+- Choose media that explains or reveals something. For the Great Emu War, show a useful contemporary newspaper article or a legible, reusable scan, distinguishing its reporting from established facts. For messenger pigeons, consider a verified map of notable wartime routes or a documented messenger pigeon with its message capsule/equipment. For an animal's unusual trait, use a diagram of its relevant anatomy or mechanism when helpful. Skip generic pictures and obvious explanations of what a pigeon is or looks like. Do not force media into every topic or invent assets.
 
-For example, a pigeon journey could begin with how messenger pigeons actually deliver messages, then follow smell maps and navigation experiments, magnetic detection mechanisms, a sun-compass experiment, a robin's proposed light-sensitive compass, and other impressive birds such as an ocean-crossing godwit or a frigatebird that sleeps in flight. Related birds can be depths INSIDE the original topic file. The route may broaden naturally; it need not stay exclusively about the original animal. Split or combine these discoveries into as many depths as the material deserves. Do not force this same sequence onto every topic.
+## Research and media
 
-Give me the actual interesting content. "Pigeons have a magnetic compass" is too shallow on its own. Explain the proposed biological detector, the evidence, and what remains unresolved. Do not turn a hypothesis into a certainty to make the story more exciting. Check recent research when an older popular explanation may have changed.
+- Show the evidence itself when it helps the visitor understand or assess a discovery: historical documents, letters, archival photographs, newspaper scans, artefacts, experiment footage, observations or research figures. Use the existing image, video or article types within the object limits. Explain what the evidence shows, its provenance and context, and what it can or cannot establish. Distinguish original records from later retellings or reconstructions, verify reuse permissions where needed, and avoid decorative evidence that adds no insight.
+- Open reliable sources before writing; prefer original papers, universities, museums, archives and careful historical scholarship. Verify exact claims, dates, numbers and context. Check recent research where popular explanations may be outdated.
+- Every fact needs at least one source supporting its actual text. Use evidence values: documented (established observation/history), experiment (reported test/result), hypothesis (proposed explanation), disputed (contested claim). State important limitations in the object. Distinguish laboratory findings from mechanisms demonstrated in living animals, and contemporary records from later retellings. Avoid unsupported precision, including death tolls.
+- Write original prose. Never invent quotations, claims, statistics, source titles, publishers, URLs or media IDs. Use verified HTTPS links. Remove weak content rather than speculate. If browsing is unavailable, disclose that instead of pretending verification.
+- YouTube: verify the actual title, channel and 11-character ID; the app derives watch and thumbnail URLs from it. Note language or material caveats. Aim for at least one useful video, but omit videos if none can be verified.
+- Images: verify provenance and reusable licensing; provide a direct image URL, accurate alt text, creator/license credit and source-page URL. CSS crops/darkens images: ensure permission and mention that treatment in credit. Identify illustrations, reconstructions and depictions of different events. A cover is required for the topic picker, but is not automatically displayed at each depth.
 
-## Objects, not repeated paragraphs
+## Optional interactive experiments
 
-Each depth contains an explicit objects array with between ONE and FOUR objects inclusive. These are the floating things displayed on screen. Use the number and types the material needs. One excellent explanation can stand alone. Do not pad every depth to four objects.
+Create a simple experiment when interaction makes a concept easier to understand; there is no quota. Example: a pigeon navigation map where changing available smell, sun or landmark clues changes an illustrative flight path. Explain what changes and why; label simplified models, hypothetical routes and uncertainty. Do not present invented outputs as measured scientific predictions.
 
-Available types are fact, image, video and article. They can appear in any order or combination. At least one object per depth should deliver a self-contained concrete explanation through a fact's text or an article's description. A video/image can complement it, but the essential discovery should not require leaving the site.
+Deliver complete standalone files at diagrams/<topic-id>-<concept>.html, with embedded CSS, JavaScript and graphics. They must work locally and offline without a server, build step, API key or CDN. Include clearly labelled controls, a clear initial state, reset, mobile and keyboard usability, a brief explanation, verified source links and important model limitations.
 
-Each object must add something distinct. Do not put a fact in one object and paraphrase it as a takeaway in another. Do not repeat the same headline, fact, image or video at multiple depths. Reusing a source is fine when it supports DIFFERENT claims. A media caption should describe what is actually shown; an article description should explain the specific detail it adds. There is no automatic takeaway card or automatic topic-image card.
+I will download the HTML into diagrams/. Connect each file using an experiment object at the relevant depth (see below), counting it within the same 4/3-object limits. Also give a placement note outside the JSON: topic ID, depth ID, filename and learning outcome. The website opens the HTML from its experiment card; do not put HTML in an image field.
 
-Aim for 25-50 words per fact, with up to 70 when a mechanism needs room. Titles should be short, specific statements. An article description should normally be 25-45 words and convey actual information, rather than saying "read more". Keep image captions and video notes concise. The whole depth must fit a screen without scrolling. Prefer two or three good objects to four cramped ones.
+## Exact JSON contract (version 2)
 
-The final depth, wherever you decide it belongs, must contain a final concrete discovery. It can open an intriguing related direction, but must not consist only of a recap, a vague question, or a lecture about curiosity.
+Use only the fields below. This is static content with no backend, runtime AI, content API or database; experiments are separate HTML files. The following is a schema reference, not final content. Replace all illustrative values.
 
-## Research requirements
+Topic fields:
+- schemaVersion: 2
+- id: unique lowercase kebab-case topic slug
+- title: a concise, captivating statement of a surprising, verified capability, feat or event. For an ability, describe what the relevant animals or subjects can do in general, rather than framing it as one individual's anecdote: "Homing pigeons can find home from over 1,600 km away." Convey the supported extent without implying every individual achieves it. Use "up to" only for an established upper range or limit; a recorded feat alone does not establish the maximum. Avoid generic how/why questions, unsupported numbers, implied nonstop flight, exaggeration and empty clickbait.
+- category: exactly one category below
+- hook: at most 101 characters, including spaces and punctuation. Complement the title with a vivid clue, unexpected connection or compelling stakes that makes the rabbit hole sound worth exploring. Reveal just enough to spark curiosity without repeating the title, summarising the journey or promising more than the evidence supports.
+- image: cover object with exactly url, alt, credit, sourceUrl
+- levels: ordered array of at least six depths, without an upper limit
 
-- Browse and open reliable sources before writing. Prefer original papers, universities, museums, archives and careful historical scholarship. Verify the exact claim, number, date and context, not just the headline.
-- Every fact object needs at least one supporting source. Sources must support the text of THAT object.
-- Use evidence: documented for established observations/history, experiment for a reported test/result, hypothesis for a proposed explanation, and disputed for a contested claim. Explain any important limitation in the object itself.
-- Distinguish a laboratory result from a mechanism demonstrated in a living animal. Distinguish contemporary records from later historical retellings. Do not give a precise death toll when the evidence does not support it.
-- Write original prose. Never invent quotations, scientific claims, statistics, titles, publishers, video IDs or URLs. Use HTTPS links you actually verified. Remove a weak object rather than filling it with speculation.
-- For a YouTube object, verify its actual title, channel and 11-character video ID. The app constructs both the watch URL and thumbnail URL from that ID. Identify language or a material caveat in note. Aim for at least one useful verified video across the topic, but omit video objects if you cannot verify a suitable one.
-- Use reusable images with verifiable provenance and licensing. Give a direct image URL, accurate alt text, creator/license credit and a source-page URL. The app crops/darkens images with CSS; make sure this is allowed and note the treatment. Identify reconstructions, illustrations, or depictions of a different historical event. A topic cover is required for the topic picker; it is not automatically shown at each depth. Add image objects only where they contribute.
-- If browsing is unavailable, say so instead of pretending the research is verified. Do not return invented media to make the JSON look complete.
+Depth fields:
+- id: kebab-case ID unique within the topic
+- title: short, specific discovery heading
+- objects: 1-4 objects (maximum three with any multi-paragraph text box)
+- final: false except for the actual last depth, which is true
 
-## Exact data contract - version 2
+Choose one overall category by the topic's main appeal, independently of fact evidence badges:
+- Explained: extraordinary subject with an established scientific mechanism; disclose unsettled secondary details.
+- Unsolved: genuine mystery with competing hypotheses; show evidence and disagreement without manufacturing uncertainty.
+- Mind-bending: challenges intuition, even if well explained, such as a brainless organism solving a maze.
+- Dark & disturbing: unsettling aspects are central, such as parasites, disasters or gruesome history.
 
-Return only the keys defined here. There is no backend, runtime AI, content API, or database. All data belongs in one static JSON file.
+Use exact spelling/capitalisation. Never combine categories, assign them per depth or use "All" (a website filter). Categories determine matching topic selections; do not include filter state in JSON.
 
-Topic:
-- schemaVersion: exactly the number 2.
-- id: a unique lowercase kebab-case slug, such as messenger-pigeons.
-- title: a concise descriptive topic title.
-- category: exactly ONE of "Explained", "Unsolved", "Mind-bending", or "Dark & disturbing", following the classification rules below. Use the exact spelling and capitalisation. "All" is a website filter, never a topic category.
-- hook: one or two concrete introductory sentences for the topic picker.
-- image: the cover-image object defined below.
-- levels: a nonempty array of depth objects in their viewing order, with no fixed count or maximum length. You decide its length from the research.
+Each object has exactly the fields shown for its type. Interactive HTML uses this additional supported type; file must be a local diagrams/<kebab-case-name>.html path, not an HTTPS URL:
 
-Each depth:
-- id: a kebab-case ID unique within this topic.
-- title: a short, specific discovery heading.
-- objects: an array of 1-4 typed objects, using only the fields of that object's type.
-- final: false for every depth except the last; true for the last depth only, regardless of its position in the array.
+```json
+{"type":"experiment","id":"experiment-id","title":"Try the experiment","file":"diagrams/topic-concept.html","description":"What the interaction helps explain"}
+```
 
-### Choose the topic's type of surprise
+```json
+{"type":"fact","id":"object-id","title":"Specific claim","text":"Self-contained explanation","evidence":"documented","sources":[{"title":"Actual source title","publisher":"Actual publisher","url":"https://verified-source"}]}
+```
 
-Assign one category to the overall rabbit hole, based on its main appeal:
+```json
+{"type":"image","id":"object-id","title":"What is shown","image":{"url":"https://verified-direct-image","alt":"Accurate description","credit":"Creator, license and display treatment","sourceUrl":"https://verified-source-page"},"caption":"Specific context"}
+```
 
-- **Explained:** Something extraordinary with a scientifically established mechanism. Explain the supported mechanism; identify any unsettled secondary details honestly.
-- **Unsolved:** A genuine mystery with competing hypotheses. Show the evidence and where explanations disagree. Do not manufacture uncertainty around an established explanation just to use this label.
-- **Mind-bending:** A discovery that challenges ordinary intuition, such as a brainless organism solving a maze. It can be well explained; the category describes the surprise, not a lack of evidence.
-- **Dark & disturbing:** Parasites, disasters, gruesome history and strange behaviour, where the unsettling aspect is central to the story.
+```json
+{"type":"video","id":"object-id","title":"Actual video title","channel":"Actual channel","youtubeId":"REAL_ID_HERE","note":"Useful context, language or caveat"}
+```
 
-If several categories could fit, choose the one that best describes the main reason someone would explore this topic. Do not output an array, combine labels, invent another category, or assign a different topic category at each depth. Evidence badges on individual facts remain separate from this overall classification.
+```json
+{"type":"article","id":"object-id","title":"Specific reading title","publisher":"Actual publisher","url":"https://verified-article","description":"Self-contained detail from the article"}
+```
 
-The website displays this label on each topic in Explore. Selecting a category starts a matching rabbit hole and keeps subsequent random selections inside that category until the visitor chooses another category or All. Your JSON must therefore classify the topic accurately; it must not contain website filter state.
+The cover uses the same four fields as image.image. All strings must be nonempty and all URLs HTTPS. IDs contain only lowercase letters/numbers separated by single hyphens; object IDs are unique within each depth. Do not use null, extra fields, Markdown inside strings or old fields such as body, takeaway, eyebrow, depth-level sources/videos/image.
 
-A fact object has exactly:
-{ "type": "fact", "id": "unique-object-id", "title": "Specific claim", "text": "The factual explanation", "evidence": "documented", "sources": [{ "title": "Actual source title", "publisher": "Actual publisher", "url": "https://a-verified-source" }] }
+## Delivery and checks
 
-An image object has exactly:
-{ "type": "image", "id": "unique-object-id", "title": "What the image shows", "image": { "url": "https://a-verified-direct-image", "alt": "Accurate image description", "credit": "Creator, license and display treatment", "sourceUrl": "https://the-verified-image-source-page" }, "caption": "Specific context or a factual detail about the image" }
+Return topics/<id>.json followed by ONE complete JSON code block with every depth. No placeholders, ellipses, omitted levels, comments or trailing commas. For each useful experiment, also provide a downloadable HTML file (or a complete, filename-labelled HTML code block) and its placement note, not just an idea or pseudocode.
 
-A video object has exactly:
-{ "type": "video", "id": "unique-object-id", "title": "Actual video title", "channel": "Actual channel", "youtubeId": "THE_REAL_11_CHARACTER_ID", "note": "Useful context, language or caveat" }
+Before delivery, check the schema, six-depth minimum, natural endpoint, object/space limits including reserved experiment slots, unique IDs, only-last final flag, distinct content and verified sources/media. For extensions, also check preservation of earlier content. Check HTML controls, reset, offline operation and mobile/keyboard usability when tools permit; accurately state any verification limitations. Never claim repository commands or other tests were run unless they were.
 
-An article object has exactly:
-{ "type": "article", "id": "unique-object-id", "title": "A specific reading title", "publisher": "Actual publisher", "url": "https://a-verified-article", "description": "A self-contained fact or explanation from the linked article" }
-
-The topic cover uses exactly the same four image fields as an image object's nested image: url, alt, credit and sourceUrl.
-
-All strings must be nonempty, all URLs must use HTTPS, and all IDs must contain only lowercase letters/numbers separated by single hyphens. Object IDs must be unique within their depth. Every fact has at least one source. Do not include body, takeaway, eyebrow, level-level sources, level-level videos, or a level-level image; those belong to the old format. Do not use null for required object fields or add unused fields from other object types.
-
-## Output and installation
-
-Return the intended filename, topics/<id>.json, followed by ONE complete JSON code block containing the topic. Return every depth of the complete journey you decided on, with real researched content. Do not arbitrarily shorten the route, stop mid-journey, or ask whether I want the rest. No ellipses, comments, placeholder values, omitted levels, Markdown inside strings, or trailing commas. The illustrative field placeholders above must never appear in the final JSON.
-
-Before answering, check the structure, confirm the route has a natural researched ending, count 1-4 objects per depth, ensure only the actual last depth has final set to true, check IDs, remove duplicate information, and verify that every source/media link is real. Do not impose a depth cap during this check. Do not claim to have run repository commands unless you actually have that access.
-
-I will save your JSON as UTF-8 at topics/<id>.json. The app discovers topic files automatically. If you have direct access to my repository instead of ordinary ChatGPT, save the file there and use the existing topic validator; otherwise return the full copyable JSON. The local installation command is npm run validate:topics; rebuilding/deploying includes the new topic in the production site.
+I will save the JSON as UTF-8; the app discovers topic files automatically. With direct repository access, save topics/<id>.json and any diagrams/*.html files, then run npm run validate:topics. Otherwise return the complete copyable files. Rebuilding/deploying includes the topic in production.
 
 ## Complete example
 
@@ -101,9 +101,9 @@ The following example demonstrates four different object types and varying objec
 {
   "schemaVersion": 2,
   "id": "messenger-pigeons",
-  "title": "A pigeon can find a home it cannot see.",
+  "title": "Homing pigeons can find home from over 1,600 km away.",
   "category": "Mind-bending",
-  "hook": "Follow a messenger pigeon from its loft into invisible maps, magnetic senses, and birds that cross oceans without landing.",
+  "hook": "Their routes home involve smell maps, a sun compass and senses scientists still debate.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",
     "alt": "A rock pigeon with an iridescent neck, the species from which homing pigeons descend.",

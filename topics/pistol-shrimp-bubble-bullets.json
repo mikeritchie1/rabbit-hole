@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 2,
+  "id": "pistol-shrimp-bubble-bullets",
+  "title": "Pistol shrimp fire collapsing bubbles that can stun prey.",
+  "category": "Mind-bending",
+  "hook": "One tiny claw creates a shock wave, a flash of light and the crackle of an entire reef.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Alpheus_bellulus_57108149.jpg",
+    "alt": "Orange-and-white tiger snapping shrimp, Alpheus bellulus, partly sheltered in a reef crevice.",
+    "credit": "Dan Schofield · CC BY 4.0 · may be cropped and darkened by website display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alpheus_bellulus_57108149.jpg"
+  },
+  "levels": [
+    {
+      "id": "a-claw-built-like-a-water-pistol",
+      "title": "The claw is a water pistol, not a pair of castanets.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "plunger-and-socket",
+          "title": "A moving plunger squeezes water through a nozzle",
+          "text": "In species such as Alpheus heterochaelis, the oversized claw has a protruding plunger and a matching socket. When the movable half shuts, it forces water out through a narrow channel. Researchers measured a jet around 25 metres per second: the fast-moving water, not the two claw surfaces striking, sets up the weapon.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "How snapping shrimp snap: through cavitating bubbles", "publisher": "Versluis et al. · Science, 2000", "url": "https://pubmed.ncbi.nlm.nih.gov/11000111/"},
+            {"title": "A unique way of sound production in the snapping shrimp (Alpheus heterochaelis)", "publisher": "Schmitz et al. · Journal of the Acoustical Society of America, 2000", "url": "https://research.utwente.nl/en/publications/a-unique-way-of-sound-production-in-the-snapping-shrimp-alpheus-h-2/"}
+          ]
+        },
+        {
+          "type": "image",
+          "id": "claw-mechanism-diagram",
+          "title": "The plunger-and-socket mechanism, step by step",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Pistol_shrimp_claw_mechanism.svg",
+            "alt": "Four-panel labelled illustration showing a snapping shrimp claw opening, filling with water and ejecting a jet as its plunger enters a socket.",
+            "credit": "Carvermyers · CC BY-SA 4.0 · illustrative diagram, may be resized or darkened in display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pistol_shrimp_claw_mechanism.svg"
+          },
+          "caption": "P is the plunger, C the socket chamber, W incoming water and J the outgoing jet. This is a schematic of the mechanism, not a frame from an experiment."
+        },
+        {
+          "type": "video",
+          "id": "natgeo-shrimp-strike",
+          "title": "Amazing Pistol Shrimp Stun \"Gun\" | World's Deadliest",
+          "channel": "Nat Geo Animals",
+          "youtubeId": "KkY_mSwboMQ",
+          "note": "Watch the shrimp aim and snap at prey. This is edited wildlife television footage; the scientific timing comes from synchronized laboratory cameras and hydrophones."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "making-a-bubble-out-of-low-pressure",
+      "title": "The 'bullet' is a pocket of water vapour.",
+      "objects": [
+        {
+          "type": "experiment",
+          "id": "cavitation-lab",
+          "title": "Try the cavitation lab",
+          "file": "diagrams/pistol-shrimp-cavitation-lab.html",
+          "description": "Change the controls to explore bubble formation and collapse in a simplified model. Compare the results with the measured mechanism."
+        },
+        {
+          "type": "fact",
+          "id": "cavitation-not-air",
+          "title": "Fast flow makes liquid water turn into vapour",
+          "text": "As the jet rushes outward, it curls into a spinning vortex. Pressure can plunge inside that swirl; when it falls sufficiently low, local water vaporizes and leaves a cavity. This is cavitation, not a bubble of air blown out of the claw. Normal surrounding pressure then works to crush it.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Vortex Formation with a Snapping Shrimp Claw", "publisher": "Hess et al. · PLOS ONE, 2013", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3828329/"},
+            {"title": "Unveiling the physical mechanism behind pistol shrimp cavitation", "publisher": "Koukouvinis et al. · Scientific Reports, 2017", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5656667/"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "oversized-claw-model",
+          "title": "Scientists rebuilt the flow at a larger scale",
+          "text": "A 2013 experiment used an enlarged mechanical plunger-and-socket claw and photographed the flow. It produced a leading vortex ring, a rotating doughnut of water. Later computer simulations predicted that sufficiently strong swirl creates the low-pressure, cavitating ring. The enlarged model demonstrated the vortex, not a full live-shrimp attack.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Vortex Formation with a Snapping Shrimp Claw", "publisher": "Hess et al. · PLOS ONE, 2013", "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0077120"},
+            {"title": "Unveiling the physical mechanism behind pistol shrimp cavitation", "publisher": "Koukouvinis et al. · Scientific Reports, 2017", "url": "https://pubmed.ncbi.nlm.nih.gov/29070815/"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-sound-comes-after-the-claw-shuts",
+      "title": "The real snap happens after the claw closes.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "hydrophone-reveals-delay",
+          "title": "High-speed cameras overturned the obvious explanation",
+          "text": "In 2000, researchers filmed the claw at 40,500 frames per second while recording sound with an underwater microphone called a hydrophone. The sharp sound occurred when the bubble collapsed, after the claw had already shut. The bubble implosion, not the mechanical click, was responsible for the acoustic blast.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "How snapping shrimp snap: through cavitating bubbles", "publisher": "Versluis et al. · Science, 2000", "url": "https://pubmed.ncbi.nlm.nih.gov/11000111/"},
+            {"title": "On the sound of snapping shrimp", "publisher": "Versluis et al. · University of Twente, 2001", "url": "https://research.utwente.nl/en/publications/on-the-sound-of-snapping-shrimp-2/"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "a-shockwave-instead-of-a-projectile",
+          "title": "The collapsing cavity pushes a pressure pulse through water",
+          "text": "When the vapour cavity contracts violently, water rushes inward and a brief, intense pressure wave spreads outward. Snapping shrimp use this close-range effect to stun or kill small prey and to defend themselves. Calling it a 'bubble bullet' is vivid, but it is the pressure pulse that does the striking.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "How snapping shrimp snap: through cavitating bubbles", "publisher": "Versluis et al. · Science, 2000", "url": "https://pubmed.ncbi.nlm.nih.gov/11000111/"},
+            {"title": "Bioinspired mechanical device generates plasma in water via cavitation", "publisher": "Tang et al. · Science Advances, 2019", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6420313/"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "light-from-imploding-water",
+      "title": "The same bubble briefly flashes with light.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "shrimpoluminescence-measured",
+          "title": "Sensitive detectors caught the nearly invisible flash",
+          "text": "In 2001, Lohse, Schmitz and Versluis detected light at the instant snapping-shrimp bubbles collapsed. They named it shrimpoluminescence, a biological example resembling sonoluminescence. The researchers inferred temperatures of at least 5,000 kelvin inside the collapsing bubble. That fleeting, microscopic hot spot is not the same thing as heating nearby seawater or cooking prey.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Snapping shrimp make flashing bubbles", "publisher": "Lohse et al. · Nature, 2001", "url": "https://pubmed.ncbi.nlm.nih.gov/11586346/"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "why-sound-becomes-light",
+          "title": "Single-bubble sonoluminescence",
+          "publisher": "Brenner, Hilgenfeldt & Lohse · Reviews of Modern Physics, 2002",
+          "url": "https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.425",
+          "description": "In laboratory sonoluminescence, an ultrasound-driven bubble focuses energy as it collapses. Models favour extreme heating and partial ionization of gas, causing a tiny flash; the precise microscopic emission mechanism is more complex than a bubble simply glowing like a light bulb."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "engineers-copy-the-underwater-gun",
+      "title": "A 3D-printed imitation produced underwater plasma.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "five-times-larger-copy",
+          "title": "They scanned a shed claw and built a spring-loaded replica",
+          "text": "In 2019, engineers scanned the three-dimensional shape of a striped snapping shrimp's shed claw, printed a version five times larger and drove it underwater with springs. They captured cavitation, shock waves and light emission. The light supported their interpretation of plasma formation during collapse; the imitation was a laboratory device, not a robot hunting prey.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Bioinspired mechanical device generates plasma in water via cavitation", "publisher": "Tang et al. · Science Advances, 2019", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6420313/"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "replica-imaging",
+          "title": "See the original lab measurements and images",
+          "publisher": "Tang et al. · Science Advances, 2019",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6420313/",
+          "description": "Figure 3 combines fast-camera frames, bubble-size measurements and schlieren images of the expanding pressure front. Light emission from the device was extremely faint and the experiment used gas-doped water to make its detection easier."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "tiny-shrimp-faster-than-adults",
+      "title": "Baby snapping shrimp have astonishing acceleration.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "juvenile-acceleration-record",
+          "title": "A millimetre-scale claw moves with extraordinary acceleration",
+          "text": "Harrison and Patek filmed juvenile bigclaw snapping shrimp at 300,000 frames per second. Their 2023 study measured mean peak accelerations of about 580,000 metres per second squared, with substantial variation: a record in the study for reusable underwater movements. Even tiny juveniles could generate cavitation; acceleration is not the same as top speed.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Developing elastic mechanisms: ultrafast motion and cavitation emerge at the millimeter scale in juvenile snapping shrimp", "publisher": "Harrison & Patek · Journal of Experimental Biology, 2023", "url": "https://pubmed.ncbi.nlm.nih.gov/36854255/"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "juvenile-original-footage",
+          "title": "Watch the original 300,000-fps juvenile recording",
+          "publisher": "Journal of Experimental Biology · research movie, 2023",
+          "url": "https://movie.biologists.com/video/10.1242/jeb.244645/video-1",
+          "description": "The journal's research movie shows a juvenile snap filmed at 300,000 frames per second and played at 30 frames per second. This is laboratory footage of the tiny claw, slowed dramatically so a human can see the motion."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-weapon-can-change-sides",
+      "title": "Lose the big claw and the other one can become the gun.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "claw-reversal",
+          "title": "The small pincer transforms into a snapper",
+          "text": "Many Alpheus snapping shrimp have one large firing claw and one small grasping pincer. Experiments removing the large claw showed a remarkable reversal: the remaining small claw transforms into a new large snapper while a replacement small pincer regrows at the lost claw's site. The exact schedule depends on growth and moulting.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Remodeling of nerves during claw reversal in adult snapping shrimps", "publisher": "Govind & Pearce · Journal of Comparative Neurology, 1988", "url": "https://pubmed.ncbi.nlm.nih.gov/3346380/"},
+            {"title": "Post-autotomy claw regrowth and functional recovery in the snapping shrimp Alpheus angulosus", "publisher": "Marine and Freshwater Behaviour and Physiology, 2014", "url": "https://www.tandfonline.com/doi/full/10.1080/10236244.2014.928460"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "nerves-rewire-too",
+          "title": "The nervous system starts changing before the claw is rebuilt",
+          "text": "A 1988 study found that, after claw loss, nerves serving the surviving little pincer began shifting toward the large-claw pattern within days. This neural remodeling preceded the more visible changes in muscle and shell. The animal is not merely growing a new tool; it is reconfiguring how that tool is controlled.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Remodeling of nerves during claw reversal in adult snapping shrimps", "publisher": "Govind & Pearce · Journal of Comparative Neurology, 1988", "url": "https://pubmed.ncbi.nlm.nih.gov/3346380/"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "a-shrimp-partners-with-a-lookout-fish",
+      "title": "Some armed shrimp recruit a lookout fish.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "shrimp-goby-burrow",
+          "title": "One partner digs; the other watches for danger",
+          "text": "In several shrimp-goby partnerships, the shrimp excavates and maintains a shelter while a goby stays near its entrance. When danger approaches, the fish can give tactile warning signals and both retreat into the burrow. The shrimp's poor vision makes the fish's vigilance especially valuable; not every snapping-shrimp species has this relationship.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Behavioural interdependence in a shrimp–goby mutualism", "publisher": "Burns et al. · Journal of Zoology, 2019", "url": "https://doi.org/10.1111/jzo.12673"},
+            {"title": "Species-specific behaviors drive the initiation and maintenance of snapping shrimp-goby mutualisms", "publisher": "Mierow et al. · Behavioral Ecology, 2026", "url": "https://academic.oup.com/beheco/article/37/6/arag117/8827462"}
+          ]
+        },
+        {
+          "type": "image",
+          "id": "real-goby-shrimp-pair",
+          "title": "A goby and its snapping-shrimp partner",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Gobi_and_shrimp.jpg",
+            "alt": "A spotted goby, Amblyeleotris yanoi, hovering over an orange-and-white Alpheus randalli snapping shrimp beside a sandy burrow.",
+            "credit": "Steve Childs · CC BY 2.0 · photo may be cropped and darkened by website display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gobi_and_shrimp.jpg"
+          },
+          "caption": "A photographed Amblyeleotris yanoi and Alpheus randalli pair. This image shows the partners together, not the instant a danger signal is sent."
+        },
+        {
+          "type": "article",
+          "id": "who-starts-the-partnership",
+          "title": "How the fish and shrimp start living together",
+          "publisher": "Mierow et al. · Behavioral Ecology, 2026",
+          "url": "https://academic.oup.com/beheco/article/37/6/arag117/8827462",
+          "description": "In filmed encounters between tiger shrimp and yellow watchman gobies, gobies usually initiated contact. Shrimp dug shelter, and established shrimp spent more time contacting their familiar goby than an unfamiliar one."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "an-entire-shrimp-colony-opens-fire",
+      "title": "Other shrimp snap together like an armed colony.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "eusocial-sea-shrimp",
+          "title": "Some sponge-dwelling shrimp live in queen-and-defender societies",
+          "text": "Certain Synalpheus snapping shrimp inhabit marine sponges in related groups with one or a few breeding females and many nonbreeding defenders. This form of eusociality, familiar from ants and bees, is extraordinary among marine animals. It is a different shrimp lineage and social arrangement from the goby-sharing Alpheus species.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Social transitions in sponge-dwelling snapping shrimp", "publisher": "Chak et al. · Current Opinion in Insect Science, 2019", "url": "https://pubmed.ncbi.nlm.nih.gov/31247415/"},
+            {"title": "Colony Structure of the Social Snapping Shrimp Synalpheus Filidigitus in Belize", "publisher": "Journal of Crustacean Biology, 1999", "url": "https://academic.oup.com/jcb/article-abstract/19/2/283/2419056"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "coordinated-defense-volley",
+          "title": "One defender triggers a chorus of warning snaps",
+          "text": "In a 2006 experiment, a sentinel's reaction to an intruding shrimp recruited other colony members to snap in concert for seconds or longer. The defenders did not swarm toward the enemy; the coordinated sound appeared to advertise that a well-defended sponge was occupied. Their claws functioned as communication devices as well as weapons.",
+          "evidence": "experiment",
+          "sources": [
+            {"title": "Coordinated group response to nest intruders in social shrimp", "publisher": "Tóth & Duffy · Biology Letters, 2006", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1629045/"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-reef-sounds-like-a-frying-pan",
+      "title": "A shrimp-made crackle can help young corals find home.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "reef-hydrophone-crackle",
+          "title": "Thousands of little snaps become an underwater soundscape",
+          "text": "A hydrophone over a shallow reef hears a steady crackle rather than isolated pistol shots. Shrimp snaps can dominate the higher-frequency part of reef recordings, alongside fish calls and other sounds. The noise can be useful information about habitat, although its loudness alone is not a complete measure of reef health.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "The Curious Acoustic Behavior of Estuarine Snapping Shrimp: Temporal Patterns of Snapping Shrimp Sound in Sub-Tidal Oyster Reef Habitat", "publisher": "Lillis et al. · PLOS ONE, 2016", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4711987/"},
+            {"title": "The utility of different acoustic indicators to describe biological sounds of a coral reef soundscape", "publisher": "Ecological Indicators, 2021", "url": "https://doi.org/10.1016/j.ecolind.2021.107435"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "playback-attracts-settlement",
+          "title": "Playing healthy-reef sound increased coral-larva settlement",
+          "publisher": "Aoki et al. · Royal Society Open Science, 2024",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10933538/",
+          "description": "At a degraded reef, researchers played soundscapes recorded from healthy reefs. Larvae of the coral Porites astreoides settled about 1.7 times as often at acoustically enriched sites on average. The recordings included shrimp and fish, so the experiment does not isolate shrimp snaps as the sole cause."
+        }
+      ],
+      "final": true
+    }
+  ]
+}

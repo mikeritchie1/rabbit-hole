@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "slime-mold-intelligence",
-  "title": "The Brainless Organism That Solves Mazes",
+  "title": "A single cell without a brain can solve a maze.",
   "category": "Mind-bending",
-  "hook": "A single yellow cell finds shortcuts, builds railway-like networks, and remembers where it has been. Follow the experiments that challenge what it means to learn without a brain.",
+  "hook": "It can also build railway-like networks and use slime as a record of where it has been.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Physarum_polycephalum_plasmodium.jpg",
     "alt": "Bright yellow Physarum polycephalum plasmodium spreading over dark tree bark.",

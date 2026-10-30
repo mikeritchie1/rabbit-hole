@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>The verdict that would not stay dead · Rabbit Hole</title>
+  <style>
+    :root { color-scheme:dark; --paper:#efe7d2; --muted:#a99f8c; --gold:#d5ac62; --edge:#393d43; --bg:#0f131a; --card:#191d25; --mint:#78c6a1; --red:#ed8a82; --amber:#f0c36e; }
+    * { box-sizing:border-box; }
+    html { background:var(--bg); }
+    body { margin:0; min-height:100dvh; font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--paper); background:radial-gradient(ellipse at 48% -10%,#353023 0%,transparent 50%),radial-gradient(ellipse at 100% 90%,#17292c 0%,transparent 42%),var(--bg); }
+    button,input { font:inherit; }
+    button { cursor:pointer; }
+    button:focus-visible,input:focus-visible,a:focus-visible { outline:3px solid #f1bd69; outline-offset:4px; }
+    a { color:#edc985; }
+    .wrap { max-width:1150px; margin:auto; padding:clamp(16px,3vw,32px); }
+    .masthead { display:flex; align-items:start; justify-content:space-between; gap:14px; margin-bottom:20px; }
+    .eyebrow { font-size:11px; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; font-weight:800; }
+    h1 { font:clamp(25px,3.2vw,42px)/1.12 Georgia,serif; font-weight:normal; margin:6px 0 8px; letter-spacing:-.025em; }
+    .intro { max-width:680px; margin:0; color:var(--muted); font-size:14px; }
+    .mini-mark { border:1px solid #5b5142; color:#d5b77c; border-radius:100px; padding:6px 12px; font-size:11px; letter-spacing:.11em; flex-shrink:0; }
+    .main { display:grid; grid-template-columns:minmax(0,1.28fr) minmax(295px,.8fr); gap:18px; align-items:stretch; }
+    .panel { border:1px solid #373b42; border-radius:19px; overflow:hidden; background:linear-gradient(145deg,#21242b,#141922); box-shadow:0 12px 40px #0003; }
+    .diagram { min-height:340px; position:relative; }
+    .diagram:before { content:""; pointer-events:none; position:absolute; inset:0; background:radial-gradient(#e2bb6630 .8px,transparent 1px); background-size:20px 20px; mask-image:linear-gradient(to bottom,#000,transparent 90%); }
+    .diagram-heading { display:flex; justify-content:space-between; gap:12px; padding:19px 22px 0; color:#bab09d; text-transform:uppercase; letter-spacing:.15em; font-size:11px; font-weight:700; }
+    .diagram-heading span:last-child { color:var(--gold); }
+    svg { display:block; width:100%; height:auto; max-height:330px; position:relative; }
+    .arc { fill:none; stroke-width:3; stroke-linecap:round; transition:stroke .3s,stroke-dasharray .3s; }
+    .node-shell { fill:#252932; stroke:#6a6252; stroke-width:1.5; }
+    .source-shell { fill:#554126; stroke:#d9b16e; stroke-width:2; }
+    .node-title { fill:#f2ecd9; font-size:17px; font-family:Georgia,serif; text-anchor:middle; }
+    .node-sub { fill:#bdb3a2; font-size:10px; text-anchor:middle; letter-spacing:.04em; }
+    .link-label { fill:#ad9e84; font-size:10px; text-anchor:middle; }
+    .flow-point { fill:#d9b16e; }
+    .node-status { stroke-width:2.5; fill:none; transition:stroke .3s; }
+    .legend { margin:-3px 20px 18px; color:#b8b2a6; font-size:12px; display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+    .legend i { display:inline-block; height:7px; width:18px; border-top:3px solid var(--gold); margin-right:5px; vertical-align:middle; }
+    .legend .dashed { border-top-style:dashed; border-top-color:var(--red); }
+    .explain { padding:25px 25px 22px; display:flex; flex-direction:column; gap:13px; }
+    .step-meta { color:var(--gold); font-size:12px; letter-spacing:.13em; text-transform:uppercase; font-weight:800; }
+    .explain h2 { margin:0; font:normal 28px/1.15 Georgia,serif; letter-spacing:-.02em; }
+    .badge { display:inline-flex; width:max-content; align-items:center; gap:8px; border-radius:99px; padding:7px 12px; font-size:12px; font-weight:750; border:1px solid; }
+    .badge:before { content:""; display:block; width:8px; height:8px; border-radius:50%; background:currentColor; }
+    .explain p { margin:0; color:#d6d0c3; font-size:15px; }
+    .impact { padding:13px 15px; background:#0e1218; border-radius:11px; border-left:3px solid var(--gold); }
+    .impact strong { display:block; color:var(--gold); text-transform:uppercase; letter-spacing:.12em; font-size:10px; margin-bottom:4px; }
+    .impact span { color:#d9d2c4; font-size:13px; }
+    .controls { margin-top:18px; padding:21px 24px; border:1px solid #373b42; border-radius:17px; background:#171c24; }
+    .control-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:15px; }
+    .control-title strong { font-size:13px; }
+    .year { color:var(--gold); font-size:13px; font-weight:800; }
+    input[type=range] { display:block; width:100%; accent-color:var(--gold); cursor:pointer; }
+    .ticks { display:flex; justify-content:space-between; margin-top:5px; color:#9d968c; font-size:12px; }
+    .control-buttons { display:flex; gap:9px; margin-top:14px; }
+    .btn { border-radius:11px; background:#272b33; border:1px solid #505055; padding:8px 16px; color:#f2ead8; font-weight:650; }
+    .btn:hover:not(:disabled) { background:#34343a; }
+    .btn:disabled { opacity:.35; cursor:default; }
+    .btn.primary { background:var(--gold); border-color:var(--gold); color:#1b160c; }
+    .btn.primary:hover:not(:disabled) { background:#e9c483; }
+    .btn.reset { margin-left:auto; }
+    .footnote { max-width:1040px; margin:16px auto 0; padding:0 2px; color:#9f9b93; font-size:12px; }
+    .footnote strong { color:#dad0b8; }
+    .sources { margin-top:9px; }
+    .sources a { margin-right:15px; }
+    @media (max-width:760px) { .main { grid-template-columns:1fr; } .diagram { min-height:0; } .diagram svg { max-height:320px; } .masthead { margin-bottom:14px; } .explain { padding:20px; } .explain h2 { font-size:25px; } .controls { padding:15px; } .mini-mark { display:none; } }
+    @media (max-width:390px) { .node-title { font-size:16px; } .link-label { font-size:9px; } .control-buttons { gap:5px; } .btn { padding:8px 11px; } }
+    @media (prefers-reduced-motion:reduce) { * { transition:none!important; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="masthead">
+      <div>
+        <div class="eyebrow">Rabbit Hole · Interactive history</div>
+        <h1>The verdict that would not stay dead</h1>
+        <p class="intro">Move through five decisions to see why condemning one long-dead pope threatened the status of living priests.</p>
+      </div>
+      <span class="mini-mark">ROME · 896—904</span>
+    </header>
+    <div class="main">
+      <section class="panel diagram" aria-labelledby="diagramTitle">
+        <div class="diagram-heading"><span id="diagramTitle">Who received authority from Formosus?</span><span>Illustrative network</span></div>
+        <svg viewBox="0 0 650 355" role="img" aria-labelledby="svgTitle svgDesc">
+          <title id="svgTitle">Consequences of papal verdicts on an ordination network</title>
+          <desc id="svgDesc">Formosus at the top. Two documented recipients, Stephen of Anagni and Auxilius, below him. A hypothetical later cleric at the bottom illustrates a second generation of ordinations. Line color reflects each council's declaration.</desc>
+          <path class="arc" data-line d="M324 91 C324 136 174 126 169 185" />
+          <path class="arc" data-line d="M324 91 C324 136 474 126 479 185" />
+          <path class="arc" data-line d="M169 245 C175 290 315 278 324 291" />
+          <path d="M169 245 C175 290 315 278 324 291" fill="none" stroke="transparent" stroke-width="12" />
+          <text class="link-label" x="225" y="133">consecrated</text>
+          <text class="link-label" x="426" y="133">ordained</text>
+          <text class="link-label" x="233" y="278">could ordain</text>
+          <rect class="source-shell" x="235" y="24" width="179" height="68" rx="17" />
+          <text class="node-title" x="324" y="55">Formosus</text>
+          <text class="node-sub" x="324" y="73">POPE · 891–896</text>
+          <rect class="node-shell" x="68" y="184" width="202" height="65" rx="14" />
+          <rect class="node-status" data-outline x="68" y="184" width="202" height="65" rx="14" />
+          <text class="node-title" x="169" y="210">Stephen VI</text>
+          <text class="node-sub" x="169" y="229">BISHOP OF ANAGNI · RECORDED</text>
+          <rect class="node-shell" x="379" y="184" width="202" height="65" rx="14" />
+          <rect class="node-status" data-outline x="379" y="184" width="202" height="65" rx="14" />
+          <text class="node-title" x="480" y="210">Auxilius</text>
+          <text class="node-sub" x="480" y="229">PRIEST · RECORDED</text>
+          <rect class="node-shell" x="234" y="292" width="180" height="52" rx="13" />
+          <rect class="node-status" data-outline x="234" y="292" width="180" height="52" rx="13" />
+          <text class="node-title" x="324" y="314">Later cleric</text>
+          <text class="node-sub" x="324" y="331">HYPOTHETICAL EXAMPLE</text>
+        </svg>
+        <div class="legend"><span><i></i> Recognised or restored</span><span><i class="dashed"></i> Declared void or challenged</span></div>
+      </section>
+      <section class="panel explain" aria-live="polite" aria-atomic="true">
+        <span class="step-meta" id="stepMeta">01 / 05 · 896</span>
+        <h2 id="heading">Ordinations recognised</h2>
+        <span class="badge" id="statusBadge">Recognised</span>
+        <p id="description">When Formosus died in 896, the priests and bishops he had ordained held their offices. Stephen himself owed his appointment as bishop of Anagni to Formosus.</p>
+        <div class="impact">
+          <strong>Watch the domino effect</strong>
+          <span id="impact">The lines show church appointments and a possible further appointment, not a literal family tree.</span>
+        </div>
+      </section>
+    </div>
+    <section class="controls" aria-labelledby="controlsTitle">
+      <div class="control-title"><strong id="controlsTitle">Move the decision forward or backward</strong><span class="year" id="yearLabel">896 · Before the trial</span></div>
+      <input id="yearSlider" aria-label="Change historical decision" type="range" min="0" max="4" step="1" value="0">
+      <div class="ticks" aria-hidden="true"><span>896</span><span>897</span><span>897</span><span>898</span><span>904+</span></div>
+      <div class="control-buttons">
+        <button class="btn" id="prevButton" type="button" disabled>← Back</button>
+        <button class="btn primary" id="nextButton" type="button">Next decision →</button>
+        <button class="btn reset" id="resetButton" type="button">↺ Reset</button>
+      </div>
+    </section>
+    <aside class="footnote">
+      <strong>Historical model, not a simulation of sacramental truth.</strong> Colors track what successive popes or councils <em>declared</em>, not a historian's verdict about which ordinations were metaphysically valid. Stephen and Auxilius are documented recipients; the later cleric represents the knock-on effect, not a specific person. Historical policies and individual clerical outcomes were more complicated than five uniform states. The accounts of Sergius III come through later records and scholarship.
+      <div class="sources">Sources: <a href="https://www.newadvent.org/cathen/06139b.htm" target="_blank" rel="noopener noreferrer">Formosus</a><a href="https://www.newadvent.org/cathen/08425a.htm" target="_blank" rel="noopener noreferrer">John IX</a><a href="https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355" target="_blank" rel="noopener noreferrer">Monroe's study</a><a href="https://capitularia.uni-koeln.de/en/mss/rom-bv-a-5/" target="_blank" rel="noopener noreferrer">898 council manuscript</a></div>
+    </aside>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const stages = [
+        { date:'896 · Before the trial', heading:'Ordinations recognised', badge:'Recognised', color:'#78c6a1', line:'#78c6a1', dash:'none',
+          description:'When Formosus died in 896, the priests and bishops he had ordained held their offices. Stephen himself owed his appointment as bishop of Anagni to Formosus.',
+          impact:'Two real appointments are shown. The later cleric is a hypothetical illustration of how a bishop could transmit ordination to another person.' },
+        { date:'897 · Stephen VI', heading:'One verdict creates a chain reaction', badge:'Declared void', color:'#ed8a82', line:'#ed8a82', dash:'8 7',
+          description:'Stephen VI declared Formosus’s acts and ordinations invalid after the Cadaver Synod. That threatened the standing of clergy ordained by Formosus, including a bishop whose appointment Stephen himself had received.',
+          impact:'If Formosus’s ordinations were treated as void, the validity of later actions by those clergy could also be questioned. The council made a legal claim; it did not erase past ceremonies from history.' },
+        { date:'Late 897 · Theodore II', heading:'The condemned pope is rehabilitated', badge:'Restored', color:'#78c6a1', line:'#78c6a1', dash:'none',
+          description:'Theodore II reversed the condemnation, recognised Formosus’s ordinations and helped return his remains to honourable burial. The previous council’s verdict no longer governed church policy.',
+          impact:'This was another institutional decision. It relieved the legal threat to clergy who had depended on Formosus’s ordinations.' },
+        { date:'898 · John IX', heading:'The reversal becomes a council decree', badge:'Confirmed', color:'#78c6a1', line:'#78c6a1', dash:'none',
+          description:'John IX confirmed the rehabilitation. His councils rejected the corpse trial, ordered its acts burned and prohibited the practice of prosecuting someone who could no longer answer.',
+          impact:'The later decrees are crucial historical evidence. Their surviving manuscripts tell us more securely what the Church decided in 898 than exactly what Stephen said during the 897 trial.' },
+        { date:'904 onward · Sergius III', heading:'The controversy returns', badge:'Challenged again', color:'#f0c36e', line:'#f0c36e', dash:'6 6',
+          description:'Sergius III backed the anti-Formosus position, renewing pressure on clergy ordained by him to undergo reordination. Auxilius, himself ordained by Formosus, wrote treatises defending their status.',
+          impact:'The same ordination could be recognised, condemned, restored and challenged as control of the papacy changed. Lines are amber for renewed dispute—not a verified outcome for every priest.' }
+      ];
+      const $ = id => document.getElementById(id);
+      const slider=$('yearSlider'), prev=$('prevButton'), next=$('nextButton');
+      let index=0;
+      function render(n) {
+        index=Math.max(0,Math.min(stages.length-1,Number(n)||0));
+        const s=stages[index];
+        slider.value=String(index);
+        $('yearLabel').textContent=s.date;
+        $('stepMeta').textContent=String(index+1).padStart(2,'0')+' / 05 · '+s.date.split(' · ')[0];
+        $('heading').textContent=s.heading;
+        $('statusBadge').textContent=s.badge;
+        $('description').textContent=s.description;
+        $('impact').textContent=s.impact;
+        const badge=$('statusBadge');
+        badge.style.color=s.color;
+        badge.style.borderColor=s.color+'70';
+        badge.style.background=s.color+'15';
+        document.querySelectorAll('[data-line]').forEach(line=>{
+          line.style.stroke=s.line;
+          line.style.strokeDasharray=s.dash;
+        });
+        document.querySelectorAll('[data-outline]').forEach(node=>node.style.stroke=s.color);
+        prev.disabled=index===0;
+        next.disabled=index===stages.length-1;
+        next.textContent=index===stages.length-1?'Last decision':'Next decision →';
+      }
+      slider.addEventListener('input',()=>render(slider.value));
+      prev.addEventListener('click',()=>render(index-1));
+      next.addEventListener('click',()=>render(index+1));
+      $('resetButton').addEventListener('click',()=>render(0));
+      document.addEventListener('keydown',event=>{
+        if (event.altKey||event.ctrlKey||event.metaKey||event.target===slider||/^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
+        if (event.key==='ArrowRight') { event.preventDefault(); render(index+1); }
+        if (event.key==='ArrowLeft') { event.preventDefault(); render(index-1); }
+        if (event.key==='Home') { event.preventDefault(); render(0); }
+      });
+      render(0);
+    })();
+  </script>
+</body>
+</html>

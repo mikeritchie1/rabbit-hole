@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Orbit, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Orbit, ExternalLink, ChevronLeft, ChevronRight, FlaskConical } from 'lucide-react';
 import { topics } from './data';
 import { back, previousTopic, nextTopic, insertTopic, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
 import type { Topic } from './schema';
@@ -12,7 +12,9 @@ function readPlaces(key:string):Place[]{try{const raw=JSON.parse(localStorage.ge
 function save(key:string,value:unknown){try{localStorage.setItem(key,JSON.stringify(value));}catch{}}
 function readCategory():CategoryFilter{try{const value=JSON.parse(localStorage.getItem('rh-category')||'"All"');return isCategoryFilter(value)?value:'All';}catch{return 'All';}}
 const same=(a:Place,b:Place)=>a.topicId===b.topicId&&a.level===b.level;
+const localDiagrams=import.meta.glob('../diagrams/*.svg',{eager:true,query:'?url',import:'default'}) as Record<string,string>;
 function SafeImage({src,alt}:{src:string;alt:string}){
+  src=localDiagrams[`../${src}`]??src;
   const [failed,setFailed]=useState(false);
   const image=useRef<HTMLImageElement>(null);
   useEffect(()=>setFailed(false),[src]);
@@ -48,13 +50,20 @@ function FittedText({children,className=''}:{children:React.ReactNode;className?
   return <div ref={ref} className={`fitted-text ${className}`}>{children}</div>;
 }
 
+const experimentFiles=import.meta.glob('../diagrams/*.html',{eager:true,query:'?raw',import:'default'}) as Record<string,string>;
+function Experiment({file,title,description,preview}:{file:string;title:string;description:string;preview:boolean}){
+  const dialog=useRef<HTMLDialogElement>(null);
+  const [opened,setOpened]=useState(false);
+  const html=experimentFiles[`../${file}`];
+  return <><button className="glass fact-card experiment-card" disabled={!html} tabIndex={preview?-1:0} onClick={()=>{setOpened(true);dialog.current?.showModal();}}><span className="experiment-badge"><FlaskConical size={16} aria-hidden="true"/>INTERACTIVE EXPERIMENT</span><h2 className="object-title">{title}</h2><FittedText>{description}</FittedText><span className="experiment-launch">{html?'Open experiment ↗':'Experiment file unavailable'}</span></button><dialog ref={dialog} className="experiment-dialog" aria-label={title} onClose={()=>setOpened(false)} onClick={e=>{if(e.target===dialog.current)dialog.current?.close();}}><div className="experiment-toolbar"><strong>{title}</strong><button className="icon-button" aria-label="Close experiment" onClick={()=>dialog.current?.close()}><X size={21}/></button></div>{opened&&<iframe title={title} srcDoc={html} sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"/>}</dialog></>;
+}
 function Discovery({topic,depth,preview=false,onSources}:{topic:Topic;depth:number;preview?:boolean;onSources:()=>void}){
   const level=topic.levels[depth-1];
   const featured=level.objects.findIndex(object=>object.type==='video');
   const featureIndex=featured>=0?featured:level.objects.findIndex(object=>object.type==='image');
   return <div className={`constellation layout-${(depth-1)%3} object-count-${level.objects.length} ${preview?'is-preview':''}`}>
     {level.objects.map((object,index)=><div key={object.id} className={`floating-anchor object-slot slot-${index} object-${object.type} ${index===featureIndex?'featured-media':`companion-${index<featureIndex?index:index-1}`}`}>
-      {object.type==='fact'?<article className="glass fact-card"><button className="source-icon" onClick={onSources} tabIndex={preview?-1:0} aria-label="View sources" title="View sources"><ExternalLink size={15}/></button><h2 className="object-title">{object.title}</h2><FittedText>{object.text}</FittedText></article>
+      {object.type==='experiment'?<Experiment file={object.file} title={object.title} description={object.description} preview={preview}/>:object.type==='fact'?<article className="glass fact-card"><button className="source-icon" onClick={onSources} tabIndex={preview?-1:0} aria-label="View sources" title="View sources"><ExternalLink size={15}/></button><h2 className="object-title">{object.title}</h2><FittedText>{object.text}</FittedText></article>
       :object.type==='video'?<a className="glass media-card" href={`https://www.youtube.com/watch?v=${object.youtubeId}`} target="_blank" rel="noreferrer" tabIndex={preview?-1:0} title={object.note}><div className="media-visual"><SafeImage src={`https://i.ytimg.com/vi/${object.youtubeId}/hqdefault.jpg`} alt={object.title}/><span className="play-orb"><Play size={27} fill="currentColor"/></span></div><div className="media-caption"><strong>{object.title}</strong><span>{object.channel}</span></div></a>
       :object.type==='image'?<figure className="glass media-card photo-card"><div className="media-visual"><SafeImage src={object.image.url} alt={object.image.alt}/></div><figcaption><span>{object.title}</span><p className="image-caption">{object.caption}</p></figcaption></figure>
       :<a className="glass fact-card article-card" href={object.url} target="_blank" rel="noreferrer" tabIndex={preview?-1:0}><span className="source-icon" aria-label="Open source"><ExternalLink size={15}/></span><h2 className="object-title">{object.title}</h2><FittedText>{object.description}</FittedText></a>}
@@ -74,8 +83,20 @@ function App(){
   const flightSequence=useRef(0),flightTimer=useRef<ReturnType<typeof setTimeout>|null>(null),dialog=useRef<HTMLDialogElement>(null),touch=useRef<{x:number;y:number}|null>(null);
   const present=useRef<HTMLDivElement>(null),heading=useRef<HTMLDivElement>(null),journeyRef=useRef(journey),startedRef=useRef(started),hasExplored=useRef(false);
   const seenTopics=useRef(new Set<string>());
+  const topicLabel=useRef<HTMLElement>(null);
   journeyRef.current=journey;startedRef.current=started;
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
+  useLayoutEffect(()=>{
+    const label=topicLabel.current,app=label?.closest<HTMLElement>('.app');
+    if(!label||!app)return;
+    let mounted=true;
+    const measure=()=>{if(mounted)app.style.setProperty('--depth-header-bottom',`${label.getBoundingClientRect().bottom-app.getBoundingClientRect().top+16}px`);};
+    const observer=new ResizeObserver(measure);
+    observer.observe(label);observer.observe(app);
+    window.addEventListener('resize',measure);
+    void document.fonts.ready.then(measure);measure();
+    return()=>{mounted=false;observer.disconnect();window.removeEventListener('resize',measure);app.style.removeProperty('--depth-header-bottom');};
+  },[started,topic.id]);
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
   const welcome=()=>{
     if(flightTimer.current)clearTimeout(flightTimer.current);
@@ -136,7 +157,7 @@ function App(){
   useEffect(()=>{if(!notice)return;const timer=setTimeout(()=>setNotice(''),2800);return()=>clearTimeout(timer);},[notice]);
   useEffect(()=>{const handler=()=>setFullscreen(!!document.fullscreenElement),resize=()=>setCompact(innerWidth<650||innerHeight<600);document.addEventListener('fullscreenchange',handler);window.addEventListener('resize',resize);return()=>{document.removeEventListener('fullscreenchange',handler);window.removeEventListener('resize',resize);if(flightTimer.current)clearTimeout(flightTimer.current);};},[]);
   useEffect(()=>{const handler=(e:KeyboardEvent)=>{
-    if(e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;if(e.key==='Escape'){setOverlay(null);return;}if(overlay)return;
+    if(document.querySelector('.experiment-dialog[open]'))return;if(e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;if(e.key==='Escape'){setOverlay(null);return;}if(overlay)return;
     const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[contenteditable="true"]'))return;
     const actions:Record<string,()=>void>={ArrowUp:deeper,ArrowDown:up,ArrowLeft:previousHole,ArrowRight:nextHole,f:()=>void toggleFullscreen(),' ':newHole};
     const action=actions[e.key.length===1?e.key.toLowerCase():e.key];if(action){e.preventDefault();action();}
@@ -147,6 +168,7 @@ function App(){
     if(object.type==='fact')return object.sources.map(s=>({title:s.title,by:s.publisher,url:s.url}));
     if(object.type==='video')return [{title:object.title,by:`${object.channel} · ${object.note}`,url:`https://www.youtube.com/watch?v=${object.youtubeId}`}];
     if(object.type==='image')return [{title:object.title,by:`${object.caption} · ${object.image.credit}`,url:object.image.sourceUrl}];
+    if(object.type==='experiment')return [];
     return [{title:object.title,by:object.publisher,url:object.url}];
   }).map(source=>[source.url,source])).values());
   const libraryTopics=topicsInCategory(topics,category);
@@ -154,7 +176,7 @@ function App(){
   return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''} ${orbiting?'orbit-turn':''}`}>
     <Space flight={flight?.id||0} motion={flight?.direction}/>
     <header className="topbar">
-      {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span><small className="current-topic-title">{topic.title}<span className="current-category-label" data-category={topic.category}>{topic.category}</span></small></div></>}
+      {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span><small ref={topicLabel} className="current-topic-title">{topic.title}<span className="current-category-label" data-category={topic.category}>{topic.category}</span></small></div></>}
       <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole} title={`New rabbit hole: ${category}`}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
     </header>
     {!started?<main className="welcome-screen">
@@ -167,7 +189,7 @@ function App(){
         <p>PRESS ← / → FOR PREVIOUS / NEXT RABBIT HOLE</p>
         <p>PRESS F FOR FULLSCREEN</p>
       </div>
-      <button className="welcome-explore" onClick={()=>open('library')}>USE EXPLORE TO SELECT A TOPIC</button>
+      <button className="welcome-explore" onClick={()=>open('library')}>Use Explore to select a topic or category.</button>
       <button className="welcome-begin" onClick={newHole}>PRESS SPACE TO BEGIN</button>
     </main>:<main className={`space-stage count-${level.objects.length}`} onTouchStart={e=>{if(!(e.target as HTMLElement).closest('button,a'))touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;touch.current=null;if(Math.max(Math.abs(dx),Math.abs(dy))<60)return;if(Math.abs(dy)>Math.abs(dx)){if(dy<0)deeper();else up();}else{if(dx<0)nextHole();else previousHole();}}}>
       {orbiting&&flight?.from&&outgoingTopic&&<div className={`discovery-heading heading-departure-${flight.direction}`} key={`heading-out-${flight.id}`} style={flight.headingStyle} aria-hidden="true"><h1>{outgoingTopic.levels[flight.from.level-1].title}</h1></div>}

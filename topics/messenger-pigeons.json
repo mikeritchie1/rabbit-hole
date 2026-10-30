@@ -1,141 +1,223 @@
 {
   "schemaVersion": 2,
   "id": "messenger-pigeons",
-  "title": "A pigeon can find a home it cannot see.",
+  "title": "Homing pigeons can find their loft from unfamiliar places.",
   "category": "Mind-bending",
-  "hook": "Follow a messenger pigeon from its loft into invisible maps, magnetic senses, and birds that cross oceans without landing.",
+  "hook": "A map made of smells, a clock that reads the sun, and a magnetic sense inside the body.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",
-    "alt": "A rock pigeon with an iridescent neck, the species from which homing pigeons descend.",
-    "credit": "Bramans · CC BY-SA 4.0 ·",
+    "alt": "A grey rock pigeon with a green-purple iridescent neck standing on stone.",
+    "credit": "Bramans · CC BY-SA 4.0 · image may be cropped and darkened in display",
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rock_pigeon_or_common_pigeon_(Columba_livia).jpg"
   },
   "levels": [
     {
-      "id": "the-living-postal-system",
-      "title": "A pigeon delivers the message by going home.",
+      "id": "home-is-the-only-address",
+      "title": "The pigeon is the address, not the postman.",
       "objects": [
         {
           "type": "fact",
-          "id": "home-is-the-address",
-          "title": "The destination is its own loft",
-          "text": "A messenger pigeon is carried away from its home and released with a message. It returns to its own loft, rather than choosing an address. Sending a reply requires a bird whose home is at the other end.",
+          "id": "one-way-messenger",
+          "title": "It can only deliver to its own home",
+          "text": "A messenger pigeon is raised to recognise a home loft, then carried somewhere else and released with a tiny message. It flies back to that loft. To send messages both ways, you need birds with homes at both ends; a pigeon cannot simply be told a new address.",
           "evidence": "documented",
           "sources": [
             {
-              "title": "Homing pigeon: how pigeon post works",
-              "publisher": "Encyclopaedia overview",
-              "url": "https://en.wikipedia.org/wiki/Homing_pigeon"
-            }
-          ]
-        },
-        {
-          "type": "video",
-          "id": "navigation-film",
-          "title": "How Pigeons Always Find Their Way Home",
-          "channel": "Real Science",
-          "youtubeId": "4DkMVCzvgRg",
-          "note": "An introduction to homing, historical uses, and competing navigation mechanisms. Read the later-depth studies for newer evidence."
-        },
-        {
-          "type": "fact",
-          "id": "wartime-network",
-          "title": "The army used this biological delivery route",
-          "text": "The US Army Signal Corps used pigeons in both World Wars to carry strategic information. A bird could transport a written message without a wire connecting the sender to the receiving loft.",
-          "evidence": "documented",
-          "sources": [
-            {
-              "title": "Rock Pigeon: natural history and cool facts",
-              "publisher": "Cornell Lab of Ornithology",
-              "url": "https://www.allaboutbirds.org/guide/Rock_Pigeon/overview"
+              "title": "Unsung Heroes of World War I: The Carrier Pigeons",
+              "publisher": "U.S. National Archives",
+              "url": "https://prologue.blogs.archives.gov/2023/04/05/unsung-heroes-of-world-war-i-the-carrier-pigeons-2/"
             }
           ]
         },
         {
           "type": "image",
-          "id": "the-familiar-bird",
-          "title": "The city bird is the same species",
+          "id": "cher-ami-message",
+          "title": "A message carried through gunfire in 1918",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rock_pigeon_or_common_pigeon_%28Columba_livia%29.jpg",
-            "alt": "A rock pigeon with an iridescent neck, the species from which homing pigeons descend.",
-            "credit": "Bramans · CC BY-SA 4.0 ·",
-            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rock_pigeon_or_common_pigeon_(Columba_livia).jpg"
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Whittlesey%27s_message_carried_by_a_pigeon_named_Cher_Ami.jpg",
+            "alt": "Archival photograph of the handwritten military message attributed to Cher Ami, dated October 4, 1918.",
+            "credit": "U.S. Army archival record · public domain in the United States · displayed without alteration beyond site cropping",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whittlesey%27s_message_carried_by_a_pigeon_named_Cher_Ami.jpg"
           },
-          "caption": "Homing pigeons are domestic rock pigeons, Columba livia. The familiar urban pigeon belongs to this species too."
+          "caption": "This is an archival image of the actual message attributed to Cher Ami, not a modern recreation. The National Archives recounts how the wounded bird delivered a plea to stop friendly artillery fire."
+        },
+        {
+          "type": "video",
+          "id": "real-science-film",
+          "title": "How Pigeons Always Find Their Way Home",
+          "channel": "Real Science",
+          "youtubeId": "4DkMVCzvgRg",
+          "note": "Accessible overview of pigeon post and navigation; later studies refine the proposed senses."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
       "final": false
     },
     {
-      "id": "a-map-in-the-air",
-      "title": "The landscape has a smell, and the bird learns it.",
+      "id": "four-clues-not-one-gps",
+      "title": "Finding home requires both a map and a compass.",
       "objects": [
         {
+          "type": "image",
+          "id": "four-clues-diagram",
+          "title": "Four clues do different jobs",
+          "image": {
+            "url": "diagrams/messenger-pigeons-four-clues.svg",
+            "alt": "Conceptual diagram of smell, sun, magnetic and landmark cues during a homing journey.",
+            "credit": "Locally supplied conceptual illustration; not a measured route or universal navigation algorithm.",
+            "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
+          },
+          "caption": "Smell can help locate a region, sun and magnetic cues provide direction, and familiar landmarks help near home. This schematic simplifies overlapping strategies."
+        },
+        {
           "type": "fact",
-          "id": "wind-map",
-          "title": "Wind can teach a pigeon where smells come from",
-          "text": "A pigeon can associate environmental odours at its loft with the winds carrying them. At an unfamiliar release site, the mixture of odours may help locate the bird relative to home. This is the olfactory-map hypothesis.",
-          "evidence": "hypothesis",
+          "id": "where-versus-which-way",
+          "title": "Four clues do four different jobs",
+          "text": "Smell patterns may tell a pigeon which region it has been dropped in: a map. The sun's position plus the bird's internal clock can give a bearing: a compass. Earth's magnetic field can supply another directional cue. Recognised roads, rivers and buildings help refine the approach near home.",
+          "evidence": "documented",
           "sources": [
             {
-              "title": "How pigeons may smell their way home",
-              "publisher": "European Geosciences Union",
-              "url": "https://www.egu.eu/news/81/how-pigeons-may-smell-their-way-home/"
+              "title": "Homing Pigeons Only Navigate in Air with Intact Environmental Odours",
+              "publisher": "Gagliardo et al. · PLOS ONE, 2011",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0022385"
+            },
+            {
+              "title": "Orientation by pigeons: is the sun necessary?",
+              "publisher": "Keeton · Science, 1969",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
+            },
+            {
+              "title": "Pigeon homing along highways and exits",
+              "publisher": "Lipp et al. · Current Biology, 2004",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/15268853/"
             }
           ]
         },
         {
           "type": "fact",
-          "id": "filtered-air",
-          "title": "Artificial smells did not replace the real landscape",
-          "text": "Researchers transported pigeons 53 or 61 kilometres from home using natural air, filtered air, or filtered air plus artificial odours. Birds deprived of natural environmental smells navigated poorly during the first hour; adding arbitrary scents did not rescue them.",
+          "id": "not-an-inbuilt-satnav",
+          "title": "It does not calculate GPS coordinates",
+          "text": "Researchers infer overlapping navigational strategies from experiments that alter individual clues. They have not found a single universal algorithm inside the pigeon. Some cues are most useful far from home; familiar landmarks become more valuable as the loft gets close.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Pigeon homing along highways and exits",
+              "publisher": "Lipp et al. · Current Biology, 2004",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/15268853/"
+            },
+            {
+              "title": "Orientation by pigeons: is the sun necessary?",
+              "publisher": "Keeton · Science, 1969",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "smell-map-in-the-wind",
+      "title": "The air above a landscape carries a chemical map.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "learned-wind-associations",
+          "title": "A smell can hint at which side of home you are on",
+          "text": "At its loft, a young pigeon experiences different odour mixtures arriving on winds from different directions. The olfactory-map hypothesis says it learns those associations. At an unfamiliar release site, the local mixture can help it estimate displacement from home—not by simply following one smell plume like a dog.",
+          "evidence": "hypothesis",
+          "sources": [
+            {
+              "title": "Homing Pigeons Only Navigate in Air with Intact Environmental Odours",
+              "publisher": "Gagliardo et al. · PLOS ONE, 2011",
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0022385"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "charcoal-filter-experiment",
+          "title": "Filtering the air spoiled their first hour",
+          "text": "In a 2011 GPS study, birds taken 53 or 61 km away in ordinary air oriented better than birds transported in charcoal-filtered air. Puffs of arbitrary floral smells did not restore their orientation. Natural environmental odours appeared to carry geographical information, not merely switch on a different sense.",
           "evidence": "experiment",
           "sources": [
             {
-              "title": "Homing pigeons only navigate in air with intact environmental odours",
+              "title": "Homing Pigeons Only Navigate in Air with Intact Environmental Odours",
               "publisher": "Gagliardo et al. · PLOS ONE, 2011",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/21857925/"
+              "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0022385"
             }
           ]
         },
         {
           "type": "article",
-          "id": "road-tracks",
-          "title": "Near home, a pigeon can follow a road",
-          "publisher": "Current Biology · GPS tracking study",
-          "url": "https://www.sciencedirect.com/science/article/pii/S0960982204005160",
-          "description": "An analysis of 216 recorded flight tracks found evidence of pigeons following roads and being attracted to highway exits. Familiar landmarks provide another kind of navigation information."
+          "id": "chemical-gradients-measured",
+          "title": "Scientists measured real gradients in the air",
+          "publisher": "Zannoni et al. · Scientific Reports, 2020",
+          "url": "https://www.nature.com/articles/s41598-020-72525-2",
+          "description": "Researchers measured regional gradients of airborne compounds, including sea-derived dimethyl sulfide and plant-related chemicals, around a Tuscan loft. The gradients could form a smell map; the paper does not prove exactly which molecules individual pigeons read."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": {
-          "topicId": "messenger-pigeons",
-          "level": 4,
-          "label": "The sun is another compass",
-          "reason": "Smells may provide location information; a sun compass helps the bird hold a direction."
-        }
-      },
       "final": false
     },
     {
-      "id": "the-magnetic-sense",
-      "title": "A magnetic sense needs a biological detector.",
+      "id": "the-moving-sun-compass",
+      "title": "The sun moves. The pigeon corrects for the time.",
+      "objects": [
+        {
+          "type": "experiment",
+          "id": "navigation-lab",
+          "title": "Try the pigeon navigation lab",
+          "file": "diagrams/messenger-pigeons-navigation-lab.html",
+          "description": "Change smell, sun, magnetic and landmark clues to watch an illustrative route respond. This simplified model is not a prediction of a real flight."
+        },
+        {
+          "type": "fact",
+          "id": "time-compensation",
+          "title": "The same sun position means different things at different hours",
+          "text": "Because the sun crosses the sky through the day, its location alone does not label north or south. A pigeon combines its apparent position with an internal daily clock to infer a compass bearing. The bird is accounting for the sun's motion rather than expecting it to stay still.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Orientation by pigeons: is the sun necessary?",
+              "publisher": "Keeton · Science, 1969",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "clock-shift-test",
+          "title": "To shift the sun, scientists actually shift the bird's clock",
+          "text": "Researchers change a pigeon's light-dark schedule so it thinks, for example, that it is several hours later. Under a visible sun, the bird's initial heading shifts in the predicted direction. When clouds hide the sun, other cues can partly take over. The real sun never moved in the experiment.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "The sun azimuth compass: one factor in the orientation of homing pigeons",
+              "publisher": "Schmidt-Koenig · Science, 1960",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/14443109/"
+            },
+            {
+              "title": "Orientation by pigeons: is the sun necessary?",
+              "publisher": "Keeton · Science, 1969",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-magnetic-body-compass",
+      "title": "The magnetic sense may involve both ear and liver.",
       "objects": [
         {
           "type": "fact",
-          "id": "inner-ear-induction",
-          "title": "One proposed detector sits in the inner ear",
-          "text": "Moving conductive fluid through a magnetic field can induce electrical signals. A brain-mapping study found magnetic responses in pigeon balance-related circuits and specialised inner-ear cells consistent with this mechanism. The researchers support an induction model; they have not settled every step of the sensory pathway.",
-          "evidence": "hypothesis",
+          "id": "inner-ear-response",
+          "title": "A 2026 brain study found a light-independent signal",
+          "text": "Magnetic stimulation activated circuits connected with the pigeon inner ear. Researchers also found specialised cells compatible with sensing tiny electrical effects from motion through a magnetic field. That supports an electromagnetic-induction model, but a complete signal-to-navigation pathway has not yet been demonstrated.",
+          "evidence": "experiment",
           "sources": [
             {
               "title": "A global screen for magnetically induced neuronal activity in the pigeon brain",
-              "publisher": "Nordmann et al. · Science, 2026 (online 2025)",
+              "publisher": "Nordmann et al. · Science, 2026",
               "url": "https://pubmed.ncbi.nlm.nih.gov/41264677/"
             }
           ]
@@ -143,8 +225,8 @@
         {
           "type": "fact",
           "id": "liver-macrophages",
-          "title": "Another experiment points to iron-rich immune cells",
-          "text": "A 2026 study found magnetically responsive macrophages in pigeon livers. Depleting macrophages disrupted orientation under overcast skies, but not when the sun was visible. The authors propose a role in magnetic direction-finding; exactly how a signal reaches the nervous system remains unresolved.",
+          "title": "Removing certain immune cells disrupted cloudy-day orientation",
+          "text": "Another 2026 study identified iron-bearing macrophages in pigeon livers. When researchers depleted these cells, birds lost much of their usual orientation under overcast skies, but not with visible sun. The authors propose a magnetic sensory role; how the signal reaches the brain remains uncertain.",
           "evidence": "experiment",
           "sources": [
             {
@@ -156,148 +238,71 @@
         },
         {
           "type": "article",
-          "id": "beak-correction",
-          "title": "Why the old \"magnetic beak\" explanation is too tidy",
+          "id": "earlier-beak-mistake",
+          "title": "An earlier magnetic-beak discovery was overturned",
           "publisher": "Treiber et al. · Nature, 2012",
           "url": "https://www.nature.com/articles/nature11046",
-          "description": "Cells once described as magnetosensitive neurons in the upper beak were identified as iron-rich macrophages instead. Finding iron in tissue does not, by itself, identify a working compass."
+          "description": "Structures once described as magnetosensitive nerve cells in pigeon beaks were identified as iron-rich immune cells instead. It is a warning: finding a magnetic material in an animal does not prove that it is a working compass."
         }
       ],
-      "tangents": {
-        "left": null,
-        "right": {
-          "topicId": "messenger-pigeons",
-          "level": 5,
-          "label": "A compass made from light",
-          "reason": "Migratory robins offer a different candidate mechanism: magnetically sensitive chemistry in an eye protein."
-        }
-      },
       "final": false
     },
     {
-      "id": "tricking-the-sun-compass",
-      "title": "Reset the bird's clock, and you can bend its route.",
+      "id": "pigeons-on-the-motorway",
+      "title": "Near home, pigeons sometimes follow highways.",
       "objects": [
         {
           "type": "fact",
-          "id": "clock-shift",
-          "title": "The sun gives direction only if you know the time",
-          "text": "The sun moves across the sky, so its position is not a fixed compass bearing. Pigeons combine it with an internal clock. In clock-shift experiments, altered day-night schedules changed their initial departure directions under sun, as predicted for a time-compensated sun compass. Under overcast skies, they could still orient using other cues.",
+          "id": "roads-as-guide-rails",
+          "title": "They sometimes choose a longer, familiar route",
+          "text": "Researchers analysed 216 GPS-recorded flights around Rome. Experienced pigeons were attracted to highways, rail lines and particular junctions, even when those routes were less direct than a straight flight home. Road-following was significant on roughly 40–50% of tracks from certain release directions, not every flight.",
           "evidence": "experiment",
           "sources": [
             {
-              "title": "Orientation by pigeons: is the sun necessary?",
-              "publisher": "William T. Keeton · Science, 1969",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/17777007/"
-            }
-          ]
-        }
-      ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
-      "final": false
-    },
-    {
-      "id": "a-robin-and-quantum-chemistry",
-      "title": "A robin may read direction through light-sensitive chemistry.",
-      "objects": [
-        {
-          "type": "fact",
-          "id": "radical-pairs",
-          "title": "Blue light can start a magnetically sensitive reaction",
-          "text": "In a proposed robin compass, blue light triggers electron transfers in the protein cryptochrome, creating pairs of radicals with unpaired electrons. Magnetic fields can influence their spin dynamics and reaction outcomes, potentially turning field direction into a biological signal.",
-          "evidence": "hypothesis",
-          "sources": [
-            {
-              "title": "Magnetic sensitivity of cryptochrome 4 from a migratory songbird",
-              "publisher": "Xu et al. · Nature, 2021",
-              "url": "https://www.nature.com/articles/s41586-021-03618-9"
-            },
-            {
-              "title": "How birds sense the magnetic field of the Earth to help them navigate",
-              "publisher": "University of Oxford",
-              "url": "https://www.ox.ac.uk/news/2021-06-24-how-birds-sense-the-magnetic-field-of-the-earth-to-help-them-navigate"
-            }
-          ]
-        },
-        {
-          "type": "fact",
-          "id": "isolated-protein",
-          "title": "The laboratory result is real; the complete compass is not yet proven",
-          "text": "Researchers showed that isolated robin cryptochrome 4 responds to magnetic fields, more strongly than the pigeon and chicken versions tested. Those experiments used stronger fields than Earth's and did not demonstrate a complete compass operating inside a living bird's eye.",
-          "evidence": "experiment",
-          "sources": [
-            {
-              "title": "Magnetic sensitivity of cryptochrome 4 from a migratory songbird",
-              "publisher": "Xu et al. · Nature, 2021",
-              "url": "https://www.nature.com/articles/s41586-021-03618-9"
-            },
-            {
-              "title": "How birds sense the magnetic field of the Earth to help them navigate",
-              "publisher": "University of Oxford",
-              "url": "https://www.ox.ac.uk/news/2021-06-24-how-birds-sense-the-magnetic-field-of-the-earth-to-help-them-navigate"
-            }
-          ]
-        }
-      ],
-      "tangents": {
-        "left": null,
-        "right": null
-      },
-      "final": false
-    },
-    {
-      "id": "beyond-the-pigeon",
-      "title": "Other birds take these abilities across entire oceans.",
-      "objects": [
-        {
-          "type": "fact",
-          "id": "godwit-journey",
-          "title": "One young godwit flew for 11 days without landing",
-          "text": "In October 2022, a satellite-tracked juvenile bar-tailed godwit flew from Alaska to Tasmania in an uninterrupted journey lasting 11 days. Its transmitter revealed the route while the bird crossed the Pacific on its first migration.",
-          "evidence": "documented",
-          "sources": [
-            {
-              "title": "750 miles per day for 11 days, no rest",
-              "publisher": "University of Alaska Fairbanks Geophysical Institute",
-              "url": "https://www.gi.alaska.edu/alaska-science-forum/750-miles-day-11-days-no-rest"
-            }
-          ]
-        },
-        {
-          "type": "fact",
-          "id": "sleeping-frigatebirds",
-          "title": "Frigatebirds can sleep while they are still flying",
-          "text": "Brain recordings from great frigatebirds showed sleep during ocean flights, sometimes in one hemisphere and sometimes in both. This is direct evidence of sleep in flight, not an assumption that every long-distance bird sleeps the same way.",
-          "evidence": "experiment",
-          "sources": [
-            {
-              "title": "Evidence that birds sleep in mid-flight",
-              "publisher": "Rattenborg et al. · Nature Communications, 2016",
-              "url": "https://www.nature.com/articles/ncomms12468"
+              "title": "Pigeon homing along highways and exits",
+              "publisher": "Lipp et al. · Current Biology, 2004",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/15268853/"
             }
           ]
         },
         {
           "type": "article",
-          "id": "sleep-study",
-          "title": "About 42 minutes of sleep per day in the air",
-          "publisher": "Nature Communications, 2016",
-          "url": "https://www.nature.com/articles/ncomms12468",
-          "description": "The frigatebirds studied averaged 0.69 hours of sleep daily during flight: roughly 42 minutes, and only 7.4% of their sleep time on land. Sleeping airborne did not mean obtaining their usual amount of sleep."
+          "id": "junctions-are-turning-points",
+          "title": "Some highway exits became turning points",
+          "publisher": "Lipp et al. · Current Biology, 2004",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0960982204005160",
+          "description": "The GPS traces show that pigeons repeatedly crossed selected topographical points, particularly near their loft. Following landmarks can be a reliable learned strategy even when it increases distance travelled."
         }
       ],
-      "tangents": {
-        "left": {
-          "topicId": "messenger-pigeons",
-          "level": 5,
-          "label": "Back to the robin's compass",
-          "reason": "Revisit the chemistry that may help a migrating songbird hold its heading."
+      "final": false
+    },
+    {
+      "id": "when-the-first-journey-is-an-ocean",
+      "title": "Some birds navigate an ocean on their first migration.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "godwit-b6",
+          "title": "A young godwit crossed the Pacific without stopping",
+          "text": "In October 2022, a juvenile bar-tailed godwit nicknamed B6 made an approximately 13,560 km non-stop flight from Alaska to Tasmania in 11 days. Its solar-powered satellite transmitter tracked a first migration over open sea, far beyond the familiar landmarks available to a homing pigeon near its loft.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Juvenile Bar-tailed Godwit B6 Sets World Record",
+              "publisher": "U.S. Geological Survey, 2022",
+              "url": "https://www.usgs.gov/centers/alaska-science-center/news/juvenile-bar-tailed-godwit-b6-sets-world-record"
+            }
+          ]
         },
-        "right": null
-      },
+        {
+          "type": "article",
+          "id": "tracked-first-crossing",
+          "title": "The transmitter revealed the full journey",
+          "publisher": "University of Alaska Fairbanks Geophysical Institute, 2022",
+          "url": "https://www.gi.alaska.edu/alaska-science-forum/750-miles-day-11-days-no-rest",
+          "description": "Scientists fitted the young bird with a miniature tracker before it departed. The 11-day record reveals what it accomplished, not which precise sensory algorithm guided it over the Pacific. That part of animal navigation remains an open scientific question."
+        }
+      ],
       "final": true
     }
   ]

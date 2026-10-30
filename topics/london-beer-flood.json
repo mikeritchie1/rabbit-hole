@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 2,
+  "id": "london-beer-flood",
+  "title": "A London brewery unleashed a deadly flood of beer in 1814.",
+  "category": "Dark & disturbing",
+  "hook": "One loose iron hoop, a wall of porter, and a neighbourhood of cellar homes.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Horseshoe_Brewery%2C_London%2C_c._1800.jpg",
+    "alt": "Historical illustration of the Horse Shoe Brewery in London, showing its large buildings and horse-drawn drays.",
+    "credit": "Unknown artist; historical image reproduced in Brewers' Journal (1906), public domain; may be cropped and darkened for display",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Horseshoe_Brewery,_London,_c._1800.jpg"
+  },
+  "levels": [
+    {
+      "id": "the-evening-the-beer-came-out",
+      "title": "A brewery emptied into London's streets.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "october-seventeenth",
+          "title": "Monday, 17 October 1814",
+          "text": "At about 5:30 p.m., an enormous wooden vat failed at Meux & Co.'s Horse Shoe Brewery near Tottenham Court Road. Its contents smashed through the brewery and into St Giles. The inquest recorded eight deaths, caused by the flood and collapsing buildings.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "A pint-sized guide to London's historic breweries",
+              "publisher": "London Museum",
+              "url": "https://www.londonmuseum.org.uk/collections/london-stories/pint-sized-guide-londons-historic-breweries/"
+            },
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "not-an-ordinary-barrel",
+          "title": "The first vat held over a million pints",
+          "text": "Storehouse clerk George Crick reported 3,555 brewery barrels in the failed vat: about 582,000 litres, weighing roughly 580 metric tonnes. Several other vessels also lost beer. The flood was much larger than the contents of the first vat alone.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "1814 beer flood",
+              "publisher": "Ron Pattinson, Shut up about Barclay Perkins; transcription of Exeter Flying Post, 27 October 1814",
+              "url": "https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "history-chap-film",
+          "title": "The Deadliest Flood In History - London 1814",
+          "channel": "The History Chap",
+          "youtubeId": "fCcZVUncDSI",
+          "note": "Historical storytelling with sections on St Giles and the brewery. Its dramatic wave imagery is an illustration, not a measured reconstruction."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-warning-on-the-vat",
+      "title": "An iron hoop came off an hour earlier.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "cricks-warning",
+          "title": "At 4:30 p.m., a metal band slipped",
+          "text": "Crick noticed that an iron hoop had come off the nearly full, 22-foot-high vat. He told a brewery partner and prepared a note requesting repair. He did not expect catastrophe: according to his testimony, hoops had detached before without serious consequences.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "1814 beer flood",
+              "publisher": "Ron Pattinson, Shut up about Barclay Perkins; transcription of Exeter Flying Post, 27 October 1814",
+              "url": "https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html"
+            },
+            {
+              "title": "200 years ago — the London Beer Flood",
+              "publisher": "ianVisits",
+              "url": "https://www.ianvisits.co.uk/articles/200-years-ago-the-london-beer-flood-13014/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "old-porter-not-gas-bomb",
+          "title": "It was old beer, not a fresh ferment",
+          "text": "Crick said the porter had been brewed nine or ten months earlier. He specifically distinguished this old-beer vat from a new-beer vat, where fermentation could generate pressure. The inquest did not establish precisely which structural failure began the collapse.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "1814 beer flood",
+              "publisher": "Ron Pattinson, Shut up about Barclay Perkins; transcription of Exeter Flying Post, 27 October 1814",
+              "url": "https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "gravity-becomes-a-battering-ram",
+      "title": "Stored liquid can break a wall without exploding.",
+      "objects": [
+        {
+          "type": "experiment",
+          "id": "vat-to-cellar-lab",
+          "title": "Try the vat-to-cellar experiment",
+          "file": "diagrams/london-beer-flood-vat-to-cellar.html",
+          "description": "Explore how liquid escaping a brewery vat can travel into streets and cellars in this simplified model of the flood."
+        },
+        {
+          "type": "fact",
+          "id": "pressure-with-depth",
+          "title": "The bottom of a full vat bears the greatest push",
+          "text": "In a resting liquid, pressure grows with depth: pressure = density × gravity × depth. At roughly 6.7 metres of liquid, water-like beer would exert about 65 kilopascals of gauge pressure at the bottom. Weakened containment must resist that outward load across a huge area. This is a physics illustration, not a proven reconstruction of the vat's precise failure.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "11.4 Variation of Pressure with Depth in a Fluid",
+              "publisher": "OpenStax, College Physics 2e",
+              "url": "https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid"
+            },
+            {
+              "title": "1814 beer flood",
+              "publisher": "Ron Pattinson, Shut up about Barclay Perkins",
+              "url": "https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "second-vat-opens",
+          "title": "One failure triggered another",
+          "text": "Crick described flying debris, broken smaller vessels and a neighbouring huge vat whose outlet was knocked off. Workers saved some of that second vat's contents, but much of it escaped. The fall also destroyed a thick brewery wall, letting the liquid reach homes behind it.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "1814 beer flood",
+              "publisher": "Ron Pattinson, Shut up about Barclay Perkins; transcription of Exeter Flying Post, 27 October 1814",
+              "url": "https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-streets-had-cellar-homes",
+      "title": "The neighbourhood turned a spill into a trap.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "horwood-brewery-map",
+          "title": "Where the beer went",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Horwood%27s_Plan_of_London_%281792-1799%29%3B_Horse_Shoe_Brewery.jpg",
+            "alt": "Richard Horwood's late-eighteenth-century street plan showing Horse Shoe Brewery and narrow streets around Bainbridge Street and New Street.",
+            "credit": "Richard Horwood, plan of London (1792–1799), public domain; later crop may be applied",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Horwood%27s_Plan_of_London_(1792-1799)%3B_Horse_Shoe_Brewery.jpg"
+          },
+          "caption": "This is an actual pre-disaster street plan, not a map of measured flood depth. The brewery adjoined tightly packed streets and homes."
+        },
+        {
+          "type": "fact",
+          "id": "cellars-were-inhabited",
+          "title": "A basement was somebody's living room",
+          "text": "The flood entered the overcrowded St Giles rookery, where people lived in cellars beneath street level. A contemporary account says the ground was low and flat, so beer spread into inhabited basements instead of quickly draining away. Collapsing walls and timber added to the danger.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile; reproduces a contemporary journal account",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "people-climbed-furniture",
+          "title": "Furniture became an escape route",
+          "text": "The contemporary account describes residents climbing onto their highest furniture to stay above the liquid. In one first-floor room, a mother was washed out of a window while her young daughter was carried through a partition by the torrent. Being upstairs was not always enough.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile; contemporary journal transcription",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-eight-people-behind-the-headline",
+      "title": "The inquest recorded eight individual lives.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-victims-named",
+          "title": "Their names survived the wreckage",
+          "text": "Ann Saville, Eleanor Cooper, Elizabeth Smith, Sarah Bates, Catharine Butler, Mary Mulvey, Thomas Murry and Hannah Banfield were the eight recorded victims. Among them were children aged three and four. The event was an industrial disaster in a poor residential district, not a drunken spectacle.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "rescuers-listened",
+          "title": "Crowds reportedly quietened to hear survivors",
+          "text": "Contemporary newspapers described rescuers searching the damaged houses and keeping spectators quiet enough to hear calls from beneath rubble. Some later accounts invented crowds fighting to drink from the streets, a picture absent from the better-supported immediate reports.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "So what REALLY happened on October 17 1814?",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2010/10/17/so-what-really-happened-on-october-17-1814/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "original-newspaper-evidence",
+          "title": "Great flood of London – eight people killed as wave of beer swept through London's streets",
+          "publisher": "British Newspaper Archive",
+          "url": "https://www.britishnewspaperarchive.com/blog/great-flood-of-london-eight-people-killed-as-wave-of-beer-swept-through-londons-streets",
+          "description": "The archive traces the event through 1814 news reporting, including the Morning Chronicle's description of a witness suddenly knee-deep in beer while the roof and a wall lay ruined."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "why-vats-grew-enormous",
+      "title": "Londoners wanted beer aged on an enormous scale.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "porter-needed-months",
+          "title": "A fashionable flavour came from waiting",
+          "text": "Porter was a dark, hoppy London beer often matured in wooden vats for months before sale. Large vessels let brewers hold vast batches of ageing stock. The failed vat's nine-to-ten-month-old beer was part of a deliberate production method, not an unusually forgotten batch.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "So what REALLY happened on October 17 1814?",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2010/10/17/so-what-really-happened-on-october-17-1814/"
+            },
+            {
+              "title": "Powering the porter brewery",
+              "publisher": "International Journal for the History of Engineering & Technology, via ScienceDirect",
+              "url": "https://www.sciencedirect.com/science/article/abs/pii/S016093270500044X"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "later-great-vats",
+          "title": "These vats dwarfed their visitors",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/The_great_vats%2C_1873_-_Bpt6k10470488_f302.jpg",
+            "alt": "Gustave Dore's nineteenth-century engraving of towering wooden brewery vats and small human figures beside them.",
+            "credit": "Gustave Doré, The Great Vats, from London: A Pilgrimage (1872–1873), public domain; may be cropped for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_great_vats,_1873_-_Bpt6k10470488_f302.jpg"
+          },
+          "caption": "A later image of large London brewery vats. This is not an illustration of the 1814 accident or necessarily Meux's brewery."
+        },
+        {
+          "type": "fact",
+          "id": "the-geometrical-advantage",
+          "title": "Bigger vats have less exposed area per pint",
+          "text": "When a vessel's dimensions double, its volume grows eightfold but its surface area grows only fourfold. Large ageing vats can therefore reduce exposed surface relative to beer volume, helping limit unwanted air contact while lowering storage cost per pint. The same scaling creates enormous concentrated hazards.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-first-beer-factories",
+      "title": "A nineteenth-century brewery was a factory.",
+      "objects": [
+        {
+          "type": "image",
+          "id": "porter-brewery-engineering-plan",
+          "title": "A brewery mapped like a machine",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/A_labelled_plan_and_two_sections_through_a_London_porter_bre_Wellcome_V0019361.jpg",
+            "alt": "Engraved technical plan and sectional drawings of a multi-level London porter brewery, with vessel and machinery labels.",
+            "credit": "J. Moffat after J. Farey, c. 1830; Wellcome Collection, CC BY 4.0; may be cropped and darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_labelled_plan_and_two_sections_through_a_London_porter_bre_Wellcome_V0019361.jpg"
+          },
+          "caption": "A circa-1830 technical engraving, not a floor plan of Horse Shoe Brewery. It shows how beer production became a sequence of connected industrial processes."
+        },
+        {
+          "type": "fact",
+          "id": "steam-powered-porter",
+          "title": "Steam moved and stirred the beer",
+          "text": "A visitor to Meux's described a steam engine stirring the mash and raising wort to higher floors, before pipes carried it onward. Porter production increasingly resembled industrial manufacturing: pumps, heat, storage, machinery and thousands of barrels moving through one complex.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "So what REALLY happened on October 17 1814?",
+              "publisher": "Martyn Cornell, Zythophile; quotes an early visitor's account of Meux's brewery",
+              "url": "https://zythophile.wordpress.com/2010/10/17/so-what-really-happened-on-october-17-1814/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "breweries-outgrew-workshops",
+          "title": "Some breweries made hundreds of thousands of barrels a year",
+          "text": "In the 1810s and 1820s London's leading porter breweries surpassed 200,000 barrels of annual output. Their huge vessels weren't isolated eccentricities: concentration, capital investment and economies of scale were reshaping the brewing industry.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Powering the porter brewery",
+              "publisher": "International Journal for the History of Engineering & Technology, via ScienceDirect",
+              "url": "https://www.sciencedirect.com/science/article/abs/pii/S016093270500044X"
+            },
+            {
+              "title": "The history of London brewing: the rise of the industrial porter brewer",
+              "publisher": "Greater London Industrial Archaeology Society",
+              "url": "https://www.glias.org.uk/journals/14-d.html"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "how-disaster-became-a-drinking-story",
+      "title": "The most repeated detail may never have happened.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "drinking-myth",
+          "title": "The alleged street-drinking frenzy is poorly supported",
+          "text": "Stories spread that crowds drank the spilled porter, obstructed rescuers or even died of alcohol poisoning. Historian Martyn Cornell found those lurid scenes missing from London newspapers and the inquest. A provincial paper did repeat a drinking claim, so the fairest conclusion is uncorroborated, not impossible.",
+          "evidence": "disputed",
+          "sources": [
+            {
+              "title": "So what REALLY happened on October 17 1814?",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2010/10/17/so-what-really-happened-on-october-17-1814/"
+            },
+            {
+              "title": "Lost in a sea of beer",
+              "publisher": "The Irish Times",
+              "url": "https://www.irishtimes.com/culture/heritage/lost-in-a-sea-of-beer-1.1966402"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "eight-not-nine",
+          "title": "Even the death toll gets embellished",
+          "text": "Modern accounts sometimes list a ninth victim said to have died from drinking beer. The contemporary inquest, London Museum's account and specialist historical research document eight victims. Treat the alleged ninth death as unverified rather than adding it to the official toll.",
+          "evidence": "disputed",
+          "sources": [
+            {
+              "title": "A pint-sized guide to London's historic breweries",
+              "publisher": "London Museum",
+              "url": "https://www.londonmuseum.org.uk/collections/london-stories/pint-sized-guide-londons-historic-breweries/"
+            },
+            {
+              "title": "Remembering the victims of the Great London Beer Flood, 200 years ago today",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2014/10/17/remembering-the-victims-of-the-great-london-beer-flood-200-years-ago-today/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "a-verdict-and-a-vanished-brewery",
+      "title": "The brewery recovered. Its neighbours could not.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "jury-found-misfortune",
+          "title": "The inquest did not hold the owners responsible",
+          "text": "The coroner's jury ruled that the victims had died accidentally and by misfortune. The brewery was not made to compensate the bereaved families. That outcome exposes an early industrial city's imbalance: huge commercial operations were embedded in poor, crowded housing.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "London Beer Flood of 1814",
+              "publisher": "The Social Historian; reproduces inquest testimony and verdict",
+              "url": "https://www.thesocialhistorian.com/london-beer-flood-1814/"
+            },
+            {
+              "title": "London's Forgotten Disasters: The Great Beer Flood",
+              "publisher": "Londonist",
+              "url": "https://londonist.com/london/history/london-s-forgotten-disasters-the-great-beer-flood"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "tax-refund",
+          "title": "The lost beer brought the brewer a tax refund",
+          "text": "The company petitioned successfully for relief from excise duty already paid on destroyed beer, often estimated at around £7,000. This was a tax adjustment on the lost stock, not a payout to victims. Meux resumed brewing after the disaster.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "So what REALLY happened on October 17 1814?",
+              "publisher": "Martyn Cornell, Zythophile",
+              "url": "https://zythophile.wordpress.com/2010/10/17/so-what-really-happened-on-october-17-1814/"
+            },
+            {
+              "title": "London's Forgotten Disasters: The Great Beer Flood",
+              "publisher": "Londonist",
+              "url": "https://londonist.com/london/history/london-s-forgotten-disasters-the-great-beer-flood"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "what-stands-there-now",
+          "title": "A pint-sized guide to London's historic breweries",
+          "publisher": "London Museum",
+          "url": "https://www.londonmuseum.org.uk/collections/london-stories/pint-sized-guide-londons-historic-breweries/",
+          "description": "London Museum records that the Horse Shoe Brewery continued working for more than a century after the flood. Its Tottenham Court Road site was demolished in 1922, with production moving to Nine Elms in Wandsworth."
+        }
+      ],
+      "final": true
+    }
+  ]
+}

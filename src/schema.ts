@@ -2,11 +2,12 @@ import { z } from 'zod';
 import { TOPIC_CATEGORIES } from './categories.ts';
 const text = z.string().trim().min(1);
 const url = z.string().url().refine(v => v.startsWith('https://'), 'Use an HTTPS URL');
-const image = z.object({url, alt: text, credit: text, sourceUrl: url}).strict();
+const image = z.object({url:z.union([url,z.string().regex(/^diagrams\/[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/)]), alt: text, credit: text, sourceUrl: url}).strict();
 const source = z.object({title:text,publisher:text,url}).strict();
 const evidence = z.enum(['documented','experiment','hypothesis','disputed']);
 const objectId = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 export const discoveryObjectSchema = z.discriminatedUnion('type', [
+  z.object({type:z.literal('experiment'),id:objectId,title:text,file:z.string().regex(/^diagrams\/[a-z0-9]+(?:-[a-z0-9]+)*\.html$/),description:text}).strict(),
   z.object({type:z.literal('fact'),id:objectId,title:text,text,evidence,sources:z.array(source).min(1)}).strict(),
   z.object({type:z.literal('image'),id:objectId,title:text,image,caption:text}).strict(),
   z.object({type:z.literal('video'),id:objectId,title:text,channel:text,youtubeId:z.string().regex(/^[\w-]{11}$/),note:text}).strict(),

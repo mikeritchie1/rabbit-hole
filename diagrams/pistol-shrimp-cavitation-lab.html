@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Pistol Shrimp | Cavitation Lab</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#ecf8fc;background:#061520;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 73% -15%,#174862 0%,#092331 42%,#061520 79%);min-height:100vh}
+    button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fbd080;outline-offset:3px}
+    .shell{max-width:1320px;margin:auto;padding:clamp(14px,3vw,34px)}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.19em;color:#76d9e9;text-transform:uppercase}
+    h1{font-size:clamp(25px,3.9vw,42px);letter-spacing:-.045em;line-height:1.12;margin:9px 0 7px}header p{max-width:800px;margin:0 0 19px;color:#acc7d4;font-size:14px;line-height:1.55}
+    .layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:16px;align-items:start}
+    .panel{border:1px solid #2b5266;border-radius:18px;background:rgba(8,29,41,.85);box-shadow:0 10px 35px #00131b44;overflow:hidden}
+    .visualHeader{padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0b2938;border-bottom:1px solid #244a5b}
+    .visualHeader strong{font-size:13px}.pill{font-size:11px;border:1px solid #376477;padding:5px 9px;border-radius:30px;color:#a7dce6}
+    .scene{position:relative;background:linear-gradient(#0b3448,#073044 58%,#0b2d3a);aspect-ratio:1.85;min-height:265px}
+    svg{display:block;width:100%;height:100%}.overlayLabel{font-size:14px;letter-spacing:.1em;fill:#b0dce8;font-weight:800}
+    .timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:11px;border-top:1px solid #244a5b}
+    .step{background:#0c2937;color:#92b7c4;border:1px solid #254b5e;padding:9px 4px;border-radius:8px;font-size:11px;text-align:center;transition:background .15s}
+    .step strong{display:block;color:#e2f7f8;font-size:12px;margin-bottom:2px}.step[aria-pressed="true"]{border-color:#72dbe8;background:#164656;color:#d2f4f6}
+    .playbar{padding:6px 16px 16px;display:flex;gap:9px;align-items:center}.play{border:none;border-radius:9px;background:#75dbe4;color:#062735;padding:10px 17px;font-weight:800;white-space:nowrap}
+    .secondary{border:1px solid #426171;color:#d9ecf4;background:#153241;border-radius:9px;padding:10px 12px}
+    #scrub{width:100%;accent-color:#79dce8}
+    .controls{padding:18px}.controls h2{font-size:17px;margin:1px 0 16px;letter-spacing:-.015em}
+    .control{border-top:1px solid #244658;padding:16px 0 12px}.control:first-of-type{border-top:0;padding-top:1px}
+    .control label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:750}
+    output{color:#7ce4ee;font-variant-numeric:tabular-nums;white-space:nowrap}.control input{width:100%;accent-color:#6ed8e5;margin:13px 0 6px;cursor:pointer}
+    .hint{color:#92acba;font-size:12px;line-height:1.5;margin:0}
+    .reading{margin-top:13px;padding:13px 15px;border:1px solid #336376;background:#123b4a;border-radius:11px}.reading .tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;color:#fbd68d;text-transform:uppercase}
+    .reading strong{display:block;font-size:16px;line-height:1.25;margin:4px 0 6px}.reading p{font-size:12px;line-height:1.5;color:#c0d9e4;margin:0}
+    .caption{padding:12px 16px 15px;border-top:1px solid #244658;background:#081e2a;color:#b8d2da;font-size:12px;line-height:1.6;min-height:88px}
+    .caption b{display:block;color:#ffdb9b;font-size:12px;letter-spacing:.02em}
+    footer{margin-top:15px;font-size:12px;line-height:1.6;color:#a3bfcb;max-width:1120px}
+    footer a{color:#89e5ed;text-underline-offset:3px}
+    .sources{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:9px}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.scene{min-height:220px}.controls{padding:14px}.control{padding:10px 0}}
+    @media(max-width:450px){.shell{padding:11px}.playbar{flex-wrap:wrap}.playbar #scrub{order:3;flex-basis:100%}.step{font-size:10px}.step strong{font-size:11px}.timeline{padding:7px}.scene{min-height:200px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="eyebrow">Rabbit Hole · Interactive experiment 01</div>
+    <h1>How does a shrimp fire a bubble?</h1>
+    <p>Change the jet, the surrounding water pressure, and the target distance. Then fire a slowed-down, simplified snap to see the difference between the <strong>water jet</strong>, the <strong>vapour cavity</strong>, and the <strong>shock wave</strong>.</p>
+  </header>
+  <main class="layout">
+    <section class="panel" aria-label="Illustrated cavitation sequence">
+      <div class="visualHeader"><strong>Inside the water · side-view schematic</strong><span class="pill" id="statePill" aria-live="polite">READY</span></div>
+      <div class="scene">
+        <svg id="stage" viewBox="0 0 1000 540" role="img" aria-label="Schematic snapping shrimp claw on the left ejecting water toward a small fish at right, with animated bubble and pressure wave">
+          <defs>
+            <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#103d55"/><stop offset="1" stop-color="#082737"/></linearGradient>
+            <linearGradient id="carapace" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc27e"/><stop offset=".55" stop-color="#ee885e"/><stop offset="1" stop-color="#a8474b"/></linearGradient>
+            <radialGradient id="vapour"><stop stop-color="#e1ffff" stop-opacity=".35"/><stop offset=".7" stop-color="#b4f4ff" stop-opacity=".12"/><stop offset="1" stop-color="#9defff" stop-opacity=".8"/></radialGradient>
+            <radialGradient id="flash"><stop stop-color="#fffce8"/><stop offset=".2" stop-color="#fff4a3" stop-opacity=".9"/><stop offset=".6" stop-color="#73edff" stop-opacity=".42"/><stop offset="1" stop-color="#73edff" stop-opacity="0"/></radialGradient>
+            <filter id="blur"><feGaussianBlur stdDeviation="11"/></filter>
+          </defs>
+          <rect width="1000" height="540" fill="url(#ocean)"/>
+          <g opacity=".28" fill="#7cbece"><circle cx="125" cy="90" r="3"/><circle cx="352" cy="123" r="2"/><circle cx="602" cy="81" r="2"/><circle cx="773" cy="152" r="3"/><circle cx="924" cy="80" r="3"/><circle cx="520" cy="413" r="2"/><circle cx="90" cy="440" r="2"/><circle cx="950" cy="391" r="2"/><circle cx="307" cy="69" r="2"/></g>
+          <path d="M0 482 Q135 465 260 478T530 474T810 482T1000 474V540H0Z" fill="#143a43"/>
+          <g opacity=".3" stroke="#6cafa0" stroke-width="4" stroke-linecap="round"><path d="M60 487q-22-32-15-55m22 55q12-27 28-40M158 485q-4-22 13-48M896 484q-13-34-5-47M928 482q12-20 27-32"/></g>
+          <g id="shrimp" transform="translate(0 -4)">
+            <path d="M166 332 Q106 294 69 322Q35 348 53 377Q101 362 161 361" fill="#e67f5f" stroke="#843c48" stroke-width="5"/>
+            <path d="M67 327 L29 302 L50 349 L24 380 L75 363" fill="#dd6c62" stroke="#883c4d" stroke-width="4"/>
+            <ellipse cx="171" cy="338" rx="97" ry="58" fill="url(#carapace)" stroke="#8c4550" stroke-width="5"/>
+            <path d="M109 287Q130 346 105 385M144 282Q169 348 149 394M188 283Q212 349 197 384" fill="none" stroke="#b95753" stroke-width="10" opacity=".6"/>
+            <path d="M171 385l-24 31m50-30-4 30m31-46 19 33m-123-8-27 22" stroke="#f28b62" stroke-width="8" stroke-linecap="round"/>
+            <path d="M222 312Q251 267 291 293l-2 47-61 18Z" fill="#f6a370" stroke="#954653" stroke-width="5"/>
+            <circle cx="223" cy="293" r="14" fill="#24303b" stroke="#ffc48b" stroke-width="5"/><circle cx="219" cy="288" r="4" fill="white"/>
+            <path d="M232 286q27-66 79-70M229 282q52-41 103-36" stroke="#f6aa7c" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M270 313Q298 272 353 291Q395 310 383 359Q363 390 315 370Q288 362 270 341Z" fill="url(#carapace)" stroke="#853c4b" stroke-width="7"/>
+            <path d="M339 309Q373 315 382 342Q356 342 335 334Z" fill="#813747" opacity=".85"/>
+            <g id="jaw" transform="rotate(-35 325 301)"><path d="M312 296Q351 241 410 272Q424 289 404 308Q358 294 344 317L329 317Z" fill="#ffbb7a" stroke="#933f4b" stroke-width="6"/><path d="M380 283L370 308" stroke="#a95756" stroke-width="7"/></g>
+            <circle cx="325" cy="301" r="8" fill="#963d4c"/>
+          </g>
+          <g id="jet" opacity="0" stroke="#77e6f7" stroke-linecap="round"><path d="M381 330Q451 316 541 317" fill="none" stroke-width="13" opacity=".2"/><path d="M384 327L541 312" stroke-width="4"/><path d="M398 342L502 334" stroke-width="2"/><path d="M406 306L499 300" stroke-width="2"/></g>
+          <g id="swirl" opacity="0" fill="none" stroke="#9befff" stroke-width="4"><ellipse cx="533" cy="313" rx="51" ry="32" stroke-dasharray="15 10"/><path d="M480 318q20-57 70-33M556 299q25 28-5 52" stroke-width="3"/></g>
+          <circle id="bubble" cx="537" cy="316" r="0" fill="url(#vapour)" stroke="#d7ffff" stroke-width="3" opacity="0"/>
+          <circle id="light" cx="537" cy="316" r="68" fill="url(#flash)" opacity="0"/>
+          <circle id="shock" cx="537" cy="316" r="0" fill="none" stroke="#b5f9ff" stroke-width="8" opacity="0"/>
+          <circle id="shock2" cx="537" cy="316" r="0" fill="none" stroke="#71e3ff" stroke-width="2" opacity="0"/>
+          <g id="target" transform="translate(0 0)">
+            <ellipse id="targetGlow" cx="0" cy="0" rx="80" ry="54" fill="#dff1ac" opacity="0" filter="url(#blur)"/>
+            <path d="M-36 0L-94-37L-86 0L-94 38Z" fill="#69bdbf" stroke="#388ba2" stroke-width="5"/>
+            <ellipse cx="0" cy="0" rx="54" ry="34" fill="#a5e4db" stroke="#388b9b" stroke-width="5"/>
+            <path d="M-12-26L15-48L31-23" fill="#67adaf" stroke="#388b9b" stroke-width="3"/>
+            <circle cx="30" cy="-7" r="5" fill="#123d4d"/><path d="M36 19q9-7 13-16" stroke="#2c7a87" stroke-width="3" fill="none"/>
+          </g>
+          <g font-family="Inter,system-ui,sans-serif"><text x="96" y="465" class="overlayLabel">SNAPPING CLAW</text><text x="484" y="240" class="overlayLabel" id="centreLabel">VAPOUR CAVITY</text><text x="737" y="412" class="overlayLabel">SMALL PREY</text></g>
+        </svg>
+      </div>
+      <div class="timeline" aria-label="Choose stage of a snap">
+        <button class="step" type="button" data-step="0" aria-pressed="true"><strong>01 · Jet</strong>Plunger closes</button>
+        <button class="step" type="button" data-step="1" aria-pressed="false"><strong>02 · Bubble</strong>Pressure falls</button>
+        <button class="step" type="button" data-step="2" aria-pressed="false"><strong>03 · Collapse</strong>Vapour crushed</button>
+        <button class="step" type="button" data-step="3" aria-pressed="false"><strong>04 · Shock</strong>Wave spreads</button>
+      </div>
+      <div class="playbar"><button type="button" class="play" id="fire">▶ Fire snap</button><button type="button" class="secondary" id="reset">Reset</button><input aria-label="Scrub through snap" title="Scrub through the slowed-down snap" id="scrub" type="range" min="0" max="100" value="0"></div>
+      <div class="caption" aria-live="polite"><b id="stageTitle">01 · A jet, not a thrown bubble</b><span id="stageDetail">Press Fire snap or choose a stage. The claw's plunger pushes water into a rapid jet.</span></div>
+    </section>
+    <aside class="panel controls">
+      <h2>Change the conditions</h2>
+      <div class="control"><label for="speed">Water jet speed <output id="speedValue">25 m/s</output></label><input type="range" id="speed" min="12" max="35" step="1" value="25"><p class="hint">Faster flow can lower local pressure and make cavitation more likely. Around 25 m/s was reported in one laboratory study.</p></div>
+      <div class="control"><label for="pressure">Surrounding pressure <output id="pressureValue">1.0 bar</output></label><input type="range" id="pressure" min="1" max="3" step="0.1" value="1"><p class="hint">Greater ambient pressure makes forming a vapour cavity harder. This slider is a simplified stand-in for pressure changes with depth.</p></div>
+      <div class="control"><label for="distance">Distance to prey <output id="distanceValue">6 cm</output></label><input type="range" id="distance" min="2" max="12" step="1" value="6"><p class="hint">Moves the target. Pressure pulses spread outward and weaken with distance; this does not calculate injury or the prey's chances.</p></div>
+      <div class="reading"><span class="tag">Illustrative model</span><strong id="verdict">A vapour bubble forms</strong><p id="explain">With this jet and pressure setting, the model shows a vortex cavity that collapses and emits a pressure pulse.</p></div>
+    </aside>
+  </main>
+  <footer>
+    <strong>Important:</strong> This is a teaching animation, not a measured shrimp shot, calibrated flow solver, temperature estimate or prey-damage prediction. The cavitation threshold, visual sizes, timing and pressure-wave brightness are deliberately illustrative. In real water, claw shape, vortex geometry, dissolved gas and ambient conditions matter. The flash shown here is exaggerated: real shrimpoluminescence is extremely faint and fleeting.
+    <div class="sources">Research: <a href="https://pubmed.ncbi.nlm.nih.gov/11000111/" target="_blank" rel="noopener">Versluis et al. (2000)</a><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5656667/" target="_blank" rel="noopener">Koukouvinis et al. (2017)</a><a href="https://pubmed.ncbi.nlm.nih.gov/11586346/" target="_blank" rel="noopener">Lohse et al. (2001)</a></div>
+  </footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const speed=$('speed'),pressure=$('pressure'),distance=$('distance'),scrub=$('scrub');
+  const fire=$('fire'),reset=$('reset');
+  const stages=[
+    ['01 · A jet, not a thrown bubble','The upper claw snaps shut. Its plunger displaces water, which shoots through a narrow channel.'],
+    ['02 · A pocket of vapour forms','The high-speed jet rolls into a vortex. If the local pressure drops far enough, water briefly vaporizes inside it.'],
+    ['03 · The cavity implodes','Surrounding water crushes the vapour pocket. The faint light flash is a by-product of extreme, brief energy focusing.'],
+    ['04 · The pressure wave spreads','The implosion sends a short pressure pulse outward. The moving ring is a diagram of the wave, not a bubble flying into the fish.']
+  ];
+  let progress=0,playing=false,frame=0,previous=0;
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const set=(id,attribute,value)=>$(id).setAttribute(attribute,String(value));
+  const phaseAt=t=>t<.25?0:t<.57?1:t<.73?2:3;
+  function details(){
+    const v=Number(speed.value),p=Number(pressure.value),d=Number(distance.value);
+    const score=v*v/(400*p); // deliberately uncalibrated explanatory threshold
+    const strength=clamp((score-.55)/1.4,0,1);
+    return {v,p,d,score,strength,cavitates:score>.66,targetX:680+d*20};
+  }
+  function draw(){
+    const x=details(),t=progress,phase=phaseAt(t);
+    $('speedValue').textContent=x.v+' m/s';$('pressureValue').textContent=x.p.toFixed(1)+' bar';$('distanceValue').textContent=x.d+' cm';
+    $('verdict').textContent=x.cavitates?'A vapour cavity forms':'No vapour cavity in this model';
+    $('explain').textContent=x.cavitates?'Here the model shows enough local pressure drop for cavitation. More speed tends to strengthen it; more ambient pressure suppresses it.':'Here the illustrative pressure threshold is not crossed. The claw can still jet water, but the bubble-collapse shock and flash are absent.';
+    set('target','transform','translate('+x.targetX+' 316)');
+    set('jaw','transform','rotate('+(-35*(1-clamp(t/.23,0,1))).toFixed(2)+' 325 301)');
+    set('jet','opacity',t>.07&&t<.65?clamp((t-.07)*10,0,.9):.05);
+    set('swirl','opacity',x.cavitates&&t>.27&&t<.66?.25+.62*x.strength:0);
+    let r=0;
+    if(x.cavitates&&t>=.27&&t<.57)r=(12+34*x.strength)*clamp((t-.27)/.30,0,1);
+    else if(x.cavitates&&t>=.57&&t<.73)r=(12+34*x.strength)*(1-clamp((t-.57)/.16,0,1));
+    set('bubble','r',r);set('bubble','opacity',r>1?.9:0);
+    const flash=x.cavitates?Math.max(0,1-Math.abs(t-.724)/.035):0;
+    set('light','opacity',flash*.96);
+    let radius=0,alpha=0;
+    if(x.cavitates&&t>.73){const f=clamp((t-.73)/.27,0,1);radius=40+f*(x.targetX-510);alpha=(1-f*.7)*x.strength;}
+    set('shock','r',radius);set('shock','opacity',alpha.toFixed(2));set('shock','stroke-width',Math.max(1,8-radius/140));
+    set('shock2','r',radius*.88);set('shock2','opacity',(alpha*.52).toFixed(2));
+    const preyHit=x.cavitates?Math.max(0,1-Math.abs(radius-(x.targetX-537))/48):0;
+    set('targetGlow','opacity',(preyHit*.35*x.strength).toFixed(2));
+    $('centreLabel').textContent=phase===0?'WATER JET':phase===1?'LOW PRESSURE':phase===2?'BUBBLE COLLAPSE':'PRESSURE WAVE';
+    $('statePill').textContent=playing?'SLOW MOTION':phase===3&&t===1?'SNAP COMPLETE':'PAUSED / EXPLORE';
+    $('stageTitle').textContent=stages[phase][0];
+    $('stageDetail').textContent=(!x.cavitates&&phase>=1)?'At these settings the teaching model does not form a vapour cavity; there is no collapse flash or shock wave. Try raising jet speed or lowering surrounding pressure.':stages[phase][1];
+    document.querySelectorAll('.step').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===phase)));
+    scrub.value=String(Math.round(t*100));fire.textContent=playing?'❚❚ Pause':'▶ Fire snap';
+  }
+  function stop(){playing=false;cancelAnimationFrame(frame);previous=0;}
+  function tick(now){if(!playing)return;if(!previous)previous=now;progress=clamp(progress+(now-previous)/2950,0,1);previous=now;draw();if(progress>=1){stop();draw();}else frame=requestAnimationFrame(tick);}
+  fire.addEventListener('click',()=>{if(playing){stop();draw();return;}if(progress>=1)progress=0;playing=true;previous=0;frame=requestAnimationFrame(tick);draw();});
+  reset.addEventListener('click',()=>{stop();speed.value='25';pressure.value='1';distance.value='6';progress=0;draw();});
+  [speed,pressure,distance].forEach(input=>input.addEventListener('input',draw));
+  scrub.addEventListener('input',()=>{stop();progress=Number(scrub.value)/100;draw();});
+  document.querySelectorAll('.step').forEach((button,i)=>button.addEventListener('click',()=>{stop();progress=[.16,.44,.71,.87][i];draw();}));
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelector('.play').setAttribute('title','Animation can also be explored frame by frame with the stage buttons or scrubber');}
+  draw();
+})();
+</script>
+</body>
+</html>

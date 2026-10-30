@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 2,
+  "id": "lakes-at-the-bottom-of-the-ocean",
+  "title": "Lakes with shorelines exist on the ocean floor.",
+  "category": "Mind-bending",
+  "hook": "Cross the invisible waterline and the chemistry can turn deadly—yet life crowds the shore.",
+  "image": {
+    "url": "https://oceanexplorer.noaa.gov/wp-content/uploads/2020/07/20200720-hires.jpg",
+    "alt": "A dark brine pool on the Gulf of Mexico seafloor with a visible, curving boundary against surrounding sediment.",
+    "credit": "NOAA Ocean Exploration, Gulf of Mexico 2017; U.S. government public-domain imagery; may be cropped or darkened for display",
+    "sourceUrl": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200720/"
+  },
+  "levels": [
+    {
+      "id": "a-lake-inside-the-sea",
+      "title": "An underwater lake has a visible shore.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-waterline-is-real",
+          "title": "You are looking at water touching water",
+          "text": "Deep in the Gulf of Mexico, remotely operated vehicles encounter dark pools with distinct edges. These are not holes filled with oil: they contain water so much saltier and denser than ordinary seawater that it settles into depressions. The boundary can look like the surface of a lake.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Brine Pool",
+              "publisher": "NOAA Ocean Exploration",
+              "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200720/"
+            },
+            {
+              "title": "Eerie Underwater Lake",
+              "publisher": "Smithsonian Ocean",
+              "url": "https://ocean.si.edu/ecosystems/deep-sea/eerie-underwater-lake"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "a-real-brine-shore",
+          "title": "The shore filmed by Deep Discoverer",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/2018_Gulf_of_Mexico_Brine_Pool.jpg",
+            "alt": "ROV camera view across a small dark brine pool on a sloping, sediment-covered seabed.",
+            "credit": "NOAA Office of Ocean Exploration and Research, 19 April 2018; public domain; may be cropped or darkened for display",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:2018_Gulf_of_Mexico_Brine_Pool.jpg"
+          },
+          "caption": "At 1,067 metres depth in 2018, ROV Deep Discoverer recorded this particular pool. Its measured diameter was about 1.2 metres; not every pool is vast."
+        },
+        {
+          "type": "video",
+          "id": "nautilus-brine-footage",
+          "title": "Brine Pool - 2015 | Nautilus Live (Remastered!)",
+          "channel": "EVNautilus",
+          "youtubeId": "hP6oX3rWBhA",
+          "note": "Real ROV Hercules footage from a 2015 Gulf of Mexico dive, remastered in 2023. Listen for the scientists' reactions to the apparent shoreline."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "why-the-waters-separate",
+      "title": "Salt creates a second layer of ocean.",
+      "objects": [
+        {
+          "type": "experiment",
+          "id": "density-lab",
+          "title": "Try the underwater lake density lab",
+          "file": "diagrams/lakes-at-the-bottom-of-the-ocean-density-lab.html",
+          "description": "Explore how differences in water density form an underwater lake in this simplified interactive model."
+        },
+        {
+          "type": "fact",
+          "id": "salt-is-extra-mass",
+          "title": "Density, not a membrane, makes the surface",
+          "text": "Dissolved salts add mass to water. At comparable temperatures and pressures, sufficiently salty brine is denser than the seawater around it, so it sinks and collects at the bottom. The transition is called a halocline—a steep change in salinity. Light bends and scatters differently through it, revealing a shimmering boundary.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Brine Pool",
+              "publisher": "NOAA Ocean Exploration",
+              "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200720/"
+            },
+            {
+              "title": "Eerie Underwater Lake",
+              "publisher": "Smithsonian Ocean",
+              "url": "https://ocean.si.edu/ecosystems/deep-sea/eerie-underwater-lake"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "not-a-perfect-seal",
+          "title": "The boundary can ripple—and brine can overflow",
+          "text": "The two fluids can mix slowly or when disturbed; the interface is not a skin or a wall. Because the brine remains heavy, it can also spill downslope like a river or waterfall. NOAA documented the stained sediment trail of one such brine waterfall in the Gulf of Mexico in 2018.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Brine Waterfall",
+              "publisher": "NOAA Ocean Exploration",
+              "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20201002/"
+            },
+            {
+              "title": "Mussels",
+              "publisher": "NOAA Ocean Exploration",
+              "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20211002/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "a-sea-that-dried-up",
+      "title": "The source is an ancient ocean buried underground.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "jurassic-salt",
+          "title": "A Jurassic salt layer is still feeding modern pools",
+          "text": "About 200 million years ago, evaporation left enormous salt deposits in the region that became the Gulf of Mexico. Later sediments buried the salt. Over geological time the salt shifted into rising structures called diapirs, deforming the rocks around it. Seawater traveling down cracks can dissolve this buried salt and make concentrated brine.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Deep-Marine Brine Seeps Stimulate Microbial Nitrogen Cycling: Implications for the Formation of Sediment-Hosted Ore Deposits",
+              "publisher": "Stüeken et al., Journal of Geophysical Research: Biogeosciences, 2024",
+              "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JG008189"
+            },
+            {
+              "title": "Café Methane",
+              "publisher": "NASA Astrobiology",
+              "url": "https://astrobiology.nasa.gov/news/cafe-methane/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "rising-through-faults",
+          "title": "The salty liquid comes back up through faults",
+          "text": "Fluid moving through fractures can carry newly dissolved salt toward the seabed, where the dense liquid flows downhill and accumulates. Researchers have mapped much larger deposits too: Orca Basin in the Gulf contains a brine layer roughly 200 metres deep over an area of hundreds of square kilometres.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Deep-Marine Brine Seeps Stimulate Microbial Nitrogen Cycling: Implications for the Formation of Sediment-Hosted Ore Deposits",
+              "publisher": "Stüeken et al., Journal of Geophysical Research: Biogeosciences, 2024",
+              "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JG008189"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "the-brine-waterfall",
+          "title": "NOAA found a waterfall made of denser water",
+          "publisher": "NOAA Ocean Exploration",
+          "url": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20201002/",
+          "description": "On a 2018 dive, the ROV found dark, stained streaks descending a tan seabed slope into a small brine pool. The streaks traced a path where denser brine had flowed downhill."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-lethal-waterline",
+      "title": "The pretty shoreline can be a chemical trap.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "oxygen-vanishes",
+          "title": "Too much salt, almost no breathable oxygen",
+          "text": "Many brine pools are nearly devoid of dissolved oxygen and can contain methane and hydrogen sulfide. Their salinity also puts severe osmotic stress on ordinary marine animals. A 1990 Gulf of Mexico study measured anoxic, methane-rich brine inside a pool, even while mussels crowded its rim. Toxicity varies among pools.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Chemosynthetic mussels at a brine-filled pockmark in the northern gulf of Mexico",
+              "publisher": "MacDonald et al., Science, 1990",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17733371/"
+            },
+            {
+              "title": "Café Methane",
+              "publisher": "NASA Astrobiology",
+              "url": "https://astrobiology.nasa.gov/news/cafe-methane/"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "id": "fish-in-brine",
+          "title": "Fish Gets Toxic Shock From Brine Pool",
+          "channel": "EVNautilus",
+          "youtubeId": "9ZYJAmAmFPw",
+          "note": "2015 dive footage shows a fish repeatedly entering the brine and reacting. The expedition could not establish why it entered; the clip alone does not prove its eventual fate."
+        },
+        {
+          "type": "fact",
+          "id": "dead-crab-lake",
+          "title": "One pool is nicknamed Dead Crab Lake",
+          "text": "Scientists studying a roughly 10-metre brine seep in the Gulf's Green Canyon area called it Dead Crab Lake after observing crabs trapped and preserved in its brine. That name describes this particular site, not a rule that every animal touching every brine pool dies instantly.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Deep-Marine Brine Seeps Stimulate Microbial Nitrogen Cycling: Implications for the Formation of Sediment-Hosted Ore Deposits",
+              "publisher": "Stüeken et al., Journal of Geophysical Research: Biogeosciences, 2024",
+              "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024JG008189"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-living-ring",
+      "title": "A ring of animals lives on the poison's edge.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "mussels-on-the-rim",
+          "title": "A 540-square-metre mussel bed surrounded one pool",
+          "text": "In 1990, researchers described a dense bed of Bathymodiolus mussels encircling a brine pool 650 metres below the Gulf of Mexico. Its brine measured 121.35 practical salinity units, compared with typical ocean water near 35. The mussels lived outside the harsh interior, where oxygenated seawater met methane-rich fluids.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Chemosynthetic mussels at a brine-filled pockmark in the northern gulf of Mexico",
+              "publisher": "MacDonald et al., Science, 1990",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17733371/"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "shoreline-mussels",
+          "title": "Living and dead mussels by a real brine seep",
+          "image": {
+            "url": "https://oceanexplorer.noaa.gov/wp-content/uploads/2021/09/20211002-hires.jpg",
+            "alt": "ROV photograph of mussels and shells clustered around rocky, pale sediment near a Gulf of Mexico brine pool.",
+            "credit": "NOAA Ocean Exploration, Gulf of Mexico 2018; U.S. government public-domain imagery; may be cropped or darkened for display",
+            "sourceUrl": "https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20211002/"
+          },
+          "caption": "NOAA's 2018 Hidalgo Basin dive recorded microbial mats, exposed rock, and live and dead mussels beside a small brine pool. This is not the 1990 study site."
+        },
+        {
+          "type": "fact",
+          "id": "bacteria-do-the-eating",
+          "title": "Their gills contain methane-powered partners",
+          "text": "These mussels host bacteria inside their gill tissues. The symbionts use methane as an energy source and make organic carbon that nourishes the animal. In darkness too deep for photosynthesis, chemical energy powers the food supply. Other seep organisms depend on sulfur-based microbes instead.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Chemosynthetic mussels at a brine-filled pockmark in the northern gulf of Mexico",
+              "publisher": "MacDonald et al., Science, 1990",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/17733371/"
+            },
+            {
+              "title": "Café Methane",
+              "publisher": "NASA Astrobiology",
+              "url": "https://astrobiology.nasa.gov/news/cafe-methane/"
+            }
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-invisible-ecosystem",
+      "title": "There is a microbial—and viral—world in the waterline.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "a-fine-line-of-life",
+          "title": "Different chemicals create neighbouring microbial habitats",
+          "text": "The brine–seawater boundary traps particles and brings chemically different fluids close together. Salt, oxygen, sulfur and metal concentrations vary sharply over short distances, so microbial communities change from the outer shore to the pool. The pool itself is inhospitable to most animals but not necessarily sterile.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Active prokaryotic and eukaryotic viral ecology across spatial scale in a deep-sea brine pool",
+              "publisher": "ISME Communications, 2024",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11252502/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "viruses-in-the-brine",
+          "title": "Researchers detected active viruses in the extreme sediments",
+          "text": "At the NEOM brine pools in the Red Sea, researchers sequenced DNA and RNA from three nearby sediment zones. They recovered 1,184 candidate prokaryotic viral genomes and found evidence of viral gene activity, including signatures of large viruses of microbial eukaryotes. This shows active viral ecology; it does not mean ordinary animals thrive in the brine.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Active prokaryotic and eukaryotic viral ecology across spatial scale in a deep-sea brine pool",
+              "publisher": "ISME Communications, 2024",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11252502/"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "three-microbial-zones",
+          "title": "The shoreline was sampled as three distinct zones",
+          "publisher": "ISME Communications, 2024",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11252502/",
+          "description": "Scientists sampled a grey zone, an orange zone, and sediment inside the NEOM pool. Bacterial and viral communities differed markedly across those nearby habitats, suggesting the chemical shoreline acts like an extreme intertidal zone."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-disaster-archive",
+      "title": "A toxic lake can preserve a thousand-year history.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "neom-discovery",
+          "title": "A newly found Red Sea lake sits 1,770 metres down",
+          "text": "During the R/V OceanXplorer's 2020 expedition, researchers discovered the NEOM brine-pool complex in the Gulf of Aqaba, only about 2 kilometres off Saudi Arabia. It includes one main pool covering roughly 10,000 square metres and three tiny neighbours. Underwater robots mapped the site and collected water and sediments.",
+          "evidence": "documented",
+          "sources": [
+            {
+              "title": "Discovery of the deep-sea NEOM Brine Pools in the Gulf of Aqaba, Red Sea",
+              "publisher": "Purkis et al., Communications Earth & Environment, 2022",
+              "url": "https://www.nature.com/articles/s43247-022-00482-x"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "undisturbed-thin-layers",
+          "title": "No burrowing animals means unusually intact sediment",
+          "text": "The oxygen-free pool excludes the larger seabed animals that normally stir sediment. Thin layers can therefore remain undisturbed. Dating of a NEOM sediment core revealed at least 1,200 years of deposits, including event layers consistent with flash floods, earthquakes or tsunami-related sediment. The exact trigger of every layer is not established.",
+          "evidence": "experiment",
+          "sources": [
+            {
+              "title": "Discovery of the deep-sea NEOM Brine Pools in the Gulf of Aqaba, Red Sea",
+              "publisher": "Purkis et al., Communications Earth & Environment, 2022",
+              "url": "https://www.nature.com/articles/s43247-022-00482-x"
+            }
+          ]
+        },
+        {
+          "type": "article",
+          "id": "chemical-memory-of-disasters",
+          "title": "Even the trapped water between sediment grains tells a story",
+          "publisher": "Science of the Total Environment, 2024",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38036117/",
+          "description": "A follow-up porewater study found chemical signs that normal seawater was periodically swept into the brine during sediment-moving events. The deposits may help reconstruct regional natural hazards, alongside other evidence."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "oceans-on-other-worlds",
+      "title": "These alien-looking lakes help us imagine alien oceans.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "icy-moon-analogue",
+          "title": "Earth offers a test site for salty oceans without sunlight",
+          "text": "Europa and other icy moons may conceal salty oceans beneath their ice. Researchers have proposed Earth's deep-sea brines as partial analogues for their high-pressure, salt-rich, chemically extreme conditions. Microbes here prove that some life tolerates such environments—not that life exists elsewhere, or that alien ocean chemistry matches Earth's.",
+          "evidence": "hypothesis",
+          "sources": [
+            {
+              "title": "Exploring Deep-Sea Brines as Potential Terrestrial Analogues of Oceans in the Icy Moons of the Outer Solar System",
+              "publisher": "Antunes, Olsson-Francis and McGenity, Current Issues in Molecular Biology, 2020",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/31967579/"
+            }
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "chemical-energy-in-the-dark",
+          "title": "What matters more than the presence of water?",
+          "text": "An extraterrestrial ocean needs usable chemical energy as well as liquid water. NASA considers interactions between Europa's ocean and its rocky seafloor a possible source of chemical fuel. The mussels and microbes around Earth's brine pools illustrate the principle: a food web can begin with chemical reactions instead of sunlight.",
+          "evidence": "hypothesis",
+          "sources": [
+            {
+              "title": "Europa: A World of Ice, With Potential for Life",
+              "publisher": "NASA Science, Europa Clipper Team",
+              "url": "https://science.nasa.gov/missions/europa-clipper/europa-a-world-of-ice-with-potential-for-life/"
+            },
+            {
+              "title": "Café Methane",
+              "publisher": "NASA Astrobiology",
+              "url": "https://astrobiology.nasa.gov/news/cafe-methane/"
+            }
+          ]
+        }
+      ],
+      "final": true
+    }
+  ]
+}

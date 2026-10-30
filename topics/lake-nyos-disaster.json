@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "lake-nyos-disaster",
-  "title": "The Lake That Suffocated Entire Villages",
+  "title": "A lake released an invisible gas cloud that killed around 1,700 people.",
   "category": "Dark & disturbing",
-  "hook": "One night in Cameroon, an invisible cloud escaped from a lake and swept through sleeping villages. The cause was not lava or fire, but an enormous reservoir of gas hidden in deep water.",
+  "hook": "Deep water stored the gas. A runaway chain reaction released it. Engineers found a way to drain it.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Nyos_Lake.jpg",
     "alt": "Lake Nyos, a blue-green crater lake surrounded by steep green hills in Cameroon, photographed after the 1986 disaster.",

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">How four navigation clues help a homing pigeon</title>
+  <desc id="desc">A conceptual map of a pigeon's journey, with labelled smell, sun, magnetic and landmark cues. Smell helps identify a region, sun and magnetic field provide directions, and familiar landmarks help near home.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#101f2d"/><stop offset="1" stop-color="#203b43"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#ffdd8d" stop-opacity=".5"/><stop offset="1" stop-color="#ffdd8d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="odour"><stop stop-color="#d39cf9" stop-opacity=".42"/><stop offset="1" stop-color="#d39cf9" stop-opacity="0"/></radialGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="#79d6ec" stroke-width="1.4"/></marker>
+  </defs>
+  <rect width="1200" height="760" rx="30" fill="#0a1019"/>
+  <rect x="24" y="24" width="1152" height="712" rx="24" fill="url(#background)" stroke="#46616a" stroke-width="2"/>
+  <text x="65" y="78" fill="#f1f6f4" font-family="system-ui,sans-serif" font-size="31" font-weight="800">A pigeon uses more than one clue</text>
+  <text x="65" y="111" fill="#b9cad0" font-family="system-ui,sans-serif" font-size="17">Conceptual diagram · four different jobs, not a literal GPS algorithm</text>
+  <g fill="none" stroke="#83bbce" stroke-opacity=".25" stroke-width="2"><path d="M50 230Q440 140 1130 295" marker-end="url(#arrow)"/><path d="M50 335Q470 255 1130 390" marker-end="url(#arrow)"/><path d="M50 437Q440 370 1130 485" marker-end="url(#arrow)"/></g>
+  <path d="M100 535Q370 430 610 562T1100 565" stroke="#4f9aaa" stroke-width="30" fill="none" opacity=".38"/>
+  <path d="M80 465Q450 405 650 435T1100 320" stroke="#bcc9b0" stroke-width="13" fill="none" opacity=".24"/>
+  <path d="M80 465Q450 405 650 435T1100 320" stroke="#c2d5c6" stroke-width="1.5" stroke-dasharray="10 9" fill="none" opacity=".8"/>
+  <g fill="#3e775e" opacity=".65"><circle cx="850" cy="615" r="29"/><circle cx="895" cy="630" r="25"/><circle cx="930" cy="611" r="28"/><circle cx="987" cy="620" r="23"/></g>
+  <ellipse cx="295" cy="515" rx="180" ry="120" fill="url(#odour)"/><path d="M170 515q65 -70 125 -5t125 -14" fill="none" stroke="#d7a7f7" stroke-width="3" stroke-dasharray="8 9"/>
+  <circle cx="840" cy="219" r="104" fill="url(#sun)"/><circle cx="840" cy="219" r="25" fill="#ffd781"/><g stroke="#ffe6af" stroke-width="3"><path d="M840 177v-18M840 261v18M798 219h-18M882 219h18M809 187l-13 -13M871 251l13 13M871 187l13 -13M809 251l-13 13"/></g>
+  <path d="M170 590Q345 359 520 420T1050 345" fill="none" stroke="#ffd8c6" stroke-opacity=".22" stroke-width="14" stroke-linecap="round"/>
+  <path d="M170 590Q345 359 520 420T1050 345" fill="none" stroke="#ff9674" stroke-width="6" stroke-linecap="round"/>
+  <path d="M170 590L1050 345" fill="none" stroke="#ecf3ef" stroke-width="2" stroke-dasharray="9 10" opacity=".6"/>
+  <g transform="translate(170 590)"><circle r="25" fill="#182c32" stroke="#ffc5a8" stroke-width="3"/><path d="M0 -12q-13 8 0 19q13-11 0-19z" fill="#ffc3aa"/><circle cy="3" r="4" fill="#1c2830"/><text y="50" fill="white" font-family="system-ui,sans-serif" font-weight="800" font-size="15" text-anchor="middle">RELEASE</text></g>
+  <g transform="translate(1050 345)"><circle r="31" fill="#254837" stroke="#b2f0c3" stroke-width="3"/><path d="M-17 0L0-16L17 0V20H-17Z" fill="#b2e3ba"/><path d="M-22 0L0-19L22 0" fill="none" stroke="#e1ffdf" stroke-width="5" stroke-linecap="round"/><text y="55" fill="white" font-family="system-ui,sans-serif" font-weight="800" font-size="15" text-anchor="middle">HOME LOFT</text></g>
+  <g transform="translate(590 398) rotate(-20)"><ellipse rx="13" ry="9" fill="#ffe9e1"/><path d="M-4 -3L-23 -17L-8 8M4 -3L21 -14L10 8" fill="#fff1e7" stroke="#edaf95" stroke-width="2"/></g>
+  <g font-family="system-ui,sans-serif">
+    <g transform="translate(64 162)"><rect width="281" height="86" rx="14" fill="#24243c" stroke="#9673b1"/><text x="17" y="30" fill="#ead0ff" font-size="18" font-weight="800">1 · SMELL MAP</text><text x="17" y="54" fill="#e0d4e9" font-size="15">Where am I relative to home?</text><text x="17" y="74" fill="#c3b9d4" font-size="12">Learned odours + winds</text></g>
+    <path d="M292 248L310 407" stroke="#bda0d3" stroke-width="2" stroke-dasharray="5 7"/>
+    <g transform="translate(710 135)"><rect width="420" height="86" rx="14" fill="#3c3325" stroke="#ceae66"/><text x="17" y="30" fill="#ffe1a3" font-size="18" font-weight="800">2 · SUN COMPASS</text><text x="17" y="54" fill="#eee2c9" font-size="15">What bearing fits the sun and the time?</text><text x="17" y="74" fill="#cbbd9d" font-size="12">Shift the internal clock → heading error</text></g>
+    <path d="M852 221L840 244" stroke="#ffc96c" stroke-width="2" stroke-dasharray="4 6"/>
+    <g transform="translate(65 288)"><rect width="312" height="86" rx="14" fill="#1e3848" stroke="#62c4ea"/><text x="17" y="30" fill="#a8eaff" font-size="18" font-weight="800">3 · MAGNETIC COMPASS</text><text x="17" y="54" fill="#d0eef6" font-size="15">Another reference for direction</text><text x="17" y="74" fill="#9fc8d9" font-size="12">The receptor mechanism is still studied</text></g>
+    <g transform="translate(760 511)"><rect width="366" height="86" rx="14" fill="#203b2e" stroke="#82c999"/><text x="17" y="30" fill="#bbf2c6" font-size="18" font-weight="800">4 · LANDMARKS</text><text x="17" y="54" fill="#e2f3e1" font-size="15">Do I recognise my final approach?</text><text x="17" y="74" fill="#b7d4bb" font-size="12">Roads, junctions, buildings, rivers</text></g>
+    <path d="M940 511L974 430" stroke="#a1d9aa" stroke-width="2" stroke-dasharray="5 7"/>
+    <text x="590" y="690" text-anchor="middle" fill="#b7cbd1" font-size="15">The orange flight path is a teaching illustration, not an observed or predicted track.</text>
+  </g>
+</svg>

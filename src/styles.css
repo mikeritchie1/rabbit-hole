@@ -115,12 +115,40 @@
 
 /* Give the Rabbit Hole identity more presence. */
 .welcome-logo{gap:29px}
-.welcome-logo .brand-orbit{width:clamp(94px,15vh,150px);height:clamp(94px,15vh,150px);box-shadow:0 0 45px #b7cfff30}
+.welcome-logo .brand-orbit{width:clamp(94px,15vh,150px);height:clamp(94px,15vh,150px);box-shadow:0 0 45px #b7cfff30;animation:welcome-orbit-turn 36s linear infinite,welcome-orbit-glow 6s ease-in-out infinite}
+.welcome-logo .brand-orbit:after{animation:welcome-ring-turn 24s linear infinite}
+.welcome-logo .brand-orbit:before{animation:welcome-ring-turn 30s linear infinite reverse}
+@keyframes welcome-orbit-turn{from{transform:rotate(-28deg)}to{transform:rotate(332deg)}}
+@keyframes welcome-ring-turn{from{transform:rotate(40deg)}to{transform:rotate(400deg)}}
+@keyframes welcome-orbit-glow{0%,100%{box-shadow:0 0 35px #b7cfff25}50%{box-shadow:0 0 55px #b7cfff45}}
 .welcome-logo>span:last-child{font-size:clamp(17px,1.6vw,26px);letter-spacing:.48em;margin-left:.48em}
 .topbar .brand{font-size:15px;gap:20px}
 .topbar .brand .brand-orbit{width:45px;height:45px;flex-shrink:0}
 @media(max-width:650px){.welcome-logo{gap:25px}.welcome-logo .brand-orbit{width:clamp(88px,14vh,120px);height:clamp(88px,14vh,120px)}.welcome-logo>span:last-child{font-size:17px;letter-spacing:.4em}.topbar .brand{font-size:9px;letter-spacing:2px;gap:10px}.topbar .brand .brand-orbit{width:34px;height:34px}.topbar nav{gap:8px}}
 @media(max-height:600px){.welcome-logo{gap:17px}.welcome-logo .brand-orbit{width:64px;height:64px}.welcome-logo>span:last-child{font-size:14px}.topbar .brand{font-size:11px;gap:12px}.topbar .brand .brand-orbit{width:33px;height:33px}}
+
+/* Make the welcome identity dominant and keep instructions secondary. */
+.welcome-screen{gap:clamp(10px,1.8vh,20px)}
+.welcome-logo{gap:clamp(22px,4vh,40px);margin-bottom:12px}
+.welcome-logo .brand-orbit{width:clamp(150px,26vh,280px);height:clamp(150px,26vh,280px)}
+.welcome-logo>span:last-child{font-size:clamp(24px,3vw,44px)}
+.welcome-screen h1{font-size:clamp(26px,4.5vh,46px)}
+.welcome-controls{font-size:clamp(8px,.6vw,10px);letter-spacing:1.5px;gap:5px;color:#8294af}
+.welcome-explore{font-size:clamp(9px,.7vw,12px);letter-spacing:1px;max-width:90%;line-height:1.5}
+@media(max-width:650px){
+ .welcome-logo .brand-orbit{width:clamp(140px,23vh,210px);height:clamp(140px,23vh,210px)}
+ .welcome-logo>span:last-child{font-size:clamp(22px,6vw,32px);letter-spacing:.3em;margin-left:.3em}
+ .welcome-controls{font-size:8px;letter-spacing:1px}
+}
+@media(max-height:600px){
+ .welcome-screen{gap:7px}
+ .welcome-logo{gap:15px;margin-bottom:4px}
+ .welcome-logo .brand-orbit{width:clamp(64px,23vh,130px);height:clamp(64px,23vh,130px)}
+ .welcome-logo>span:last-child{font-size:22px}
+ .welcome-screen h1{font-size:26px}
+ .welcome-controls{gap:2px;font-size:8px}
+ .welcome-explore{font-size:9px}
+}
 
 /* Surprise categories remain selected for the next random discoveries. */
 .category-filters{display:flex;align-items:stretch;gap:8px;flex-shrink:0;margin-top:-5px}
@@ -246,6 +274,8 @@
 .in-flight .distant.return-preview{animation:none;visibility:hidden}
 
 .toast.exhausted-notice{color:#ff9d73;border-color:#ff865a99;background:#29120ff2;box-shadow:0 0 20px #ff683322;font-weight:500}
+.discovery-heading{top:max(12.2%,var(--depth-header-bottom,0px))}
+@media(max-width:650px),(max-height:600px){.discovery-heading{top:max(13%,var(--depth-header-bottom,0px))}}
 .depth-indicator .current-topic-title{font-size:13px}
 .current-category-label{font-size:10px}
 @media(max-width:650px),(max-height:600px){.depth-indicator .current-topic-title{font-size:9px}.current-category-label{font-size:7px}}
@@ -289,3 +319,15 @@
 /* Short facts use only the height their content needs. */
 .object-slot .fact-card{height:auto;max-height:100%;overflow:hidden}
 .object-slot .fact-card .fitted-text{flex:0 1 auto}
+.glass.fact-card.experiment-card{width:100%;color:inherit;cursor:pointer;border:1px solid #71e5d4a6;border-top:3px solid #8cf3df;background:radial-gradient(ellipse at top left,#2d9d8b30,transparent 75%),linear-gradient(135deg,#102c31f5,#071923f5);box-shadow:inset 0 0 28px #6de3d00a,0 0 24px #58d9c31a,0 12px 45px #0004}
+.experiment-badge{display:flex;align-items:center;gap:7px;align-self:flex-start;padding:5px 8px;border:1px solid #8cf3df55;border-radius:5px;background:#64d9c515;color:#a7ffeb;font-size:9px;line-height:1.3;font-family:'DM Sans',sans-serif;letter-spacing:1.2px;font-weight:600}
+.experiment-badge svg{flex-shrink:0}
+.experiment-launch{display:flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;padding:9px 13px;border-radius:6px;background:#a7ffeb;color:#08252b;font-size:11px;font-weight:600;line-height:1.2;flex-shrink:0}
+.glass.experiment-card:hover,.glass.experiment-card:focus-visible{border-color:#b8fff0;box-shadow:0 0 32px #58d9c335,0 12px 45px #0004}
+.experiment-card:focus-visible{outline:2px solid #b8fff0;outline-offset:5px}
+.experiment-card:disabled{cursor:default;opacity:.6}
+@media(max-width:650px),(max-height:600px){.experiment-badge{font-size:7px;letter-spacing:.5px;padding:4px 6px;gap:5px}.experiment-badge svg{width:13px;height:13px}.experiment-launch{font-size:9px;padding:7px 9px;gap:5px}}
+.experiment-dialog{position:fixed;inset:0;width:94vw;height:90dvh;max-width:1400px;max-height:94dvh;margin:auto;padding:0;border:1px solid #a8c9ff66;border-radius:12px;background:#061520;color:#ecf8fc;overflow:hidden}
+.experiment-dialog::backdrop{background:#000c;backdrop-filter:blur(8px)}
+.experiment-toolbar{height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;font-size:13px}
+.experiment-dialog iframe{display:block;width:100%;height:calc(100% - 54px);border:0;background:#061520}

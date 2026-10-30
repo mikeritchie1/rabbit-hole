@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071521">
+  <title>Underwater Lake — Density Lab</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#071521;color:#e8f3f6}
+    *{box-sizing:border-box}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 30% -20%,#1e4850 0,transparent 50%),#071521}
+    .shell{max-width:1380px;margin:auto;padding:clamp(12px,2.5vw,28px)}
+    header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:0 0 19px}
+    .kicker{color:#7cded0;font-size:11px;font-weight:800;letter-spacing:.21em;text-transform:uppercase;margin:0 0 7px}
+    h1{font-size:clamp(25px,3vw,40px);letter-spacing:-.045em;line-height:1.06;margin:0 0 8px;font-weight:780}
+    .subtitle{color:#a4bbc6;font-size:14px;line-height:1.5;margin:0;max-width:770px}
+    button{border:1px solid #43616a;background:#16313a;color:#d7f8ed;border-radius:12px;padding:11px 15px;font:700 13px inherit;cursor:pointer;white-space:nowrap}
+    button:hover,button:focus-visible{background:#24505a;outline:2px solid #7cded0;outline-offset:2px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 332px;align-items:stretch;gap:16px}
+    .sceneCard,.panel{background:#0c2230;border:1px solid #2a4653;border-radius:22px;overflow:hidden;box-shadow:0 16px 45px #01070d66}
+    .sceneHead{padding:15px 20px 11px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:9px;color:#a9c8d2;font-size:12px}
+    .sceneHead strong{color:#e0faf4;font-weight:650}.sceneHead .tag{border:1px solid #395762;padding:4px 8px;border-radius:7px;color:#83dccc}
+    svg{display:block;width:100%;height:auto;background:#092c41}
+    .legend{display:flex;gap:18px;flex-wrap:wrap;padding:12px 19px 15px;background:#0e2633;color:#afc6ce;font-size:12px}
+    .legend span{display:flex;gap:7px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.sea{background:#37adc2}.brine{background:#ab86d5}.shore{background:#f0d698}
+    .panel{padding:20px;display:flex;flex-direction:column;gap:19px}
+    .panelTitle{font-size:15px;font-weight:750;letter-spacing:-.01em;margin:0 0 2px}
+    .field{display:block}.fieldTop{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;font-weight:650;margin-bottom:7px}
+    output{font-variant-numeric:tabular-nums;color:#7ce3d1;font-weight:750}.hint{font-size:12px;line-height:1.42;color:#a3b9c2;margin:7px 0 0}
+    input[type="range"]{width:100%;accent-color:#79ded0;cursor:pointer;touch-action:pan-y;margin:3px 0 0;min-height:23px}
+    .metrics{background:#132f3a;border:1px solid #35515d;border-radius:15px;padding:14px;display:grid;gap:10px}
+    .metricsTitle{color:#94b9c4;font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:800}
+    .metrow{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:12px;color:#bfd1d5}.metrow strong{font-size:20px;color:#f0faf7;font-weight:740;letter-spacing:-.02em}
+    .result{border-left:3px solid #7bdcca;background:#153843;padding:12px 13px;border-radius:0 10px 10px 0;font-size:13px;line-height:1.5;color:#e0f0f1}
+    .foot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:15px}
+    .foot section{background:#0d2330;border:1px solid #29434f;border-radius:15px;padding:14px 16px;color:#b3c6cf;font-size:12px;line-height:1.55}
+    .foot strong{display:block;color:#e8f7f5;font-size:13px;margin-bottom:5px}.foot p{margin:0}.foot a{color:#8de3d3}
+    .svgLabel{font:600 17px system-ui,sans-serif;fill:#d7fbf5}.svgSub{font:400 12px system-ui,sans-serif;fill:#9ed8d7}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.panelTitle{grid-column:1/-1}.metrics{grid-column:1/3}.result{grid-column:3;align-self:stretch}.fieldTop{flex-wrap:wrap}}
+    @media(max-width:620px){header{align-items:center}.subtitle{font-size:12px}h1{font-size:27px}.panel{display:flex;padding:17px}.foot{grid-template-columns:1fr}.sceneHead{padding:12px}.legend{gap:12px;font-size:11px}button{padding:9px 11px}.svgLabel{font-size:20px}.svgSub{font-size:14px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header>
+    <div>
+      <p class="kicker">Rabbit Hole · Interactive field lab</p>
+      <h1>Why is there a lake underwater?</h1>
+      <p class="subtitle">Change the salt concentration, stir the boundary, and lower a virtual water probe. Watch the invisible density difference create a second layer of ocean.</p>
+    </div>
+    <button type="button" id="reset">↺ Reset</button>
+  </header>
+  <div class="layout">
+    <div class="sceneCard">
+      <div class="sceneHead"><strong>Side view of a seafloor depression</strong><span class="tag">Illustrative model · not a real dive</span></div>
+      <svg id="scene" viewBox="0 0 900 560" role="img" aria-labelledby="scene-title scene-desc">
+        <title id="scene-title">A dense brine pool beneath seawater, with a moveable water sensor</title>
+        <desc id="scene-desc">A cross-section shows the sea, the bedrock, a salt-rich pool and the boundary between waters. Sliders change the thickness and visual clarity of the boundary and position a sampling probe.</desc>
+        <defs>
+          <linearGradient id="water" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#05324b"/><stop offset="1" stop-color="#0d5a62"/></linearGradient>
+          <linearGradient id="brineGrad" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a987d6" stop-opacity=".56"/><stop offset=".7" stop-color="#5e488c" stop-opacity=".9"/><stop offset="1" stop-color="#402e68"/></linearGradient>
+          <linearGradient id="sand" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a29b76"/><stop offset="1" stop-color="#393d40"/></linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="6"/></filter>
+          <pattern id="particles" width="51" height="43" patternUnits="userSpaceOnUse"><circle cx="9" cy="11" r="1.2" fill="#a4e9eb" opacity=".25"/><circle cx="31" cy="28" r="1" fill="#a4e9eb" opacity=".2"/></pattern>
+          <clipPath id="basinClip"><path d="M365 312 Q405 308 447 315 L792 312 Q836 316 853 345 L865 545 L355 545 Z"/></clipPath>
+        </defs>
+        <rect width="900" height="560" fill="url(#water)"/>
+        <rect width="900" height="560" fill="url(#particles)"/>
+        <g opacity=".13"><path d="M0 45 C210 13 470 76 900 24" fill="none" stroke="#c1ffff" stroke-width="16"/><path d="M0 90 C350 60 600 121 900 73" fill="none" stroke="#bffff2" stroke-width="3"/></g>
+        <g fill="none" stroke="#6c9da6" stroke-width="3" opacity=".23"><path d="M40 130l120 -14"/><path d="M710 140l155 -30"/></g>
+        <path d="M0 378 L90 365 Q170 346 232 355 Q285 347 323 316 Q356 292 381 315 Q405 329 449 315 L786 312 Q828 320 854 344 L900 374 L900 560 L0 560 Z" fill="url(#sand)" stroke="#c8b58b" stroke-width="3"/>
+        <g opacity=".36" fill="none" stroke="#e0c8a7" stroke-width="3"><path d="M20 402l89 -20 105 7"/><path d="M109 452l113 -14"/><path d="M215 485l94 -16"/><path d="M715 543l134 -11"/><path d="M75 534l114 -10"/></g>
+        <g id="salt" opacity=".9"><path d="M145 450l50 -12 50 28 -40 14z" fill="#e2d9c4"/><path d="M190 480l70 -28 54 26 -70 21z" fill="#beb5a3"/><path d="M249 494l60 -22 58 40 -43 20z" fill="#ddd2c4"/><path d="M145 449l50 -11v35l-50 15z" fill="#eee9d7" opacity=".53"/></g>
+        <g id="pool" clip-path="url(#basinClip)">
+          <path id="poolFill" d="M355 313 L865 313 L865 550 L355 550 Z" fill="url(#brineGrad)" opacity=".96"/>
+          <path id="transitionBand" d="M355 295 L865 295 L865 332 L355 332Z" fill="#91bbd6" opacity=".32" filter="url(#glow)"/>
+          <path id="boundaryGlow" d="M355 314Q500 311 620 315T865 313" fill="none" stroke="#f9d6ef" stroke-width="12" opacity=".35" filter="url(#glow)"/>
+          <path id="boundary" d="M355 314Q500 311 620 315T865 313" fill="none" stroke="#d4c1f1" stroke-width="3.5" opacity=".95"/>
+          <g fill="#efadfa" opacity=".17"><circle cx="481" cy="396" r="4"/><circle cx="546" cy="488" r="3"/><circle cx="774" cy="436" r="2"/><circle cx="718" cy="368" r="3"/></g>
+        </g>
+        <g id="shorelife" aria-label="Microbes and mussels at the shore">
+          <g fill="#e9dcb9" stroke="#554c55" stroke-width="2.5"><path d="M305 316q-20 -40 -30 4q10 25 30 -4z"/><path d="M325 318q-9 -35 -27 -4q4 27 27 4z"/><path d="M341 322q4 -32 -15 -20q-15 16 15 20z"/><path d="M844 346q15 -36 30 0q-17 21 -30 0z"/><path d="M827 344q2 -32 21 -9q3 16 -21 9z"/></g>
+          <g fill="#c4f797" opacity=".8"><circle cx="354" cy="308" r="3"/><circle cx="367" cy="300" r="4"/><circle cx="357" cy="323" r="3"/><circle cx="841" cy="330" r="3"/><circle cx="854" cy="317" r="3"/><circle cx="831" cy="322" r="4"/></g>
+        </g>
+        <g transform="translate(120 198)" opacity=".8" aria-label="Fish swimming above brine"><path d="M0 0q31 -24 65 0q-34 24 -65 0l-18 -16v32z" fill="#b5d6cc"/><circle cx="44" cy="-3" r="3" fill="#183842"/></g>
+        <g id="sensor" transform="translate(610 250)">
+          <line id="cable" x1="0" y1="-220" x2="0" y2="-15" stroke="#c0dfd3" stroke-width="2" stroke-dasharray="6 5" opacity=".8"/>
+          <g><rect x="-26" y="-13" width="52" height="29" rx="7" fill="#ccefe8" stroke="#122d3b" stroke-width="3"/><rect x="-17" y="-5" width="22" height="12" rx="3" fill="#2c7b8c"/><circle cx="15" cy="1" r="5" fill="#e6ad69"/><path d="M-30 2h-12m72 0h12m-24 16v11" fill="none" stroke="#bddad4" stroke-width="4" stroke-linecap="round"/></g>
+        </g>
+        <g class="svgLabel"><text x="45" y="55">OCEAN WATER</text><text x="430" y="402" id="poolLabel">DENSE BRINE</text></g>
+        <g class="svgSub"><text x="45" y="78">~35 g salt / kg</text><text x="430" y="422" id="poolSub">Low oxygen, high salinity</text><text x="30" y="518">BURIED SALT ROCK</text><text x="754" y="282">HALOCLINE</text><path d="M791 289l-19 22" stroke="#b1e6e4" stroke-width="1.5"/></g>
+        <rect x="422" y="33" rx="10" width="252" height="55" fill="#082632" stroke="#528c94" opacity=".93"/>
+        <text x="437" y="56" style="font:700 13px system-ui;fill:#c8e9e2">SENSOR DEPTH</text>
+        <text x="437" y="76" id="sensorIndicator" style="font:600 15px system-ui;fill:#ffffff">Above the interface</text>
+        <path d="M160 345q120 -55 184 -34" fill="none" stroke="#d6ce99" stroke-width="2" stroke-dasharray="5 6" opacity=".6"/>
+      </svg>
+      <div class="legend"><span><i class="dot sea"></i> Ordinary seawater</span><span><i class="dot brine"></i> Concentrated brine</span><span><i class="dot shore"></i> Salt-bearing seafloor</span></div>
+    </div>
+    <aside class="panel" aria-label="Experiment controls">
+      <h2 class="panelTitle">Change the environment</h2>
+      <div class="field">
+        <div class="fieldTop"><label for="salinity">Brine salinity</label><output id="sout" for="salinity">155 g/kg</output></div>
+        <input id="salinity" type="range" min="35" max="200" step="5" value="155">
+        <p class="hint">More dissolved salt makes the lower water heavier. At 35 g/kg, there is no salt-density contrast with the sea above.</p>
+      </div>
+      <div class="field">
+        <div class="fieldTop"><label for="stir">Water disturbance</label><output id="mout" for="stir">15%</output></div>
+        <input id="stir" type="range" min="0" max="100" value="15">
+        <p class="hint">Moving water ripples and broadens the boundary. It does not instantly erase a strong density difference.</p>
+      </div>
+      <div class="field">
+        <div class="fieldTop"><label for="depth">Lower the sample probe</label><output id="pout" for="depth">Above the rim</output></div>
+        <input id="depth" type="range" min="90" max="480" value="210" step="5">
+        <p class="hint">Move the sensor across the waterline to sample an illustrative salinity and oxygen gradient.</p>
+      </div>
+      <div class="metrics" aria-live="polite">
+        <div class="metricsTitle">At the probe · conceptual readings</div>
+        <div class="metrow"><span>Local salinity</span><strong id="sampleSalt">35 g/kg</strong></div>
+        <div class="metrow"><span>Relative oxygen</span><strong id="sampleOxy">Normal</strong></div>
+        <div class="metrow"><span>Salt-density contrast</span><strong id="density">≈90 kg/m³</strong></div>
+      </div>
+      <div class="result" id="explain" aria-live="polite">The probe is in ordinary seawater. Below it, the denser brine occupies the basin.</div>
+    </aside>
+  </div>
+  <div class="foot">
+    <section><strong>What this demonstrates</strong><p>A halocline is a salinity gradient, not a solid lid. Brine can still exchange fluid, ripple and overflow. A sufficiently strong salt-density contrast tends to keep the heavier fluid down in a depression.</p></section>
+    <section><strong>Limits and source material</strong><p>Diagram, densities, sensor values and disturbance effects are schematic—not field measurements or a predictive fluid simulation. Real density also depends on temperature, pressure and chemical composition. Sources: <a href="https://oceanexplorer.noaa.gov/multimedia/daily-image-media-20200720/" target="_blank" rel="noopener noreferrer">NOAA Ocean Exploration</a>, <a href="https://ocean.si.edu/ecosystems/deep-sea/eerie-underwater-lake" target="_blank" rel="noopener noreferrer">Smithsonian Ocean</a>, and <a href="https://pubmed.ncbi.nlm.nih.gov/17733371/" target="_blank" rel="noopener noreferrer">MacDonald et al. (1990)</a>.</p></section>
+  </div>
+</main>
+<script>
+  'use strict';
+  const el = id => document.getElementById(id);
+  const controls = [el('salinity'),el('stir'),el('depth')];
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const smooth=t=>t*t*(3-2*t);
+  function update(){
+    const s=+el('salinity').value,m=+el('stir').value,d=+el('depth').value;
+    const contrast=clamp((s-35)/165,0,1),blur=9+m*.63,interfaceY=313;
+    el('sout').textContent=`${s} g/kg`;el('mout').textContent=`${m}%`;
+    el('pout').textContent=d<286?'Above the rim':d>351?'Inside the pool':'At the waterline';
+    el('sensor').setAttribute('transform',`translate(610 ${d})`);
+    el('cable').setAttribute('y1',String(31-d));
+    el('cable').setAttribute('y2','-15');
+    const width=8+blur*.75;
+    const f=smooth(clamp((d-(interfaceY-width))/(2*width),0,1));
+    const local=35+(s-35)*f;
+    el('sampleSalt').textContent=`${Math.round(local)} g/kg`;
+    el('sampleOxy').textContent=contrast<.07?'Unchanged':f<.15?'Normal':f>.84?'Very low':'Falling';
+    const delta=contrast<.01?0:Math.round((s-35)*.75);
+    el('density').textContent=`≈${delta} kg/m³`;
+    const wave=2+m*.084;
+    const y1=interfaceY-wave/3,y2=interfaceY+wave/2;
+    const path=`M355 ${interfaceY} Q445 ${y1-wave} 520 ${interfaceY} T680 ${y2} T865 ${interfaceY}`;
+    el('boundary').setAttribute('d',path);el('boundaryGlow').setAttribute('d',path);
+    el('transitionBand').setAttribute('d',`M355 ${interfaceY-blur} L865 ${interfaceY-blur} L865 ${interfaceY+blur} L355 ${interfaceY+blur} Z`);
+    el('poolFill').setAttribute('opacity',String(.15+.83*contrast));
+    el('transitionBand').setAttribute('opacity',String(.07+.5*contrast));
+    el('boundary').setAttribute('opacity',String(.08+.87*contrast));
+    el('boundaryGlow').setAttribute('opacity',String(.04+.4*contrast));
+    el('poolLabel').textContent=contrast<.06?'SAME WATER':'DENSE BRINE';
+    el('poolSub').textContent=contrast<.06?'No salinity contrast':'Low oxygen, high salinity';
+    let state;
+    if(contrast<.06){state='Without a salinity difference, this model has no stable salt-defined lake surface. The depression is still there, but its water blends with the sea.';}
+    else if(f<.15){state='The sensor is in ordinary seawater. Below the boundary, the extra dissolved salt makes the brine more dense; a stable layer can settle in the basin.';}
+    else if(f>.84){state='Inside the brine, salt is concentrated and oxygen is often scarce. Most ordinary marine animals cannot tolerate such conditions, although specialised microbes can.';}
+    else{state='You crossed the halocline: a narrow transition where salinity rises rapidly. Disturbance can spread this transition out, but the denser layer still tends to remain below.';}
+    if(m>76&&contrast>.06) state+=' Strong stirring here represents a broader mixing zone, not complete homogenisation.';
+    el('explain').textContent=state;
+    el('sensorIndicator').textContent=contrast<.06?'No salt-defined layer':f<.15?'Above the interface':f>.84?'Inside the dense brine':'Within the halocline';
+  }
+  controls.forEach(control=>control.addEventListener('input',update));
+  el('reset').addEventListener('click',()=>{el('salinity').value=155;el('stir').value=15;el('depth').value=210;update()});
+  update();
+</script>
+</body>
+</html>

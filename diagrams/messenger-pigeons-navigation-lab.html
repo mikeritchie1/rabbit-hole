@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pigeon navigation — four clues, one journey</title>
+  <style>
+    :root { color-scheme: dark; --bg:#080e19; --panel:#111e2c; --line:#2b4152; --text:#eef4f4; --muted:#a9bbbf; --sun:#ffd273; --mag:#61c8ec; --smell:#d8a3fd; --land:#96d8a4; --flight:#ff8257; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(ellipse at 28% 0,#172837 0,#08101b 64%,#060b12 100%); color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    .app { display:grid; grid-template-rows:auto minmax(0,1fr) auto; min-height:100vh; padding:17px 22px 14px; gap:13px; max-width:1700px; margin:auto; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    header small { display:block; color:#a6c5c9; font-size:10px; letter-spacing:.24em; font-weight:800; margin-bottom:3px; }
+    h1 { font-size:clamp(20px,2.1vw,31px); letter-spacing:-.045em; margin:0; line-height:1.14; }
+    .subtitle { margin:6px 0 0; color:var(--muted); font-size:13px; }
+    .actions { display:flex; gap:8px; flex-shrink:0; }
+    button { cursor:pointer; background:#1b3140; border:1px solid #476071; color:white; font-weight:750; font-size:12px; padding:11px 14px; border-radius:10px; transition:background .15s,transform .15s; }
+    button:hover { background:#2b495a; }
+    button:active { transform:scale(.98); }
+    button.primary { background:#f79a6c; border-color:#ffc39f; color:#27190f; }
+    button.primary:hover { background:#ffb18c; }
+    button:focus-visible,input:focus-visible,a:focus-visible { outline:3px solid #fff4ae; outline-offset:3px; }
+    main { display:grid; grid-template-columns:minmax(0,1fr) minmax(310px,375px); gap:14px; min-height:0; }
+    .mapbox { position:relative; overflow:hidden; min-width:0; min-height:460px; border:1px solid #335062; border-radius:20px; background:linear-gradient(140deg,#102b36,#101c2a); box-shadow:inset 0 0 65px #070d19a8,0 6px 40px #0002; }
+    .mapbar { position:absolute; left:17px; top:17px; right:17px; z-index:2; display:flex; justify-content:space-between; align-items:flex-start; gap:8px; pointer-events:none; }
+    .pill { display:inline-flex; align-items:center; gap:7px; background:#101b28dd; border:1px solid #345266; border-radius:999px; padding:7px 10px; font-size:11px; letter-spacing:.03em; font-weight:750; }
+    .pill b { width:7px; height:7px; border-radius:50%; background:#78ddb9; box-shadow:0 0 8px #78ddb9; }
+    .maphint { background:#101b28d9; font-size:11px; color:#d0dbdd; padding:7px 10px; border-radius:8px; border:1px solid #344b5b; }
+    #map { width:100%; height:100%; display:block; position:absolute; inset:0; }
+    #map text { font-family:Inter,system-ui,sans-serif; paint-order:stroke; stroke:#0d2026; stroke-width:3.5px; stroke-linejoin:round; }
+    #map .maplabel { fill:#c9d8d9; font-size:15px; font-weight:700; }
+    #map .tiny { fill:#bfd2d2; font-size:11px; font-weight:650; }
+    #map .mapfeature { fill:#628d89; font-size:12px; font-weight:700; letter-spacing:.12em; }
+    #map .cueLabel { font-size:15px; font-weight:800; }
+    .mapbottom { position:absolute; left:15px; right:15px; bottom:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; pointer-events:none; }
+    .legend { display:flex; align-items:center; gap:12px; flex-wrap:wrap; background:#0b1620e5; border:1px solid #355060; padding:8px 10px; border-radius:11px; font-size:11px; color:#d7e5e4; }
+    .legend span { display:flex; align-items:center; gap:5px; }
+    .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+    .mapbottom .note { background:#0b1620e5; color:#bad0d2; font-size:10px; border-radius:10px; padding:9px; border:1px solid #355060; }
+    aside { display:flex; flex-direction:column; border:1px solid #334c5f; border-radius:20px; padding:15px; background:#122231d9; min-height:0; overflow:auto; }
+    aside h2 { margin:0 0 3px; font-size:17px; letter-spacing:-.025em; }
+    aside .lead { margin:0 0 12px; color:var(--muted); font-size:12px; line-height:1.5; }
+    .cue { border-radius:13px; border:1px solid #3a4b5a; background:#0d1a28ba; padding:11px 11px 10px; margin-bottom:9px; }
+    .cuehead { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+    .cuename { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:800; }
+    .cueicon { font-size:17px; width:23px; text-align:center; }
+    output { font-size:12px; font-weight:800; border-radius:6px; padding:4px 6px; background:#273744; font-variant-numeric:tabular-nums; }
+    .cue input[type=range] { display:block; width:100%; cursor:pointer; margin:11px 0 6px; background:transparent; accent-color:var(--accent); }
+    .scale { display:flex; justify-content:space-between; color:#839fa6; font-size:10px; }
+    .cue p { margin:7px 0 0; font-size:11px; color:#c5d3d7; line-height:1.42; }
+    .cue.sun { --accent:var(--sun); } .cue.magnet { --accent:var(--mag); } .cue.smell { --accent:var(--smell); } .cue.land { --accent:var(--land); }
+    .insight { margin-top:auto; background:#17333b; border:1px solid #3c6267; padding:12px; border-radius:12px; }
+    .insight b { display:block; color:#a9f0e5; font-size:11px; letter-spacing:.11em; text-transform:uppercase; margin-bottom:4px; }
+    .insight p { margin:0; color:#d8e7e6; font-size:11px; line-height:1.5; }
+    footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 12px; color:#8daab2; font-size:10px; }
+    footer a { color:#afdcec; text-underline-offset:3px; }
+    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+    @media (max-width:850px) { .app { padding:12px; } main { grid-template-columns:1fr; } .mapbox { min-height:480px; } aside { overflow:visible; } .subtitle { max-width:380px; } }
+    @media (max-width:570px) { header { align-items:flex-start; flex-direction:column; } .actions { width:100%; } .actions button { flex:1; } .mapbox { min-height:440px; } .mapbar { top:9px; left:9px; right:9px; } .maphint { display:none; } .mapbottom { left:8px; right:8px; bottom:8px; } .mapbottom .note { display:none; } .legend { gap:8px; padding:7px; font-size:10px; } }
+    @media (prefers-reduced-motion:reduce) { button { transition:none; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div><small>RABBIT HOLE / INTERACTIVE DIAGRAM</small><h1>How does a pigeon find its way home?</h1><p class="subtitle">Four navigation clues. Move each slider and watch the <em>illustrative</em> route react.</p></div>
+      <div class="actions"><button id="reset" type="button">↺ Reset clues</button><button id="newRoute" class="primary" type="button">↗ New route</button></div>
+    </header>
+    <main>
+      <section class="mapbox" aria-labelledby="mapheading">
+        <h2 id="mapheading" class="sr-only">Illustrated map of pigeon navigation</h2>
+        <div class="mapbar"><span class="pill"><b></b> FLIGHT SIMULATOR · NOT GPS DATA</span><span class="maphint">Dashed white = direct line · Orange = illustrated flight</span></div>
+        <svg id="map" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A landscape diagram with an aerial sun, blue magnetic lines, purple smell clouds, green landmarks, a release site and a pigeon loft; the orange flight path changes with the controls.">
+          <defs>
+            <linearGradient id="landbg" x2="1" y2="1"><stop stop-color="#1d4450"/><stop offset=".52" stop-color="#1b323a"/><stop offset="1" stop-color="#1a2938"/></linearGradient>
+            <radialGradient id="sunGlow"><stop stop-color="#ffe39a" stop-opacity=".45"/><stop offset="1" stop-color="#f3bb65" stop-opacity="0"/></radialGradient>
+            <radialGradient id="smellGlow"><stop stop-color="#dc9cff" stop-opacity=".30"/><stop offset="1" stop-color="#dc9cff" stop-opacity="0"/></radialGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#b8d6cc" stroke-opacity=".075"/></pattern>
+            <marker id="arrowCyan" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#68cff0" stroke-width="1.2"/></marker>
+            <marker id="arrowViolet" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#dbabf1" stroke-width="1.2"/></marker>
+          </defs>
+          <rect width="1000" height="620" fill="url(#landbg)"/><rect width="1000" height="620" fill="url(#grid)"/>
+          <path d="M0 150Q170 75 330 180T650 152T1020 188L1020 0H0Z" fill="#31564b" opacity=".58"/>
+          <path d="M0 260Q140 198 252 272T510 250T790 300T1020 272" fill="none" stroke="#4e6e63" stroke-width="2" opacity=".25"/>
+          <path d="M-20 410Q130 322 280 385T575 380T1020 400" fill="none" stroke="#9fbe9c" stroke-width="1.3" opacity=".15"/>
+          <path d="M-20 470Q200 410 330 485T640 472T1040 500" fill="none" stroke="#9fbe9c" stroke-width="1.5" opacity=".14"/>
+          <path d="M-20 520Q150 565 300 524T575 538T1030 568" fill="none" stroke="#9fbe9c" stroke-width="1.3" opacity=".14"/>
+          <path d="M0 370Q200 290 420 390T1010 500" fill="none" stroke="#0b4661" stroke-width="39" opacity=".7"/>
+          <path d="M0 370Q200 290 420 390T1010 500" fill="none" stroke="#59a0b9" stroke-width="23" opacity=".45"/>
+          <path d="M-20 360Q180 260 410 347T1040 418" fill="none" stroke="#86908e" stroke-width="13" opacity=".55"/>
+          <path d="M-20 360Q180 260 410 347T1040 418" fill="none" stroke="#c1c4b2" stroke-width="1.5" stroke-dasharray="9 9" opacity=".5"/>
+          <path d="M180 630Q210 470 370 420T600 240T840 -20" fill="none" stroke="#7c8e83" stroke-width="10" opacity=".6"/>
+          <path d="M180 630Q210 470 370 420T600 240T840 -20" fill="none" stroke="#d9d2ad" stroke-width="1.5" stroke-dasharray="8 9" opacity=".5"/>
+          <g opacity=".75" stroke="#94bda0" stroke-width="1.8" fill="#254d42"><path d="M390 105l25 -49 25 49Z"/><path d="M427 113l30 -60 30 60Z"/><path d="M460 108l20-41 20 41Z"/><path d="M515 148l22-38 22 38Z"/><path d="M550 133l27-46 27 46Z"/></g>
+          <g fill="#618f75" opacity=".7"><circle cx="575" cy="530" r="24"/><circle cx="614" cy="551" r="27"/><circle cx="661" cy="523" r="21"/><circle cx="698" cy="568" r="23"/><circle cx="731" cy="540" r="26"/><circle cx="765" cy="565" r="18"/><circle cx="513" cy="515" r="17"/><circle cx="555" cy="582" r="22"/></g>
+          <text class="mapfeature" x="408" y="156">MOUNTAIN RIDGE</text><text class="mapfeature" x="600" y="598">FOREST</text><text class="mapfeature" x="75" y="402">RIVER</text><text class="mapfeature" x="675" y="346">HIGHWAY</text>
+          <g id="magneticField" fill="none" stroke="#4fc2eb" stroke-width="2" opacity=".48"><path d="M-20 105Q350 12 1040 220" marker-end="url(#arrowCyan)"/><path d="M-20 195Q390 78 1040 310" marker-end="url(#arrowCyan)"/><path d="M-20 290Q400 172 1040 402" marker-end="url(#arrowCyan)"/><path d="M-20 390Q400 270 1040 490" marker-end="url(#arrowCyan)"/><path d="M-20 488Q410 373 1040 582" marker-end="url(#arrowCyan)"/></g>
+          <g transform="translate(156 132)"><circle r="36" fill="#0e303e" stroke="#5ec9ef" stroke-width="1.5"/><circle r="26" fill="none" stroke="#4ba8ca" stroke-dasharray="3 5"/><text x="0" y="-41" text-anchor="middle" fill="#9fe4fb" font-size="15" font-weight="900">N</text><path d="M0 22L0 -23" stroke="#63cfef" stroke-width="4" stroke-linecap="round"/><path d="M0 -27l-7 12h14Z" fill="#73defc"/><g id="magNeedle"><path d="M0 25L0 -25" stroke="#ed91bc" stroke-width="3"/><path d="M0 -28l-6 13h12Z" fill="#ffc0d6"/></g></g>
+          <text class="cueLabel" x="207" y="116" fill="#9de2fa">MAGNETIC FIELD</text><text class="tiny" x="207" y="137">Fixed Earth field · adjusted perceived bearing</text>
+          <circle cx="834" cy="95" r="108" fill="url(#sunGlow)"/><circle cx="834" cy="95" r="23" fill="#ffe3a3" filter="url(#glow)"/>
+          <g stroke="#ffd68a" stroke-width="2.3" opacity=".85"><path d="M834 58v-13M834 132v13M797 95h-13M871 95h13M808 69l-10 -10M860 121l10 10M860 69l10 -10M808 121l-10 10"/></g>
+          <text class="cueLabel" x="748" y="155" fill="#ffe2a3">SUN + BODY CLOCK</text><text class="tiny" x="763" y="174">The sun stays in place</text>
+          <g transform="translate(315 475)"><ellipse rx="150" ry="90" fill="url(#smellGlow)"/><ellipse rx="94" ry="38" transform="rotate(-23)" fill="none" stroke="#c58eed" stroke-width="2" stroke-dasharray="5 8" opacity=".9"/><path d="M-84 12q32 -31 62 1t65 -13t65 3" fill="none" stroke="#d8b1f0" stroke-width="3" opacity=".7" marker-end="url(#arrowViolet)"/><text class="cueLabel" x="-105" y="-50" fill="#edc8ff">ODOUR PATTERNS</text><text class="tiny" x="-88" y="-31">Winds carry regional smells</text></g>
+          <g id="smellBias" transform="translate(0 0)" opacity=".6"><path d="M255 488q45-60 83-12t84-20" stroke="#e6b3fb" stroke-width="3" stroke-dasharray="3 10" fill="none"/><circle cx="425" cy="452" r="7" fill="#e5b1fe"/></g>
+          <g id="landmarkGroup"><path d="M668 418L668 386l22-13 22 13v32" fill="#487d67" stroke="#abedb7" stroke-width="2"/><rect x="683" y="397" width="13" height="21" rx="2" fill="#d7eed1"/><path d="M745 422v-47l27-18 27 18v47" fill="#507e69" stroke="#a5e5b1" stroke-width="2"/><path d="M752 389h12m10 0h12" stroke="#b5e8c0" stroke-width="6"/><path d="M835 365h60v12h-60z" fill="#507965" stroke="#a8e6af" stroke-width="2"/></g>
+          <rect id="landmarkVeil" x="637" y="340" width="290" height="102" rx="30" fill="#234c46" opacity="0"/>
+          <text class="cueLabel" x="675" y="458" fill="#b9f0bf">FAMILIAR LANDMARKS</text><text class="tiny" x="682" y="475">Buildings, roads, junctions</text>
+          <path id="straightRoute" d="" fill="none" stroke="#e9fff8" stroke-width="2.7" stroke-dasharray="6 9" opacity=".8"/>
+          <path id="flightHalo" d="" fill="none" stroke="#ff8a55" stroke-width="15" opacity=".12" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="flightRoute" d="" fill="none" stroke="#ff966c" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="startMarker"><circle r="23" fill="#172432" stroke="#ffbb8d" stroke-width="2.5"/><path d="M0 -12q-12 8 0 19q12 -11 0-19z" fill="#ffb78d"/><circle cy="4" r="4" fill="#162330"/><text y="47" class="maplabel" text-anchor="middle">RELEASE</text></g>
+          <g id="homeMarker"><circle r="29" fill="#16342d" stroke="#c6f6cf" stroke-width="3"/><path d="M-17 -2L0 -16L17 -2v19H-17Z" fill="#9bd5a8"/><path d="M-22 -1L0 -19L22 -1" fill="none" stroke="#ddf7db" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="-5" y="7" width="10" height="10" fill="#315c47"/><text y="50" class="maplabel" text-anchor="middle">HOME LOFT</text></g>
+          <g id="birdMarker"><ellipse rx="12" ry="8" fill="#ffe6d8"/><path d="M-4 -2L-22 -15L-8 8M4 -2L20 -14L10 9" fill="#fff1e4" stroke="#e9a78e" stroke-width="1.6"/><circle cx="10" cy="-1" r="2" fill="#1e1b1e"/></g>
+          <g transform="translate(40 560)"><path d="M0 10V-17l-6 10m6-10l6 10" stroke="#c6d2d4" stroke-width="2" fill="none"/><text x="0" y="-25" text-anchor="middle" fill="#dce7e7" font-size="13" font-weight="900">N</text></g>
+        </svg>
+        <div class="mapbottom"><div class="legend"><span><i class="dot" style="background:var(--sun)"></i> Sun</span><span><i class="dot" style="background:var(--mag)"></i> Magnetic</span><span><i class="dot" style="background:var(--smell)"></i> Smell</span><span><i class="dot" style="background:var(--land)"></i> Landmarks</span></div><span class="note">Illustration only · not a flight prediction</span></div>
+      </section>
+      <aside aria-label="Four navigation clues and their sliders">
+        <h2>Change the clues</h2><p class="lead">Each slider changes what the <strong>bird perceives</strong> in this simplified map, rather than changing the real world.</p>
+        <section class="cue sun"><div class="cuehead"><span class="cuename"><span class="cueicon">☀</span> 1. Sun + internal clock</span><output id="sunValue" for="sun">0 h</output></div><label class="sr-only" for="sun">Bird's internal clock offset in hours</label><input id="sun" type="range" min="-4" max="4" step="1" value="0"/><div class="scale"><span>4 h behind</span><span>Correct time</span><span>4 h ahead</span></div><p id="sunHelp">The bird uses the sun's position <em>and the time</em> to infer direction. The sun itself never shifts.</p></section>
+        <section class="cue magnet"><div class="cuehead"><span class="cuename"><span class="cueicon">↟</span> 2. Magnetic compass</span><output id="magValue" for="mag">0°</output></div><label class="sr-only" for="mag">Hypothetical magnetic compass bearing error in degrees</label><input id="mag" type="range" min="-90" max="90" step="15" value="0"/><div class="scale"><span>90° left</span><span>Accurate</span><span>90° right</span></div><p id="magHelp">The blue curves represent Earth's field. The slider rotates the bird's <em>interpreted compass bearing</em>—not the field or a route back along it.</p></section>
+        <section class="cue smell"><div class="cuehead"><span class="cuename"><span class="cueicon">≋</span> 3. Smell map</span><output id="smellValue" for="smell">No bias</output></div><label class="sr-only" for="smell">Olfactory map location bias</label><input id="smell" type="range" min="-100" max="100" step="10" value="0"/><div class="scale"><span>Westward error</span><span>Matched air</span><span>Eastward error</span></div><p id="smellHelp">Odour mixtures and remembered winds may locate the <em>region</em> of release. Shifting this creates a false location estimate, not a scent trail to follow.</p></section>
+        <section class="cue land"><div class="cuehead"><span class="cuename"><span class="cueicon">⌂</span> 4. Familiar landmarks</span><output id="landValue" for="land">0% hidden</output></div><label class="sr-only" for="land">Percentage of familiar landmark cues obscured</label><input id="land" type="range" min="0" max="100" step="10" value="0"/><div class="scale"><span>All visible</span><span>Half obscured</span><span>All obscured</span></div><p id="landHelp">Recognising roads, junctions and buildings helps near home. Hiding them weakens the <em>last-mile correction</em>.</p></section>
+        <div class="insight" aria-live="polite"><b>What the route shows</b><p id="insightText">With reliable clues, the bird finds a reasonably direct route. Disturb one sense to see where its effect is strongest.</p></div>
+      </aside>
+    </main>
+    <footer><span>Based on behavioural experiments; route, magnitudes and cue combination are fictional teaching illustrations.</span><span>Research: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0022385" target="_blank" rel="noopener">odour map</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17777007/" target="_blank" rel="noopener">sun shifts</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42207892/" target="_blank" rel="noopener">magnetism</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15268853/" target="_blank" rel="noopener">road following</a></span></footer>
+  </div>
+  <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const elements = ['sun', 'mag', 'smell', 'land'];
+      const fields = Object.fromEntries(elements.map(k => [k, $(k)]));
+      const courses = [
+        { start:[153,432], home:[834,254], seed:0.3 },
+        { start:[230,510], home:[792,215], seed:1.2 },
+        { start:[132,293], home:[873,326], seed:2.1 },
+        { start:[313,540], home:[830,222], seed:2.8 },
+        { start:[111,468], home:[752,265], seed:3.7 },
+        { start:[276,277], home:[852,206], seed:4.5 }
+      ];
+      let courseIndex = 0;
+      const state = () => Object.fromEntries(elements.map(k => [k, Number(fields[k].value)]));
+      function points() {
+        const c = courses[courseIndex], v = state();
+        const [sx, sy] = c.start, [hx, hy] = c.home;
+        const dx = hx - sx, dy = hy - sy, norm = Math.hypot(dx, dy);
+        const nx = -dy / norm, ny = dx / norm;
+        const path = [];
+        for (let i = 0; i <= 90; i++) {
+          const t = i / 90;
+          const mid = Math.sin(Math.PI * t);
+          const scent = (v.smell / 100) * 120 * mid * (1 - .74 * t);
+          const solar = (v.sun / 4) * 105 * mid * (1 - .42 * t);
+          const magnetic = (v.mag / 90) * 115 * mid * (1 - .25 * t);
+          const lostJunctions = (v.land / 100) * (90 * Math.exp(-Math.pow((t - .83) / .16, 2)) + 56 * Math.pow(t, 7));
+          const minorWander = 16 * Math.sin(3.8 * Math.PI * t + c.seed) * mid;
+          const displacement = scent + solar + magnetic + lostJunctions + minorWander;
+          const p = [sx + dx * t + nx * displacement, sy + dy * t + ny * displacement];
+          path.push(p);
+        }
+        return path;
+      }
+      function draw() {
+        const c = courses[courseIndex], v = state();
+        const ps = points();
+        const d = ps.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+        $('flightRoute').setAttribute('d', d); $('flightHalo').setAttribute('d', d);
+        $('straightRoute').setAttribute('d', `M${c.start.join(' ')}L${c.home.join(' ')}`);
+        $('startMarker').setAttribute('transform', `translate(${c.start.join(' ')})`);
+        $('homeMarker').setAttribute('transform', `translate(${c.home.join(' ')})`);
+        const b = ps[Math.floor(ps.length * .47)], a = ps[Math.floor(ps.length * .44)];
+        const angle = Math.atan2(b[1]-a[1],b[0]-a[0])*180/Math.PI;
+        $('birdMarker').setAttribute('transform', `translate(${b.join(' ')}) rotate(${angle})`);
+        $('magNeedle').setAttribute('transform', `rotate(${v.mag})`);
+        $('smellBias').setAttribute('transform', `translate(${v.smell*.55} ${-v.smell*.23})`);
+        $('landmarkVeil').setAttribute('opacity', (.78 * v.land / 100).toFixed(2));
+        $('landmarkGroup').setAttribute('opacity', (1 - .65 * v.land / 100).toFixed(2));
+        $('sunValue').textContent = `${v.sun>0?'+':''}${v.sun} h`;
+        $('magValue').textContent = `${v.mag>0?'+':''}${v.mag}°`;
+        $('smellValue').textContent = v.smell === 0 ? 'No bias' : `${v.smell>0?'+':''}${v.smell}%`;
+        $('landValue').textContent = `${v.land}% hidden`;
+        $('sunHelp').textContent = v.sun === 0 ? 'The sun moves during a flight; the internal clock lets the pigeon compensate. Here the clock is correct.' : `The sun has NOT moved. The bird's clock is ${Math.abs(v.sun)} hour${Math.abs(v.sun)===1?'':'s'} ${v.sun>0?'ahead':'behind'}, so it interprets the same sun from a different time and initially steers off course.`;
+        $('magHelp').textContent = v.mag === 0 ? 'The field lines stay fixed. This is a conceptual compass bearing, not a line the pigeon must reverse along to return home.' : `The bird reads magnetic direction ${Math.abs(v.mag)}° to the ${v.mag>0?'right':'left'} of its actual bearing. This is a hypothetical compass bias—not a measured rotation of a pigeon flight.`;
+        $('smellHelp').textContent = v.smell === 0 ? 'The environmental scent mixture fits the bird’s learned wind-and-odour map, helping it place the release region.' : `The scent-based estimate is biased ${Math.abs(v.smell)}% ${v.smell>0?'eastward':'westward'}. The bird starts from an inaccurate idea of where it is, not a wrong scent trail.`;
+        $('landHelp').textContent = v.land === 0 ? 'Familiar features are visible. The bird can use roads, rivers and buildings to refine its final approach.' : `${v.land}% of the diagram's familiar cues are obscured. Late flight corrections become less certain in this illustrative model.`;
+        const changed = elements.filter(k => v[k] !== 0);
+        let msg = 'With all four clues undisturbed, the illustration follows a mostly direct course home. Try changing one slider at a time.';
+        if (changed.length === 1) {
+          msg = {sun:'A wrong clock biases the compass early in the flight; visible landmarks can help correct the approach.',mag:'A compass-direction error bends the early route. Magnetic direction is not a stored path that you simply reverse.',smell:'An incorrect smell map makes the release point seem to be somewhere else. The bird then aims from the wrong imagined location.',land:'The big effect appears near the loft, where recognised streets and buildings normally help the bird turn toward home.'}[changed[0]];
+        } else if (changed.length > 1) msg = 'Several errors now interact: map cues misplace the release region, compass cues bend the heading, and missing landmarks reduce late correction. The exact orange path is only illustrative.';
+        $('insightText').textContent = msg;
+      }
+      elements.forEach(k => fields[k].addEventListener('input', draw));
+      $('reset').addEventListener('click', () => {elements.forEach(k => fields[k].value=0); draw();});
+      $('newRoute').addEventListener('click', () => {let n=courseIndex; while(n===courseIndex) n=Math.floor(Math.random()*courses.length); courseIndex=n; draw();});
+      draw();
+    })();
+  </script>
+</body>
+</html>

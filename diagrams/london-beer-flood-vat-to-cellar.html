@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>From Vat to Cellar · 1814 London Beer Flood</title>
+  <style>
+    :root { color-scheme: dark; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:#090e17; color:#eef0f5; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at 75% 0%,#172434 0,#090e17 55%); }
+    .shell { max-width:1360px; margin:auto; padding:26px; }
+    .overline { color:#d6a969; font-size:12px; letter-spacing:.18em; font-weight:800; text-transform:uppercase; }
+    h1 { font-size:clamp(28px,3.5vw,43px); line-height:1.07; letter-spacing:-.055em; margin:10px 0 10px; }
+    .lede { color:#aab7c7; max-width:820px; line-height:1.55; font-size:15px; margin:0 0 22px; }
+    .grid { display:grid; grid-template-columns:295px minmax(0,1fr); gap:18px; align-items:start; }
+    .panel { background:#111b2a; border:1px solid #2b3a4b; border-radius:18px; overflow:hidden; }
+    .controls { padding:22px; }
+    .controls h2,.scene h2 { margin:0; font-size:17px; letter-spacing:-.025em; }
+    .control { padding:19px 0 13px; border-bottom:1px solid #273544; }
+    .control label { display:flex; align-items:center; justify-content:space-between; color:#edf0f5; font-weight:650; font-size:14px; margin-bottom:10px; }
+    .control output { color:#efbd74; font-weight:800; font-variant-numeric:tabular-nums; }
+    .control p { font-size:12px; line-height:1.47; color:#9dabbc; margin:10px 0 0; }
+    input[type=range] { width:100%; accent-color:#efb469; cursor:pointer; }
+    .ends { display:flex; justify-content:space-between; color:#8190a3; font-size:11px; margin-top:3px; }
+    .buttons { display:grid; grid-template-columns:1fr 1fr; gap:9px; padding-top:18px; }
+    button { border:1px solid #3d4f63; border-radius:10px; color:#eaf0f6; background:#1b2a3b; font-weight:700; padding:12px 8px; cursor:pointer; font-size:13px; }
+    button.primary { border-color:#efb469; background:#efb469; color:#201609; }
+    button.wide { grid-column:span 2; }
+    button:hover { filter:brightness(1.1); }
+    button:focus-visible,input:focus-visible,a:focus-visible { outline:3px solid #83d8ec; outline-offset:3px; }
+    .scene { padding:18px; }
+    .scenehead { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:13px; }
+    .pill { font-size:11px; letter-spacing:.07em; text-transform:uppercase; font-weight:800; color:#bce5d2; background:#1b3a38; border:1px solid #34645d; border-radius:99px; padding:6px 10px; }
+    .stage { border:1px solid #30445a; border-radius:13px; overflow:hidden; background:#0b1623; }
+    svg { display:block; width:100%; height:auto; }
+    .statrow { margin-top:15px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+    .stat { padding:12px; background:#0c1421; border:1px solid #29384a; border-radius:11px; min-width:0; }
+    .stat b { display:block; font-size:21px; color:#f2d19d; font-variant-numeric:tabular-nums; }
+    .stat span { display:block; color:#9fafbf; font-size:11px; margin-top:3px; }
+    #narrative { margin:14px 0 0; min-height:44px; color:#c2d0de; line-height:1.5; font-size:14px; }
+    .foot { margin-top:18px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .note { background:#101a28; border:1px solid #293749; border-radius:12px; padding:16px 18px; }
+    .note h3 { font-size:13px; color:#eec385; margin:0 0 6px; }
+    .note p { color:#a7b7c8; line-height:1.55; font-size:12px; margin:0; }
+    a { color:#9bd9ed; }
+    .sources { margin-top:18px; font-size:12px; color:#91a3b5; line-height:1.7; }
+    .sources a { margin-left:9px; }
+    .label { font-size:15px; fill:#cbd5e1; font-family:system-ui,sans-serif; font-weight:750; }
+    .small { font-size:12px; fill:#96a8ba; font-family:system-ui,sans-serif; }
+    @media (max-width:850px) { .grid { grid-template-columns:1fr; } .controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:start; gap:0 20px; } .controls h2 { grid-column:1/-1; } .control { min-width:0; } .buttons { grid-column:1/-1; grid-template-columns:repeat(3,minmax(0,1fr)); } button.wide { grid-column:span 1; } }
+    @media (max-width:580px) { .shell { padding:15px; } .controls { display:block; } .control { padding:14px 0; } .statrow { gap:6px; } .stat { padding:9px; } .stat b { font-size:17px; } .foot { grid-template-columns:1fr; gap:9px; } .scene { padding:11px; } .buttons { grid-template-columns:1fr 1fr; } button.wide { grid-column:span 2; } }
+    @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; transition:none !important; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="overline">Rabbit Hole · Interactive historical mechanism</div>
+    <h1>How a vat of beer reached people's homes</h1>
+    <p class="lede">Change the fill, hoop support and cellar opening. Then run an illustrative chain reaction through a brewery wall, a narrow street and a basement dwelling. It demonstrates the physics and exposure—not an exact reconstruction of 17 October 1814.</p>
+    <div class="grid">
+      <section class="panel controls" aria-label="Experiment controls">
+        <h2>Adjust the conditions</h2>
+        <div class="control">
+          <label for="fill">Beer level <output id="fillOut" for="fill">99%</output></label>
+          <input id="fill" type="range" min="20" max="100" value="99" step="1">
+          <div class="ends"><span>Low</span><span>Nearly full</span></div>
+          <p>More height means greater liquid pressure near the bottom, even without active fermentation.</p>
+        </div>
+        <div class="control">
+          <label for="support">Hoop support <output id="supportOut" for="support">25%</output></label>
+          <input id="support" type="range" min="0" max="100" value="25" step="1">
+          <div class="ends"><span>Compromised</span><span>Robust</span></div>
+          <p>Changes hypothetical restraint around the wooden staves. The actual 1814 failure threshold is unknown.</p>
+        </div>
+        <div class="control">
+          <label for="opening">Cellar opening <output id="openingOut" for="opening">80%</output></label>
+          <input id="opening" type="range" min="0" max="100" value="80" step="5">
+          <div class="ends"><span>Protected</span><span>Exposed</span></div>
+          <p>Shows why entrances and rooms below street level made this neighbourhood vulnerable.</p>
+        </div>
+        <div class="buttons">
+          <button id="run" class="primary">▶ Run flood</button>
+          <button id="reset">↺ Reset</button>
+          <button id="preset" class="wide">1814-inspired preset</button>
+        </div>
+      </section>
+      <section class="panel scene" aria-label="Illustrative cutaway diagram">
+        <div class="scenehead"><h2>Side-view cutaway</h2><span class="pill" id="phase">Ready to test</span></div>
+        <div class="stage">
+          <svg id="scene" viewBox="0 0 920 520" role="img" aria-labelledby="diagramTitle diagramDesc">
+            <title id="diagramTitle">Diagram of beer escaping from large brewery vats into St Giles street and basement homes</title>
+            <desc id="diagramDesc">Adjustable brown liquid inside a wooden storage vat, an adjoining vessel, brewery wall, street, houses and cellars. The animation is schematic, not to scale.</desc>
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#142739"/><stop offset="1" stop-color="#0b1725"/></linearGradient>
+              <linearGradient id="beer" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e4a34a"/><stop offset=".45" stop-color="#ac572d"/><stop offset="1" stop-color="#63321f"/></linearGradient>
+              <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dfab5d"/><stop offset=".48" stop-color="#a05e31"/><stop offset="1" stop-color="#57301d"/></linearGradient>
+              <pattern id="brick" width="24" height="12" patternUnits="userSpaceOnUse"><rect width="24" height="12" fill="#5c6471"/><path d="M0 12H24 M12 0V6 M0 6H24 M0 0V6 M24 6V12" stroke="#313c48" stroke-width="1.4"/></pattern>
+              <pattern id="wood" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="#895436"/><path d="M6 0V20 M14 0V20" stroke="#b17a4f" stroke-width="1.5" opacity=".7"/></pattern>
+              <clipPath id="vatClip"><rect x="75" y="97" width="212" height="266" rx="7"/></clipPath>
+              <clipPath id="otherClip"><rect x="316" y="174" width="75" height="189" rx="5"/></clipPath>
+              <clipPath id="cellarClip"><rect x="653" y="401" width="219" height="80" rx="3"/></clipPath>
+            </defs>
+            <rect width="920" height="520" fill="url(#sky)"/>
+            <path d="M0 374H920V520H0Z" fill="#1b2730"/>
+            <path d="M0 375H920" stroke="#87909b" stroke-width="6"/>
+            <path d="M0 388H920" stroke="#354454" stroke-width="2" stroke-dasharray="12 7"/>
+            <text x="95" y="38" class="label">MEUX'S BREWERY</text>
+            <text x="74" y="60" class="small">large storage vat · 22 ft high</text>
+            <text x="564" y="38" class="label">ST GILES HOMES</text>
+            <text x="590" y="60" class="small">street-level rooms above cellars</text>
+            <path d="M58 375V83H302V375" stroke="#273b4a" fill="none" stroke-width="5"/>
+            <rect x="75" y="97" width="212" height="266" rx="7" fill="url(#wood)" stroke="#c28d57" stroke-width="4"/>
+            <rect id="vatBeer" x="77" y="100" width="208" height="260" fill="url(#beer)" clip-path="url(#vatClip)"/>
+            <path id="vatTop" d="M77 102H285" stroke="#f8d38a" stroke-width="3" opacity=".75"/>
+            <g id="hoops" stroke="#b8c4ca" stroke-width="8" fill="none" opacity="1"><path d="M72 160H290"/><path d="M72 223H290"/><path d="M72 291H290"/><path d="M72 342H290"/></g>
+            <g stroke="#efbd74" stroke-width="4" id="warning" opacity=".1"><path d="M70 296L95 283"/><path d="M76 288L85 309"/><path d="M84 286L96 299"/></g>
+            <text x="170" y="126" class="small" style="font-weight:800;fill:#fff4d9" id="inVat">99% full</text>
+            <rect x="318" y="173" width="74" height="190" rx="5" fill="url(#wood)" stroke="#bd8958" stroke-width="3"/>
+            <rect id="otherBeer" x="320" y="205" width="70" height="155" fill="url(#beer)" clip-path="url(#otherClip)"/>
+            <path d="M314 238H396M314 310H396" stroke="#a7b6bd" stroke-width="5"/>
+            <text x="306" y="155" class="small">adjacent vat</text>
+            <rect id="breweryWall" x="407" y="103" width="28" height="272" fill="url(#brick)" stroke="#697481" stroke-width="3"/>
+            <text x="445" y="206" class="small" transform="rotate(90 445 206)">BREWERY WALL</text>
+            <path id="debris" d="M0 0" fill="#6d7881" opacity="0"/>
+            <g fill="url(#brick)" stroke="#aab4bd" stroke-width="3">
+              <path d="M586 163L654 119L714 163V375H586Z"/>
+              <path d="M726 178L798 136L873 178V375H726Z"/>
+            </g>
+            <g fill="#1b2b37" stroke="#93a5ae" stroke-width="3"><rect x="611" y="209" width="41" height="52"/><rect x="655" y="209" width="36" height="52"/><rect x="752" y="218" width="40" height="50"/><rect x="813" y="218" width="40" height="50"/></g>
+            <path d="M597 375V294H633V375" fill="#182738" stroke="#a1acb7" stroke-width="3"/>
+            <path d="M814 375V293H846V375" fill="#192b39" stroke="#a1acb7" stroke-width="3"/>
+            <rect x="647" y="397" width="230" height="90" fill="#121d2b" stroke="#9a9e9d" stroke-width="5"/>
+            <rect id="cellarBeer" x="651" y="479" width="224" height="0" fill="url(#wave)" clip-path="url(#cellarClip)"/>
+            <path d="M647 400H874" stroke="#2a3c48" stroke-width="5"/>
+            <g stroke="#a5b3c2" fill="none" stroke-width="3"><path d="M665 425H715V455H665Z"/><path d="M670 417V425M710 417V425"/></g>
+            <g id="person" fill="#c9bfae"><circle cx="807" cy="428" r="9"/><path d="M798 442L795 474M816 442L820 474M807 440V462M806 447L791 458M808 447L821 456" stroke="#c9bfae" stroke-width="5" stroke-linecap="round"/></g>
+            <text x="666" y="502" class="small" style="fill:#d0c4b2">INHABITED CELLAR</text>
+            <path d="M630 375L667 397" stroke="#ad9276" stroke-width="3" stroke-dasharray="5 5"/>
+            <text x="491" y="410" class="small">NARROW STREET</text>
+            <path id="streetBeer" d="M440 377H440V377H440Z" fill="url(#wave)" stroke="#f0b65b" stroke-width="2" opacity="0"/>
+            <path id="secondaryJet" d="M0 0" fill="#d09a52" opacity="0"/>
+            <g id="arrows" fill="#ddc19d" opacity="0"><path d="M493 319l20 10-20 10v-6h-26v-8h26z"/><path d="M550 335l20 10-20 10v-6h-26v-8h26z"/></g>
+            <text x="27" y="500" class="small">Schematic only · not to scale</text>
+          </svg>
+        </div>
+        <div class="statrow" aria-label="Calculated indicators">
+          <div class="stat"><b id="pressure">65 kPa</b><span>Approx. pressure at vat bottom</span></div>
+          <div class="stat"><b id="risk">High</b><span>Illustrative rupture tendency</span></div>
+          <div class="stat"><b id="cellarrisk">Exposed</b><span>Potential cellar entry</span></div>
+        </div>
+        <p id="narrative" aria-live="polite">Ready: the 1814-inspired controls illustrate a very full old-beer vat and compromised support. Press <strong>Run flood</strong> to trace the possible chain of damage.</p>
+      </section>
+    </div>
+    <div class="foot">
+      <div class="note"><h3>What changes, physically?</h3><p>Liquid pressure at depth depends on the height of liquid above it. The iron hoops hold the wooden staves together against outward forces. When a very large volume escapes, its mass and motion can damage other vessels and walls.</p></div>
+      <div class="note"><h3>What the model cannot tell us</h3><p>The condition and strengths of the original hoop and wood were never measured for us. No reliable local flood-depth map or time-resolved flow measurements survive. The failure rule, flow speed and cellar fill are illustrative—never historical predictions.</p></div>
+    </div>
+    <div class="sources"><strong>Research:</strong>
+      <a href="https://barclayperkins.blogspot.com/2024/06/1814-beer-flood.html" target="_blank" rel="noopener">1814 inquest testimony (transcribed)</a>
+      <a href="https://www.londonmuseum.org.uk/collections/london-stories/pint-sized-guide-londons-historic-breweries/" target="_blank" rel="noopener">London Museum</a>
+      <a href="https://openstax.org/books/college-physics-2e/pages/11-4-variation-of-pressure-with-depth-in-a-fluid" target="_blank" rel="noopener">Fluid pressure, OpenStax</a>
+    </div>
+  </div>
+  <script>
+    (function () {
+      'use strict';
+      const $ = (id) => document.getElementById(id);
+      const sliders = ['fill','support','opening'];
+      const preset = { fill:99, support:25, opening:80 };
+      let frame = 0, started = 0, progress = 0, running = false;
+      const clamp = (x,a=0,b=1) => Math.max(a,Math.min(b,x));
+      const ease = (x) => { x=clamp(x);return x*x*(3-2*x); };
+      const value = (name) => Number($(name).value);
+      const canRupture = () => value('fill') * 0.90 > value('support') + 14;
+      const format = (name) => { $(name+'Out').textContent=value(name)+'%'; };
+      function setText(t) { $('narrative').textContent = t; }
+      function phase(t) { $('phase').textContent=t; }
+      function render(p) {
+        const liquid = value('fill'), support=value('support'), opening=value('opening');
+        const ruptures = canRupture();
+        const spill = ruptures ? ease((p-.12)/.64) : 0;
+        const cascade = ruptures ? ease((p-.26)/.56) : 0;
+        const street = ruptures ? ease((p-.28)/.52) : 0;
+        const cellar = clamp((p-.56)/.44) * opening/100 * liquid/100;
+        const tankHeight = 260*liquid/100*(1-.90*spill);
+        $('vatBeer').setAttribute('y',(360-tankHeight).toFixed(1));
+        $('vatBeer').setAttribute('height',tankHeight.toFixed(1));
+        $('vatTop').setAttribute('d',`M77 ${360-tankHeight}H285`);
+        $('inVat').textContent=Math.round(liquid*(1-.90*spill))+'% left';
+        $('hoops').setAttribute('opacity',Math.max(.09,support/100*(1-spill*.6)).toFixed(2));
+        $('warning').setAttribute('opacity',(support<55?.86:.14).toFixed(2));
+        const second = 155 * (1 - .70*cascade);
+        $('otherBeer').setAttribute('y',360-second);
+        $('otherBeer').setAttribute('height',second);
+        $('breweryWall').setAttribute('opacity',(1-ease((p-.22)/.24)*.98).toFixed(2));
+        $('secondaryJet').setAttribute('opacity',cascade>.02?.9:0);
+        $('secondaryJet').setAttribute('d',`M391 307 Q${410+15*cascade} 310 ${422+20*cascade} ${324+11*cascade} L${424+25*cascade} ${333+11*cascade} Q402 322 391 319Z`);
+        const front = 440 + street*468;
+        const h = (6 + street*25) * (liquid/100);
+        const wave = `M437 377 L437 ${377-h*.72} Q${front-85} ${377-h*1.25} ${front-18} ${377-h*.60} Q${front-5} ${377-h} ${front} ${377-h*.3} L${front} 377 Z`;
+        $('streetBeer').setAttribute('d',wave);
+        $('streetBeer').setAttribute('opacity',street>.01?1:0);
+        $('arrows').setAttribute('opacity',(street>.02?.55:0).toFixed(2));
+        $('debris').setAttribute('opacity',(cascade>.01?.9:0).toFixed(2));
+        $('debris').setAttribute('d','M411 376L438 365L457 374L451 383L422 385Z M426 369L447 346L460 359L446 376Z');
+        const level = 72 * cellar;
+        $('cellarBeer').setAttribute('y',(482-level).toFixed(1));
+        $('cellarBeer').setAttribute('height',level.toFixed(1));
+        $('person').setAttribute('opacity',Math.max(.2,1-cellar*.65).toFixed(2));
+        $('pressure').textContent=Math.round(6.7*liquid/100*9.81)+' kPa';
+        $('risk').textContent=ruptures?'High':'Lower';
+        $('risk').style.color=ruptures?'#efb469':'#9cdcc8';
+        $('cellarrisk').textContent=opening>=60?'Exposed':opening>=25?'Partial':'Limited';
+        if (running) {
+          if (!ruptures) { phase('Vat holds in this model');setText('With this hypothetical combination, support is sufficient for the simulated load. No flood is generated. Try lowering hoop support or increasing the beer level.'); }
+          else if (p<.24) {phase('A weakening restraint');setText('The ageing beer creates a large outward load at the bottom. The weakened hoop system is represented as unable to hold it. In 1814 the precise structural failure mechanism was not established.');}
+          else if (p<.46) {phase('Wall and vessels fail');setText('The escaping beer and collapsing timber can break additional vessels and tear through the thick brewery wall—a chain reaction described in the inquest testimony.');}
+          else if (p<.80) {phase('Beer enters the street');setText('A large volume moves into the narrow, densely built street. The wave shape and speed here are schematic; no measurements of the 1814 flow survive.');}
+          else {phase('Cellars inundated');setText('The street-level spill has a route into lower rooms. Increasing the cellar-opening slider increases exposure, but it is a hypothetical building-design experiment.');}
+        }
+      }
+      function stop() {if(frame)cancelAnimationFrame(frame);frame=0;running=false;}
+      function resetState() {stop();progress=0;phase('Ready to test');render(0);setText('Ready: adjust the controls, then select Run flood. The values for historical hoop strength and cellar openings are hypothetical.');$('run').disabled=false;$('run').textContent='▶ Run flood';}
+      function tick(now) { if(!started)started=now;progress=clamp((now-started)/6800);render(progress);if(progress<1){frame=requestAnimationFrame(tick);}else {stop();$('run').disabled=false;$('run').textContent='▶ Replay flood';phase(canRupture()?'Sequence complete':'Vat holds');} }
+      function run() {stop();progress=0;started=0;running=true;$('run').disabled=true;$('run').textContent='Running…';frame=requestAnimationFrame(tick);}
+      sliders.forEach(id => $(id).addEventListener('input',()=>{format(id);resetState();}));
+      $('run').addEventListener('click',run);
+      $('reset').addEventListener('click',resetState);
+      $('preset').addEventListener('click',()=>{sliders.forEach(id=>{$(id).value=preset[id];format(id);});resetState();setText('1814-inspired preset: nearly full beer vat and reduced hoop support. The precise historical support strength and cellar opening sizes are not known.');});
+      sliders.forEach(format);resetState();
+      window.addEventListener('pagehide',stop);
+    })();
+  </script>
+</body>
+</html>

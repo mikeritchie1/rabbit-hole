@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 2,
+  "id": "the-pope-who-tried-a-corpse",
+  "title": "A pope put his dead predecessor on trial in 897.",
+  "category": "Dark & disturbing",
+  "hook": "A corpse in papal robes, severed blessing fingers, and a verdict that refused to stay settled.",
+  "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean_Paul_Laurens_Le_Pape_Formose_et_Etienne_VI_1870.jpg",
+    "alt": "Jean-Paul Laurens's 1870 painting showing Pope Stephen VI pointing toward the seated, robed corpse of Pope Formosus during the Cadaver Synod.",
+    "credit": "Jean-Paul Laurens, 1870; Musée d'Arts de Nantes; public domain, photographed and displayed with possible CSS cropping/darkening. This is a later artistic reconstruction.",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jean_Paul_Laurens_Le_Pape_Formose_et_Etienne_VI_1870.jpg"
+  },
+  "levels": [
+    {
+      "id": "a-dead-man-in-the-chair",
+      "title": "The defendant was already nine months dead.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "the-cadaver-synod",
+          "title": "A deacon answered for a corpse",
+          "text": "In early 897, Pope Stephen VI convened a council to judge Formosus, who had died in 896. His predecessor's body was removed from its tomb, dressed in papal vestments and placed on a seat. A deacon was assigned to answer accusations on the dead man's behalf.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "The Cadaver Synod: Putting a Dead Pope on Trial", "publisher": "JSTOR Daily", "url": "https://daily.jstor.org/the-cadaver-synod-putting-a-dead-pope-on-trial/"}
+          ]
+        },
+        {
+          "type": "image",
+          "id": "nineteenth-century-trial-painting",
+          "title": "The scene painted nearly a millennium later",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Jean_Paul_Laurens_Le_Pape_Formose_et_Etienne_VI_1870.jpg",
+            "alt": "A painted medieval ecclesiastical hearing: a living pope confronts a lifeless predecessor propped up in a chair.",
+            "credit": "Jean-Paul Laurens, 1870; Musée d'Arts de Nantes; public domain, with possible CSS cropping/darkening; retrospective artistic reconstruction.",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jean_Paul_Laurens_Le_Pape_Formose_et_Etienne_VI_1870.jpg"
+          },
+          "caption": "Laurens imagined the Cadaver Synod in 1870. The painting conveys the spectacle, but it is not an eyewitness record of the room or participants."
+        },
+        {
+          "type": "video",
+          "id": "history-show-cadaver-synod",
+          "title": "A Dead Pope on Trial: The Cadaver Synod | The History Show",
+          "channel": "Complexly",
+          "youtubeId": "FcgnjjTNIjc",
+          "note": "A 16-minute historical introduction. Its revenge narrative is worth comparing with the contested evidence in later depths."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-bishop-who-was-exiled",
+      "title": "Formosus had been condemned while alive, too.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "exile-and-excommunication",
+          "title": "His old enemy was another pope",
+          "text": "Before becoming pope, Formosus was bishop of Porto, near Rome. Pope John VIII excommunicated him amid bitter political disputes, and Formosus swore not to return to Rome or reclaim his bishopric. Those older accusations later supplied ammunition for the trial of his corpse.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "the-ban-was-reversed",
+          "title": "Then a new pope forgave him",
+          "text": "After John VIII died in 882, Pope Marinus released Formosus from the oath and restored him to Porto. Formosus himself became pope in 891. The reversal matters: the later prosecutors treated disputed and already-relaxed restrictions as grounds for declaring his papacy invalid.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "Pope Formosus", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/06139b.htm"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-rule-that-undid-priests",
+      "title": "One technical rule could unravel a whole clergy network.",
+      "objects": [
+        {
+          "type": "experiment",
+          "id": "verdict-dominoes",
+          "title": "Explore the verdict dominoes",
+          "file": "diagrams/the-pope-who-tried-a-corpse-verdict-dominoes.html",
+          "description": "Move through the changing verdicts to see how decisions about a dead pope threatened the status of living clergy."
+        },
+        {
+          "type": "fact",
+          "id": "the-two-bishoprics-rule",
+          "title": "A bishop was not supposed to switch dioceses",
+          "text": "The main legal objection was that Formosus had moved from being bishop of Porto to bishop of Rome: the papacy. Church rules generally prohibited a bishop from changing sees, though exceptions had occurred. The dispute was about the legality of his office, not whether the corpse had committed a new crime.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "stephens-own-problem",
+          "title": "The judge had made the same move",
+          "text": "Stephen VI had been bishop of Anagni before becoming pope. Formosus had appointed him there. By voiding Formosus's appointments, Stephen could argue that his own earlier bishopric had never been valid, removing the same objection to his move to Rome. Historians debate how much this motivated him.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Stephen VI (VII), Pope", "publisher": "New Catholic Encyclopedia via Encyclopedia.com", "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/stephen-vi-vii-pope"},
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "the-ordination-domino",
+          "title": "Invalidating a pope threatened living clergy",
+          "text": "Stephen's council declared Formosus's ordinations and acts void. This was no mere insult to the dead: men Formosus had made priests or bishops now faced questions about their own status, and about further ordinations they had performed. The consequences spread beyond one corpse.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Compétition autour d’un cadavre. Le procès du pape Formose et ses enjeux (896-904)", "publisher": "Laurent Jégou, Revue historique, 2015", "url": "https://www.researchgate.net/publication/282411166_Competition_autour_d%27un_cadavre_Le_proces_du_pape_Formose_et_ses_enjeux_896-904"},
+            {"title": "Pope Formosus", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/06139b.htm"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "two-rivals-one-crown",
+      "title": "The papacy was caught between rival emperors.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "two-imperial-coronations",
+          "title": "Formosus crowned both rival claimants",
+          "text": "Formosus crowned Lambert of Spoleto emperor in Ravenna in 892, then crowned Arnulf of Carinthia in Rome in 896 after Arnulf invaded Italy. Both men claimed supreme imperial authority. A papal coronation could strengthen a ruler's legitimacy, making the pope's actions politically explosive.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "Stephen VI (VII), Pope", "publisher": "New Catholic Encyclopedia via Encyclopedia.com", "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/stephen-vi-vii-pope"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "revenge-is-not-settled",
+          "title": "The usual revenge story is not proven",
+          "text": "The traditional account says Lambert and his mother Ageltrude punished Formosus for switching sides. Yet the 898 Ravenna council described Arnulf's coronation as forced. Historian William S. Monroe argues Stephen may instead have been trying to appease Lambert, or confronting rival Roman factions. The true instigators remain uncertain.",
+          "evidence": "disputed",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "reconsidering-the-motive",
+          "title": "A New Look at the Cadaver Synod",
+          "publisher": "William S. Monroe · medieval canon-law scholarship",
+          "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355",
+          "description": "Monroe compares the later revenge narrative with papal letters and surviving Ravenna decrees. His alternative is an argument from imperfect evidence, not a newly discovered confession by Stephen or Lambert."
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "a-body-stripped-of-authority",
+      "title": "They punished the symbols of the office.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "cutting-the-blessing-fingers",
+          "title": "Three fingers were severed from the right hand",
+          "text": "After condemning Formosus, the council had the papal robes removed and three fingers cut from the hand used for blessings. This was a deliberate reversal of sacred authority: the gestures of the office were attacked on the dead body that had performed them.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "The Body of Pope Formosus", "publisher": "Michael Edward Moore, Millennium, 2012", "url": "https://www.degruyterbrill.com/document/doi/10.1515/mjb.2012.9.1.277/html"},
+            {"title": "Pope Formosus", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/06139b.htm"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "whose-hands-threw-him-in",
+          "title": "The river story has a missing perpetrator",
+          "text": "Later accounts say Formosus's corpse was thrown into the Tiber. But the surviving 898 Ravenna decrees blame unnamed people who violated a tomb, apparently seeking treasure, and cast the body into the river. That evidence leaves uncertain whether Stephen himself ordered this later disposal.",
+          "evidence": "disputed",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "The Cadaver Synod: Putting a Dead Pope on Trial", "publisher": "JSTOR Daily", "url": "https://daily.jstor.org/the-cadaver-synod-putting-a-dead-pope-on-trial/"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "the-judge-is-strangled",
+      "title": "The dead pope outlasted his judge.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "stephen-falls",
+          "title": "Stephen was imprisoned and strangled that same year",
+          "text": "Within months of the 897 trial, Stephen VI was deposed, jailed and strangled. The outrage over the Cadaver Synod is commonly linked to his downfall, although the exact mix of popular anger and factional plotting is not documented with certainty.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Stephen VI (VII), Pope", "publisher": "New Catholic Encyclopedia via Encyclopedia.com", "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/stephen-vi-vii-pope"},
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "rapid-papal-turnover",
+          "title": "Two more popes arrived before 898",
+          "text": "Stephen was followed by Romanus and then Theodore II, both in 897. Theodore's reign lasted only weeks, but he reversed the condemnation, recognised Formosus's ordinations and arranged an honourable return of the body to St Peter's. Politics had changed the official judgement of a dead man again.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Pope Formosus", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/06139b.htm"},
+            {"title": "Stephen VI (VII), Pope", "publisher": "New Catholic Encyclopedia via Encyclopedia.com", "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/stephen-vi-vii-pope"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "burn-the-first-verdict",
+      "title": "A council burned the verdict and banned dead trials.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "john-nines-council",
+          "title": "In 898, John IX tried to make it final",
+          "text": "Pope John IX's councils condemned Stephen's proceeding, ordered its acts burned and reinstated clergy it had degraded. The Ravenna council explicitly rejected bringing the dead to trial: a dead defendant cannot answer the charges. The reform was a response to a real abuse, not merely a modern lesson.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Pope John IX", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/08425a.htm"},
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "coercion-in-the-room",
+          "title": "The later council said witnesses had been threatened",
+          "text": "The Ravenna acts also record that participants in Stephen's synod had been compelled by threats of physical harm. This tells us the hearing was not a free deliberation, though the surviving text does not securely identify who made the threats.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "a-verdict-that-changes-again",
+      "title": "Seven years later, the old argument returned.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "sergius-iii-reverses-course",
+          "title": "Sergius III revived the condemnation",
+          "text": "After becoming pope in 904, Sergius III supported Stephen's anti-Formosus position and demanded that clergy ordained by Formosus be treated as laymen unless reordained. Thus even the 898 settlement did not end the argument over who was really a priest.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Pope Formosus", "publisher": "The Catholic Encyclopedia", "url": "https://www.newadvent.org/cathen/06139b.htm"},
+            {"title": "Der Streit um Formosus: Traktate des Auxilius und weitere Schriften", "publisher": "Harrassowitz Verlag, 2021; catalogued by WorldCat", "url": "https://search.worldcat.org/title/Der-Streit-um-Formosus-%3A-Traktate-des-Auxilius-und-weitere-Schriften/oclc/1243512847"}
+          ]
+        },
+        {
+          "type": "fact",
+          "id": "auxilius-pushed-back",
+          "title": "An affected priest wrote a legal counterattack",
+          "text": "Auxilius, a cleric ordained by Formosus, wrote treatises defending his ordinations and those of other clergy. The debate turned on a difficult issue: could a minister's disputed legitimacy invalidate a sacred act already performed? His writings kept this legal battle alive after the corpse was reburied.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "Who Was Auxilius?: Ethnic Identity in Late Carolingian Italy", "publisher": "William S. Monroe, scholarly research paper", "url": "https://www.researchgate.net/publication/349007648_Who_Was_Auxilius_Ethnic_Identity_in_Late_Carolingian_Italy"},
+            {"title": "Der Streit um Formosus: Traktate des Auxilius und weitere Schriften", "publisher": "Harrassowitz Verlag, 2021; catalogued by WorldCat", "url": "https://search.worldcat.org/title/Der-Streit-um-Formosus-%3A-Traktate-des-Auxilius-und-weitere-Schriften/oclc/1243512847"}
+          ]
+        }
+      ],
+      "final": false
+    },
+    {
+      "id": "what-survived-of-the-story",
+      "title": "The real evidence is stranger than the legend.",
+      "objects": [
+        {
+          "type": "fact",
+          "id": "no-transcript-of-dead-trial",
+          "title": "The trial's own acts do not survive",
+          "text": "We cannot check a verbatim courtroom transcript: Stephen's synodal acts are lost. The closest major testimony is the 898 Ravenna settlement, surviving in later manuscripts, including a tenth-century copy in Rome's Biblioteca Vallicelliana. It confirms the corpse episode while leaving details and motives unresolved.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "Rom, Biblioteca Vallicelliana, A. 5", "publisher": "Capitularia, University of Cologne", "url": "https://capitularia.uni-koeln.de/en/mss/rom-bv-a-5/"}
+          ]
+        },
+        {
+          "type": "article",
+          "id": "the-surviving-manuscript",
+          "title": "A tenth-century manuscript preserves the 898 response",
+          "publisher": "Capitularia · University of Cologne",
+          "url": "https://capitularia.uni-koeln.de/en/mss/rom-bv-a-5/",
+          "description": "This academic manuscript catalogue identifies folios 348r–349v as containing the 898 Ravenna council's proceedings. The parchment is evidence for the response to the Cadaver Synod, rather than a transcript of Stephen's trial."
+        },
+        {
+          "type": "fact",
+          "id": "saints-nod-and-relics-appear",
+          "title": "A later writer said saints' images bowed to the corpse",
+          "text": "Decades afterward, Liutprand of Cremona retold a story that images of saints saluted Formosus's recovered body. A twelfth-century inventory in Paris even lists supposed bones of 'Saint Pope Formosus'. Neither claim verifies a miracle or the bones' identity; together they reveal how attempts to disgrace him could inspire a competing story of holiness.",
+          "evidence": "documented",
+          "sources": [
+            {"title": "A New Look at the Cadaver Synod", "publisher": "William S. Monroe, Biblioteca Apostolica Vaticana, 2022", "url": "https://www.researchgate.net/publication/374697965_A_New_Look_at_the_Cadaver_Synod_Proceedings_of_the_XV_International_Congress_of_Medieval_Canon_Law_Paris_July_2016_Citta_del_Vaticano_Biblioteca_Apostolica_Vaticana_2022_pp_321-355"},
+            {"title": "The Body of Pope Formosus", "publisher": "Michael Edward Moore, Millennium, 2012", "url": "https://www.degruyterbrill.com/document/doi/10.1515/mjb.2012.9.1.277/html"}
+          ]
+        }
+      ],
+      "final": true
+    }
+  ]
+}

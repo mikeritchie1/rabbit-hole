@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "zombie-ant-fungus",
-  "title": "The fungus that turns ants into zombies",
+  "title": "A fungus makes ants climb, bite down and die where it can spread.",
   "category": "Dark & disturbing",
-  "hook": "An infected ant climbs vegetation, bites down, and dies exactly where a fungus can reproduce. Follow the trail into locked jaw muscles, an untouched brain, species-specific chemicals, and a parasite of the parasite.",
+  "hook": "It invades their muscles, leaves the brain uninvaded and can fall victim to a parasite of its own.",
   "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ophiocordyceps.jpg",
     "alt": "A dead Polyrhachis exercita ant infected with Ophiocordyceps, with fungal growth protruding from its body on a leaf.",
