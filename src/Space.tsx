@@ -11,7 +11,8 @@ export function Space({flight,motion='forward'}:{flight:number;motion?:SpaceMoti
   useEffect(()=>{
     const canvas=sky.current!;
     const paint=()=>{
-      canvas.width=Math.min(800,innerWidth);canvas.height=Math.round(canvas.width*innerHeight/innerWidth);
+      const frame=canvas.parentElement!;
+      canvas.width=Math.min(800,frame.clientWidth);canvas.height=Math.round(canvas.width*frame.clientHeight/Math.max(1,frame.clientWidth));
       const ctx=canvas.getContext('2d')!,w=canvas.width,h=canvas.height,image=ctx.createImageData(w,h);
       for(let y=0;y<h;y++)for(let x=0;x<w;x++){
         const u=x/w,v=y/h,n=cloud(u*5+5,v*4+4),fine=cloud(u*17,v*13);
@@ -26,14 +27,15 @@ export function Space({flight,motion='forward'}:{flight:number;motion?:SpaceMoti
         if(r>.994){const glow=ctx.createRadialGradient(x,y,0,x,y,12);glow.addColorStop(0,'#c7ddff99');glow.addColorStop(.16,'#87b5ff44');glow.addColorStop(1,'#589aff00');ctx.fillStyle=glow;ctx.fillRect(x-12,y-12,24,24);ctx.strokeStyle='#c6dcff66';ctx.lineWidth=.4;ctx.beginPath();ctx.moveTo(x-6,y);ctx.lineTo(x+6,y);ctx.moveTo(x,y-6);ctx.lineTo(x,y+6);ctx.stroke();}
       }
     };
-    paint();window.addEventListener('resize',paint);return()=>window.removeEventListener('resize',paint);
+    const observer=new ResizeObserver(paint);observer.observe(canvas.parentElement!);
+    paint();return()=>observer.disconnect();
   },[]);
   useEffect(()=>{
     const canvas=stars.current!,ctx=canvas.getContext('2d')!,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const points=Array.from({length:160},(_,i)=>({x:(hash(i,11)-.5)*2.4,y:(hash(i,12)-.5)*2.4,z:hash(i,13)*2+.1}));
     let raf=0,last=performance.now();
     const draw=(now:number)=>{
-      const dpr=Math.min(devicePixelRatio,2),w=innerWidth,h=innerHeight;
+      const dpr=Math.min(devicePixelRatio,2),w=canvas.parentElement!.clientWidth,h=canvas.parentElement!.clientHeight;
       if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
       ctx.clearRect(0,0,w,h);const dt=Math.min((now-last)/1000,.04);last=now;
       const boost=reduced?0:Math.max(0,1-(now-pulse.current)/1500),wave=Math.sin(boost*Math.PI);

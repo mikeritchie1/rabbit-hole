@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { createPortal } from 'react-dom';
 import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Maximize, Minimize, X, ArrowUpRight, Play, Compass, Orbit, ExternalLink, ChevronLeft, ChevronRight, FlaskConical } from 'lucide-react';
 import { topics } from './data';
 import { back, previousTopic, nextTopic, insertTopic, visit, randomTopic, parseHash, placeHash, type Journey, type Place } from './navigation';
@@ -100,6 +101,7 @@ function App(){
   const seenTopics=useRef(new Set<string>());
   const preparedTopics=useRef(new Map<CategoryFilter,Topic>());
   const topicLabel=useRef<HTMLElement>(null);
+  const fullscreenFrame=useRef<{width:number;height:number}|null>(null);
   journeyRef.current=journey;startedRef.current=started;
   const current=journey.current,topic=topics.find(t=>t.id===current.topicId)!,level=topic.levels[current.level-1];
   const prepareRandom=(filter:CategoryFilter)=>{
@@ -121,12 +123,15 @@ function App(){
     return()=>clearTimeout(timer);
   },[started,topic,current.level]);
   useEffect(()=>{
+    if(started)preloadImages(topics.map(t=>t.image.url),1);
+  },[started]);
+  useEffect(()=>{
     if(overlay!=='library')return;
     const visible=topicsInCategory(topics,category).slice(page*6,(page+1)*6);
     preloadImages(visible.flatMap(t=>[t.image.url,...depthImages(t,1)]),2);
   },[overlay,category,page]);
   useLayoutEffect(()=>{
-    const label=topicLabel.current,app=label?.closest<HTMLElement>('.app');
+    const label=topicLabel.current,app=document.querySelector<HTMLElement>('.app');
     if(!label||!app)return;
     let mounted=true;
     const measure=()=>{if(mounted)app.style.setProperty('--depth-header-bottom',`${label.getBoundingClientRect().bottom-app.getBoundingClientRect().top+16}px`);};
@@ -135,7 +140,7 @@ function App(){
     window.addEventListener('resize',measure);
     void document.fonts.ready.then(measure);measure();
     return()=>{mounted=false;observer.disconnect();window.removeEventListener('resize',measure);app.style.removeProperty('--depth-header-bottom');};
-  },[started,topic.id]);
+  },[started,topic.id,fullscreen]);
   const open=(next:Overlay)=>{setPage(0);setOverlay(next);};
   const welcome=()=>{
     if(flightTimer.current)clearTimeout(flightTimer.current);
@@ -184,7 +189,14 @@ function App(){
     else travel({current:{topicId,level:1},trail:[],ahead:[]});
     setOverlay(null);
   };
-  const toggleFullscreen=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{setNotice('Fullscreen is unavailable in this browser.');}};
+  const toggleFullscreen=async()=>{try{
+    if(document.fullscreenElement)await document.exitFullscreen();
+    else{
+      const root=document.getElementById('root')!;
+      fullscreenFrame.current={width:root.clientWidth,height:root.clientHeight};
+      await document.documentElement.requestFullscreen();
+    }
+  }catch{fullscreenFrame.current=null;setNotice('Fullscreen is unavailable in this browser.');}};
   useEffect(()=>{
     if(!started){document.title='Welcome · Rabbit Hole';return;}
     seenTopics.current.add(current.topicId);
@@ -197,7 +209,25 @@ function App(){
   useEffect(()=>{if(overlay)dialog.current?.showModal();else dialog.current?.close();},[overlay]);
   useEffect(()=>setPage(0),[compact]);
   useEffect(()=>{if(!notice)return;const timer=setTimeout(()=>setNotice(''),2800);return()=>clearTimeout(timer);},[notice]);
-  useEffect(()=>{const handler=()=>setFullscreen(!!document.fullscreenElement),resize=()=>setCompact(innerWidth<650||innerHeight<600);document.addEventListener('fullscreenchange',handler);window.addEventListener('resize',resize);return()=>{document.removeEventListener('fullscreenchange',handler);window.removeEventListener('resize',resize);if(flightTimer.current)clearTimeout(flightTimer.current);};},[]);
+  useLayoutEffect(()=>{
+    const root=document.getElementById('root')!;
+    const resize=()=>{
+      const frame=fullscreenFrame.current;
+      const width=frame?Math.min(frame.width,innerWidth):innerWidth;
+      const height=frame?Math.min(frame.height,innerHeight):innerHeight;
+      root.style.width=`${width}px`;root.style.height=`${height}px`;
+      document.documentElement.style.setProperty('--layout-vw',`${width/100}px`);
+      document.documentElement.style.setProperty('--layout-vh',`${height/100}px`);
+      setCompact(width<650||height<600);
+    };
+    const handler=()=>{
+      const active=!!document.fullscreenElement;
+      if(!active)fullscreenFrame.current=null;
+      setFullscreen(active);resize();
+    };
+    resize();document.addEventListener('fullscreenchange',handler);window.addEventListener('resize',resize);
+    return()=>{document.removeEventListener('fullscreenchange',handler);window.removeEventListener('resize',resize);if(flightTimer.current)clearTimeout(flightTimer.current);};
+  },[]);
   useEffect(()=>{const handler=(e:KeyboardEvent)=>{
     if(document.querySelector('.experiment-dialog[open]'))return;if(e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;if(e.key==='Escape'){setOverlay(null);return;}if(overlay)return;
     const target=e.target as HTMLElement;if(target.closest('input,textarea,select,[contenteditable="true"]'))return;
@@ -216,11 +246,11 @@ function App(){
   const libraryTopics=topicsInCategory(topics,category);
   const totalPages=overlay==='library'?Math.ceil(libraryTopics.length/6):overlay==='sources'?Math.ceil(sourceItems.length/(compact?2:4)):1;
   return <div className={`app ${!started?'at-welcome':''} ${flight?'in-flight':''} ${orbiting?'orbit-turn':''}`}>
-    <Space flight={flight?.id||0} motion={flight?.direction}/>
-    <header className="topbar">
+    {createPortal(<Space flight={flight?.id||0} motion={flight?.direction}/>,document.body)}
+    {createPortal(<div className={`screen-chrome ${!started?'at-welcome':''}`}><header className="topbar">
       {started&&<><button className="brand" onClick={welcome} aria-label="Rabbit Hole — return to welcome"><span className="brand-orbit"/><span>RABBIT HOLE</span></button><div className="depth-indicator"><strong>{String(current.level).padStart(2,'0')}</strong><span>DEPTH</span><small ref={topicLabel} className="current-topic-title">{topic.title}<span className="current-category-label" data-category={topic.category}>{topic.category}</span></small></div></>}
       <nav aria-label="Main"><button onClick={()=>open('library')}>Explore</button><button onClick={newHole} title={`New rabbit hole: ${category}`}>New Rabbit Hole</button><button className="icon-button fullscreen-control" aria-label="Toggle fullscreen" title="Fullscreen (F)" onClick={()=>void toggleFullscreen()}>{fullscreen?<Minimize size={16}/>:<Maximize size={16}/>}</button></nav>
-    </header>
+    </header></div>,document.body)}
     {!started?<main className="welcome-screen">
       <div className="welcome-logo" aria-label="Rabbit Hole"><span className="brand-orbit"/><span>RABBIT HOLE</span></div>
       <h1>Welcome.</h1>
@@ -244,9 +274,9 @@ function App(){
       </div>
       <button className={`portal ${level.final?'at-bottom':''}`} onClick={level.final?newHole:deeper} aria-label={level.final?'Start a new rabbit hole':'Go deeper'}><span className="event-horizon"><span/></span></button>
     </main>}
-    <footer className="hud">
+    {createPortal(<div className="screen-chrome"><footer className="hud">
       {started&&<div className="depth-navigation"><div className="navigation-buttons"><button className="topic-nav-button" onClick={previousHole} disabled={!journey.trail.length} aria-label="Previous rabbit hole" title="Previous rabbit hole (←)"><ArrowLeft size={16}/></button><div className="depth-buttons"><button onClick={deeper} disabled={level.final} aria-label="Go deeper"><ArrowUp size={17}/></button><button onClick={up} disabled={current.level===1} aria-label="Back up"><ArrowDown size={17}/></button></div><button className="topic-nav-button" onClick={nextHole} disabled={!journey.ahead.length} aria-label="Next existing rabbit hole" title="Next rabbit hole (→)"><ArrowRight size={16}/></button></div><span>{level.final?'YOU’VE REACHED THE BOTTOM':'USE ↑ ↓ TO MOVE'}{!level.final&&<small>DEEPER OR CLOSER</small>}<small className="space-hint">PRESS SPACE FOR A NEW RABBIT HOLE</small><small className="space-hint">PRESS ← / → FOR PREVIOUS / NEXT RABBIT HOLE</small></span></div>}
-    </footer>
+    </footer></div>,document.body)}
     <dialog ref={dialog} className={`overlay ${overlay==='library'?'explore-overlay':''}`} aria-labelledby="overlay-title" onCancel={()=>setOverlay(null)} onClick={e=>{if(e.target===dialog.current)setOverlay(null);}}><div className="modal"><div className="modal-heading"><h2 id="overlay-title">{overlay==='library'?'Pick a rabbit hole':'Follow the evidence'}</h2><button className="icon-button" aria-label="Close" onClick={()=>setOverlay(null)}><X size={21}/></button></div>
       {overlay==='library'&&<div className="category-filters" role="group" aria-label="Choose a surprise category">{(['All',...TOPIC_CATEGORIES] as const).map(filter=><button key={filter} data-category={filter} aria-pressed={category===filter} disabled={!topicsInCategory(topics,filter).length} title={CATEGORY_DESCRIPTIONS[filter]} onClick={()=>chooseCategory(filter)}>{filter}</button>)}<button className="start-category" onClick={()=>startRandom(category)} disabled={!libraryTopics.length} title={`Start a random rabbit hole: ${category}`}>Start rabbit hole in category <ArrowUpRight size={14}/></button></div>}
       <div className="modal-content">{overlay==='library'?<div className="library">{libraryTopics.slice(page*6,(page+1)*6).map(t=><button key={t.id} onClick={()=>chooseTopic(t.id)}><SafeImage src={t.image.url} alt={t.image.alt}/><div><span className="topic-category" data-category={t.category}>{t.category}</span><h3>{t.title}</h3><p>{t.hook}</p></div></button>)}</div>:<div className="source-list">{sourceItems.slice(page*(compact?2:4),(page+1)*(compact?2:4)).map(s=><a key={s.url} href={s.url} target="_blank" rel="noreferrer"><span><strong>{s.title}</strong><small>{s.by}</small></span><ArrowUpRight size={19}/></a>)}</div>}</div>
